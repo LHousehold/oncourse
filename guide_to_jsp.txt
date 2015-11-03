@@ -39,3 +39,5 @@ Speaking of which, I remember mentioning most webapp frameworks will communicate
 Probably we will end up using regular Java methods to do so. (which are very capable)
 
 Feel free to clone this simple project and try to get it working on your own system.
+
+I don't know where Tomcat is going to install on your own machines, but somewhere there is going to be a folder called webapps. That's where you can clone the repository. Then you can visit the project by going to localhost/oncourse.
