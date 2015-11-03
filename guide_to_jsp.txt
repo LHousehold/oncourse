@@ -1,0 +1,41 @@
+I'm going to do my best to explain what I've found about JSP here.
+
+Basically, JSP is actually a file extension. A JSP file is an HTML file that can have embedded Java code. Here's an example:
+
+<html>
+<body>
+  <% double num = Math.random(); %>
+  <p>Your random number is: <%= num %></p>
+</body>
+</html>
+
+Here we see Java code taking place within the HTML, and we also see JSP's expression language being used in the following line.
+
+I strongly feel we should use Tomcat (http://tomcat.apache.org/tomcat-7.0-doc/) for this project. Version 7.
+Tomcat is basically a way to join Apache to the Java environment. It actually replaces Apache as a web server and will run our code for us.
+It will run on linux and windows too.
+
+I had to do some configuration to get my server working, but overall it doesn't take too much. Refer to the guide.
+
+Tomcat/JSP suggests a certain folder structure. We have the index file in the top level, and a WEB-INF folder alongside.
+In the WEB-INF folder is a file called web.xml that I'll get into later.
+There is also a folder called classes which contains all the Java servlets that we'll be using.
+Take a look at how I've organized my servlet in this project so far.
+
+What's a servlet? Excellent question! A servlet is basically Java code that can be invoked by a request.
+You could, for example, invoke a servlet with a GET request (in a manner of speaking) that returns some text which can be embedded into your HTML.
+An example is below:
+
+<div><jsp:include page="/hello" /></div>
+
+This "/hello" url is mapped directly to a class which extends the HttpServlet class. By "visiting" this url the Java code is run and a value is returned.
+
+In the same way servlets can contain methods to handle any kind of request.
+As far as I can tell right now, the idea is that the webpage interacts with servlets through these requests, and the servlets interact with the Java source code.
+It is not recommended, although possible, to invoke non-servlet Java code within a JSP file. I think we should stick to the convention of using servlets only.
+
+In order to interact with the databases, for example, a servlet would be called and that servlet would interact with a separate Java class responsible for the DB's.
+Speaking of which, I remember mentioning most webapp frameworks will communicate with a DB on their own, but I have yet to see that here.
+Probably we will end up using regular Java methods to do so. (which are very capable)
+
+Feel free to clone this simple project and try to get it working on your own system.
