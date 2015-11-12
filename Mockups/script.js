@@ -18,4 +18,24 @@ $(document).ready(function() {
     return false;
   });
 
+  $('.navbar-brand').click(function(e){
+    var $this = $(this);
+    
+    var $navbar = $this.parents(".navbar");
+    var $active = $navbar.find(".active");
+    var $default_active = $navbar.find(".default_active");
+
+    $active.removeClass('active');
+    $default_active.addClass('active');
+
+    e.preventDefault();
+    return false;
+  });
+
+  $('.course_menu_item').click(function(e){
+    var $this = $(this);
+
+    var course_code = $this.attr("data-course-code");
+  });
+
 })
