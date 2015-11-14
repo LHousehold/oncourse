@@ -1,4 +1,4 @@
-package com.tutorialspoint.test;
+package com.oncourse;
 
 import javax.faces.bean.ManagedBean;
 

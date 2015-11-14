@@ -10,7 +10,7 @@
   </welcome-file-list>
 
   <servlet>
-      <servelt-name>Faces Servlet</servlet-name>
+      <servlet-name>Faces Servlet</servlet-name>
       <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
       <load-on-startup>1</load-on-startup>
   </servlet>

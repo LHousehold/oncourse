@@ -1,0 +1,72 @@
+h1,h2,h3,h4,h5,a {
+	font-family: 'Lato', sans-serif !important;
+}
+
+.color1 {
+	background-color: #3C587F !important;
+	background-image: ;
+	color: #fff;
+}
+
+.color2 {
+	background-color: #C4DDFF !important;
+	color: #333;
+}
+
+.color3 {
+	background-color: #78B0FF !important;
+	color: #ddd;
+}
+
+.color4 {
+	background-color: #626E7F !important;
+	color: #ddd;
+}
+
+.color5 {
+	background-color: #608DCC !important;
+	color: #ddd;
+}
+
+.navbar-brand {
+	cursor: pointer;
+}
+
+/* index page */
+.top {
+    margin-top: 56px;
+}
+
+.sidebar_top {
+    vertical-align: top;
+	display: inline-block;
+	float: left;
+	width: 140px;
+}
+
+.content_top {
+	max-width: 85vw;
+	margin-left: 150px !important;
+	text-align: center;
+}
+
+.course_list {
+}
+
+.course_list_title {
+	margin-left: 15px;
+}
+
+/* login page */
+.logo_row {
+	padding-top: 26vh;
+	text-align: center;
+}
+
+.login_box {
+	width: 100%;
+	padding: 20px;
+	margin-top: 20px;
+	border-radius: 2px;
+}
+
