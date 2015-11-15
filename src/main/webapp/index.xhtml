@@ -1,16 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en-US" xmlns="http://www.lukehousehold.com/2015/xhtml">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
     <head>
-        <meta charset="UTF-8"></meta>
-        <title>Welcome to On Course</title>
-        <link rel="stylesheet" href="static/style.css" type="text/css"></link>
-    		<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'></link>
-    		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    		<script src="static/bootstrap.js" type="text/javascript"></script>
-    		<link rel="stylesheet" href="static/bootstrap.css" type="text/javascript"></link>
-    		<link rel="stylesheet" href="static/bootstrap-theme.css" type="text/javascript"></link>
-    		<script src="static/script.js" type="text/javascript"></script>
+        <ui:include src="head.xhtml" />
     </head>
     <body>
     	<nav class="navbar navbar-default navbar-fixed-top color4">
@@ -43,11 +37,7 @@
 				  	<a href="#" class="list-group-item course_menu_item" data-course-code="ECE496">ECE496</a>
 				</div>
 			</div>
-			<div class="container-fluid content_top">
-				<div class="row-fluid">
-					<h2>#{helloWorld.message}</h2>
-				</div>
-			</div>
+          <ui:include src="coursepackage.xhtml" />
 		</div>
     </body>
 </html>
