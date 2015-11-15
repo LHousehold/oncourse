@@ -6,7 +6,7 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <welcome-file-list>
-      <welcome-file>home.xhtml</welcome-file>
+      <welcome-file>index.xhtml</welcome-file>
   </welcome-file-list>
 
   <servlet>
