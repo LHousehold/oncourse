@@ -36,6 +36,11 @@ $(document).ready(function() {
     var $this = $(this);
 
     var course_code = $this.attr("data-course-code");
+
+    var $placeholder = $("#coursepackage_placeholder");
+
+    $placeholder.load("coursepackage.xhtml", {"coursecode":course_code});
+
   });
 
 })
