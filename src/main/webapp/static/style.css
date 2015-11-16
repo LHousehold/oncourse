@@ -32,6 +32,16 @@ h1,h2,h3,h4,h5,a {
 	cursor: pointer;
 }
 
+/* course package page */
+.coursepackage_title {
+    text-align: left;
+}
+
+.pagecontent_top {
+    min-height: 50vh;
+    background: #666;
+}
+
 /* index page */
 .top {
     margin-top: 56px;
@@ -45,7 +55,6 @@ h1,h2,h3,h4,h5,a {
 }
 
 .content_top {
-	max-width: 85vw;
 	margin-left: 150px !important;
 	text-align: center;
 }

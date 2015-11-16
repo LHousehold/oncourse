@@ -2,9 +2,15 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
-    <div>
-        <h2>I am a course package!!!!</h2>
-        <h:outputText value="#{request.getParameter('coursecode')}" />
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core">
+    <ui:param name="coursecode" value="#{request.getParameter('coursecode')}" />
+    <div class="row-fluid">
+        <h2 class="coursepackage_title">#{coursecode}</h2>
+    </div>
+    <div class="row-fluid">
+        <div class="pagecontent_top col-md-12">
+            <p>there</p>
+        </div>
     </div>
 </html>

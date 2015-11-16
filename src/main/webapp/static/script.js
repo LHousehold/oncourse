@@ -33,14 +33,12 @@ $(document).ready(function() {
   });
 
   $('.course_menu_item').click(function(e){
-    var $this = $(this);
+    var course_code = $(this).attr("data-course-code");
 
-    var course_code = $this.attr("data-course-code");
-
-    var $placeholder = $("#coursepackage_placeholder");
-
-    $placeholder.load("coursepackage.xhtml", {"coursecode":course_code});
-
+    $("#page_content").load("coursepackage.xhtml", {"coursecode":course_code});
   });
+
+  /*$('.tableofcontents').hover(function(e){
+  }*/
 
 })
