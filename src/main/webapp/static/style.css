@@ -45,6 +45,36 @@ h1,h2,h3,h4,h5,a {
 .pagecontent_top {
 }
 
+.left_arrow {
+	width: 12px;
+	min-height: 50vh;
+	height: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-image: linear-gradient(to right, #337ab7 0%, #2b669a 100%);
+	border-top-left-radius: 7px;
+	border-bottom-left-radius: 7px;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+	cursor: w-resize;
+}
+
+.right_arrow {
+	width: 12px;
+	min-height: 50vh;
+	height: 100%;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	background-image: linear-gradient(to left, #337ab7 0%, #2b669a 100%);
+	border-top-right-radius: 7px;
+	border-bottom-right-radius: 7px;
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+	cursor: e-resize;
+}
+
 /* index page */
 .top {
     margin-top: 56px;
