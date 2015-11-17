@@ -4,15 +4,8 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core">
-    <script src="static/cp_script.js" type="text/javascript"></script>
+    <script src="static/pg_script.js" type="text/javascript"></script>
     <ui:param name="coursecode" value="#{request.getParameter('coursecode')}" />
-    <div class="row-fluid">
-        <div class="col-md-12">
-            <h2 class="coursepackage_title" data-course-code="#{coursecode}">#{coursecode}</h2>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="pagecontent_top col-md-12" id="page_content">
-        </div>
-    </div>
+    <ui:param name="pagenumber" value="#{request.getParameter('pagenumber')}" />
+    <div>Some stuff that Chris will write</div>
 </html>

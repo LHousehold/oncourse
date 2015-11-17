@@ -28,6 +28,11 @@ h1,h2,h3,h4,h5,a {
 	color: #ddd;
 }
 
+.color6 {
+	background-color: #ccffff !important;
+	color: black;
+}
+
 .navbar-brand {
 	cursor: pointer;
 }
@@ -38,8 +43,6 @@ h1,h2,h3,h4,h5,a {
 }
 
 .pagecontent_top {
-    min-height: 50vh;
-    background: #666;
 }
 
 /* index page */
@@ -48,14 +51,14 @@ h1,h2,h3,h4,h5,a {
 }
 
 .sidebar_top {
-    vertical-align: top;
+  vertical-align: top;
 	display: inline-block;
 	float: left;
 	width: 140px;
 }
 
 .content_top {
-	margin-left: 150px !important;
+	margin-left: 145px !important;
 	text-align: center;
 }
 
@@ -78,4 +81,3 @@ h1,h2,h3,h4,h5,a {
 	margin-top: 20px;
 	border-radius: 2px;
 }
-
