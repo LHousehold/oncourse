@@ -14,6 +14,7 @@ $(document).ready(function() {
     });
 
     $('.left_arrow').click(function(e){
+        e.preventDefault();
         // go get current page number and course code
         var page_number = $(".cppage_top").attr("data-page-number");
         var course_code = $(".coursepackage_title").attr("data-course-code");
@@ -29,6 +30,7 @@ $(document).ready(function() {
     });
 
     $('.right_arrow').click(function(e){
+        e.preventDefault();
         // go get current page number and course code
         var page_number = $(".cppage_top").attr("data-page-number");
         var course_code = $(".coursepackage_title").attr("data-course-code");
