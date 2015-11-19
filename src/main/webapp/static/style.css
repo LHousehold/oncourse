@@ -1,10 +1,26 @@
-h1,h2,h3,h4,h5,a {
+/* mo bootstrap mo problems */
+
+.navbar-default .navbar-nav>li>a {
+    color: #ddd !important;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #555 !important;
+    background-color: #e7e7e7;
+}
+
+.navbar-default .navbar-brand {
+    color: #ddd !important;
+}
+
+/* global */
+
+h1,h2,h3,h4,h5,a,p {
 	font-family: 'Lato', sans-serif !important;
 }
 
 .color1 {
 	background-color: #3C587F !important;
-	background-image: ;
 	color: #fff;
 }
 
@@ -40,6 +56,18 @@ h1,h2,h3,h4,h5,a {
 /* course package page */
 .coursepackage_title {
     text-align: left;
+	color: black;
+}
+
+.coursepackage_title > h2 {
+	float: left;
+	margin-right: 20px;
+
+}
+
+.button_row {
+	margin-top: 24px;
+    float: left;
 }
 
 .pagecontent_top {
@@ -57,7 +85,7 @@ h1,h2,h3,h4,h5,a {
 	border-bottom-left-radius: 7px;
 	border-top-right-radius: 2px;
 	border-bottom-right-radius: 2px;
-	cursor: w-resize;
+	cursor: pointer;
 }
 
 .right_arrow {
@@ -72,7 +100,7 @@ h1,h2,h3,h4,h5,a {
 	border-bottom-right-radius: 7px;
 	border-top-left-radius: 2px;
 	border-bottom-left-radius: 2px;
-	cursor: e-resize;
+	cursor: pointer;
 }
 
 /* index page */
@@ -81,8 +109,7 @@ h1,h2,h3,h4,h5,a {
 }
 
 .sidebar_top {
-  vertical-align: top;
-	display: inline-block;
+    vertical-align: top;
 	float: left;
 	width: 140px;
 }
