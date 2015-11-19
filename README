@@ -1,0 +1,17 @@
+
+Tools needed to run this server
+
+name        version
+---------------------------------------------
+tomcat      7
+maven       3+ (tested on 3.2.5 and 3.3.3)
+mariadb     10+
+
+Build process:
+1. run 'mvn package' from {PRJ-ROOT} directory
+2. copy '{PRG-ROOT}/target/oncourse.war' to your tomcat webapps folder
+3. make sure tomcat and mariadb are running
+    example starting with systemd (these will be platform dependant)
+    systmectl start tomcat.service
+    systmectl start mysqld.service
+4. test that it works with a web browser at localhost:8080/oncourse
