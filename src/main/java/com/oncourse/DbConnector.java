@@ -1,16 +1,29 @@
 package com.oncourse;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ApplicationScoped;
 //import javax.faces.bean.ViewScoped;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
+//@ManagedBean(name = "coursePackageDisplay", eager = true)
+@ManagedBean(name = "dbConnection", eager = true)
+@ApplicationScoped
 public class DbConnector {
 
-    public void go() {
+    private String yay = "YAY";
+
+    public DbConnector() {
+        open();
+    }
+
+    public String tst() {
+        return yay;
+    }
+
+    private void open() {
         String url = "jdbc:mariadb://localhost:3306/oncourse";
         String user = "oc";
         String password = "";
@@ -21,7 +34,6 @@ public class DbConnector {
             // broken Java implementations
 
             //Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("YOYOYO");
             Class.forName("org.mariadb.jdbc.Driver").newInstance();
         } catch (Exception ex) {
             // handle the error
@@ -34,7 +46,7 @@ public class DbConnector {
                     "");
             //conn = DriverManager.getConnection(url, user, password);
             if (conn != null) {
-                System.out.println("Connected to the database test1");
+                System.out.println("Connected to the database oncourse");
             }
 
         } catch (SQLException ex) {
