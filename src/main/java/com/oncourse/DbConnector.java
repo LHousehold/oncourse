@@ -2,6 +2,7 @@ package com.oncourse;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
+import javax.annotation.PreDestroy;
 //import javax.faces.bean.ViewScoped;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,9 +15,25 @@ import java.sql.SQLException;
 public class DbConnector {
 
     private String yay = "YAY";
+    private Connection conn;
 
     public DbConnector() {
         open();
+    }
+
+    @PreDestroy
+    public void closeConn() {
+        try {
+            conn.close();
+        }
+        catch (SQLException ex) {
+            System.out.println("An error occurred. Maybe user/password is invalid");
+            ex.printStackTrace();
+        }
+    }
+
+    public Connection getConn() {
+        return this.conn;
     }
 
     public String tst() {
@@ -27,7 +44,6 @@ public class DbConnector {
         String url = "jdbc:mariadb://localhost:3306/oncourse";
         String user = "oc";
         String password = "";
-        Connection conn;
 
         try {
             // The newInstance() call is a work around for some
@@ -40,12 +56,12 @@ public class DbConnector {
         }
 
         try {
-            conn = DriverManager.getConnection(
+            this.conn = DriverManager.getConnection(
                     "jdbc:mariadb://localhost/oncourse",
                     "oc",
                     "");
             //conn = DriverManager.getConnection(url, user, password);
-            if (conn != null) {
+            if (this.conn != null) {
                 System.out.println("Connected to the database oncourse");
             }
 
