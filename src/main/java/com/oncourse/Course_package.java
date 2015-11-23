@@ -1,6 +1,7 @@
 package com.oncourse;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Course_package implements DbTable {
 
@@ -47,11 +48,15 @@ public class Course_package implements DbTable {
         return this.next;
     }
 
+    public void setNext(DbTable next) {
+        this.next = next;
+    }
+
     public void push(DbTable entry) {
-        Course_package curr = this;
+        DbTable curr = (DbTable) this;
         while (curr.next() != null) {
-            curr = (Course_package) curr.next();
+            curr = curr.next();
         }
-        curr.next = entry;
+        curr.setNext(entry);
     }
 }

@@ -17,5 +17,6 @@ public interface DbTable {
 
     // for simple linked list methods
     public DbTable next();
+    public void setNext(DbTable next);
     public void push(DbTable entry);
 }
