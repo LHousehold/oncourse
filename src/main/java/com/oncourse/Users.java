@@ -31,7 +31,7 @@ public class Users implements DbTable {
     // build query for reading the database
     public String readQuery() {
         // still want to write this for how we actually want to query it
-        return "SELECT * FROM user_permission WHERE user_name = " + this.user_name;
+        return "SELECT * FROM users WHERE user_name = " + this.user_name;
     }
 
     // build query for writing the database
