@@ -13,6 +13,16 @@ $(document).ready(function() {
         load_page(course_code,page_number);
     });
 
+    $('.section_reference').click(function(e){
+        e.preventDefault();
+        // go get current page number and course code
+        var page_number = $(this).attr("data-page-number");
+        //Might need to make this....
+        var course_code = $(".coursepackage_title").attr("data-course-code");
+
+        load_page(course_code,page_number);
+    });
+
     $('.left_arrow').click(function(e){
         e.preventDefault();
         // go get current page number and course code

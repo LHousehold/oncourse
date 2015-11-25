@@ -11,9 +11,47 @@
             <div class="coursepackage_title" data-course-code="#{coursecode}">
                 <h2>#{coursecode}</h2>
                 <div class="button_row">
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                    </button>
+                    <div class="toc_button">
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                        </button>
+                        <div class="toc_list list-group">
+                            <a href="http://www.google.com.com" class="list-group-item toc_section" data-page-number="25">Google</a>
+                            <a href="#" class="list-group-item toc_subsection" data-page-number="35">Mail</a>
+                            <a href="#" class="list-group-item" data-page-number="65">YouTube</a>
+                            <a href="#" class="list-group-item" data-page-number="45">Item 4</a>
+                            <a href="#" class="list-group-item" data-page-number="55">Item 5</a>
+                            <ui:repeat value="#{tableOfContents.getSections()}" var="section">
+                                <a href="#" class="list-group-item" data-page-number="#{section.pageNumber}" data-section-code="#{section.sectionNumber}">
+                                    <h:outputText value="#{section.sectionName}" />
+                                </a>
+                            </ui:repeat>
+                        </div>
+
+                        <!--
+                        class="list-group-item section_reference #{section.type}"
+                        -->
+
+                        <!--div class="sub_menu_container">
+                            <ul class="sub_menu">
+                                <li class="sub_menu_item">
+                                    <a href="https://www.google.ca">Google</a>
+                                </li>
+                                <li class="sub_menu_item">
+                                    <a href="https://www.gmail.ca">Mail</a>
+                                </li>
+                                <li class="sub_menu_item">
+                                    <a href="https://www.youtube.ca">YouTube</a>
+                                </li>
+                                <li class="sub_menu_item">
+                                    <a href="#">Item 4</a>
+                                </li>
+                                <li class="sub_menu_item">
+                                    <a href="#">Item 5</a>
+                                </li>
+                            </ul>
+                        </div-->
+                    </div>
                 </div>
             </div>
         </div>
