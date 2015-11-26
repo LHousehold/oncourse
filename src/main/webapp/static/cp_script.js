@@ -3,12 +3,24 @@ $(document).ready(function() {
 
     var load_page = function(course_code, page_number){
         $("#page_content").load("cppage.xhtml", {"coursecode": course_code, "pagenumber": page_number});
+
+        $('#nav_page_number').text("Page " + page_number);
     };
 
     $('#page_content').ready(function(e){
         // When course package loads, load first page
         var course_code = $(".coursepackage_title").attr("data-course-code");
         var page_number = 1;
+
+        load_page(course_code,page_number);
+    });
+
+    $('.section_reference').click(function(e){
+        e.preventDefault();
+        // go get current page number and course code
+        var page_number = $(this).attr("data-page-number");
+        //Might need to make this....
+        var course_code = $(".coursepackage_title").attr("data-course-code");
 
         load_page(course_code,page_number);
     });
