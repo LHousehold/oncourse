@@ -35,4 +35,15 @@ $(document).ready(function() {
       $("#coursepackage_content").load("coursepackage.xhtml", {"coursecode":course_code});
   });
 
+  $(document).keydown(function(e){
+      if (e.keyCode == 37) {
+          // left key
+          $('.left_arrow').click();
+      }
+      else if (e.keyCode == 39) {
+          // right key
+          $('.right_arrow').click();
+      }
+  });
+
 })

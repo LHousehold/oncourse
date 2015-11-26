@@ -74,7 +74,7 @@ h1,h2,h3,h4,h5,a,p {
 }
 
 .left_arrow {
-	width: 12px;
+/*	width: 12px;
 	min-height: 50vh;
 	height: 100%;
 	position: absolute;
@@ -85,11 +85,15 @@ h1,h2,h3,h4,h5,a,p {
 	border-bottom-left-radius: 7px;
 	border-top-right-radius: 2px;
 	border-bottom-right-radius: 2px;
-	cursor: pointer;
+	cursor: pointer;*/
+    float: left;
+    height: 30px;
+    width: 40px;
+    margin: 5px;
 }
 
 .right_arrow {
-	width: 12px;
+/*	width: 12px;
 	min-height: 50vh;
 	height: 100%;
 	position: absolute;
@@ -100,7 +104,35 @@ h1,h2,h3,h4,h5,a,p {
 	border-bottom-right-radius: 7px;
 	border-top-left-radius: 2px;
 	border-bottom-left-radius: 2px;
-	cursor: pointer;
+	cursor: pointer;*/
+    float: right;
+    height: 30px;
+    width: 40px;
+    margin: 5px;
+}
+
+.cp_navigation_bar {
+    background-color:snow;
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
+    transform: translate(-50%, -50%);
+    height: 40px;
+    width: 700px;
+    margin-left: 70px;
+    opacity: 0.5;
+    border-radius: 5px;
+    border: 1px #ddd solid;
+    text-align: center;
+}
+
+.cp_navigation_bar:hover {
+    opacity: 1;
+}
+
+.nav_page_number {
+    position: absolute;
+    width: 100%;
 }
 
 /* Table of contents */

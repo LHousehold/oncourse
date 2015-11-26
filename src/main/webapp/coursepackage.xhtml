@@ -16,36 +16,12 @@
                             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                         </button>
                         <div class="toc_list list-group">
-                            <ui:repeat value="#{tableOfContents.getCPSections()}" var="section">
-                                <a href="#" class="list-group-item" data-page-number="#{section.pageNumber}" data-section-code="#{section.sectionNumber}">
-                                    <h:outputText value="#{section.sectionName}" />
+                            <ui:repeat value="#{tableofContents.getCPSections()}" var="section">
+                                <a href="#" class="list-group-item section_reference" data-page-number="#{section.pageNumber}" data-section-code="#{section.sectionNumber}">
+                                    #{section.sectionName}
                                 </a>
                             </ui:repeat>
                         </div>
-
-                        <!--
-                        class="list-group-item section_reference #{section.type}"
-                        -->
-
-                        <!--div class="sub_menu_container">
-                            <ul class="sub_menu">
-                                <li class="sub_menu_item">
-                                    <a href="https://www.google.ca">Google</a>
-                                </li>
-                                <li class="sub_menu_item">
-                                    <a href="https://www.gmail.ca">Mail</a>
-                                </li>
-                                <li class="sub_menu_item">
-                                    <a href="https://www.youtube.ca">YouTube</a>
-                                </li>
-                                <li class="sub_menu_item">
-                                    <a href="#">Item 4</a>
-                                </li>
-                                <li class="sub_menu_item">
-                                    <a href="#">Item 5</a>
-                                </li>
-                            </ul>
-                        </div-->
                     </div>
                 </div>
             </div>
@@ -53,9 +29,20 @@
     </div>
     <div class="row-fluid">
         <div class="pagecontent_top col-md-12">
-            <div class="left_arrow"></div>
+            <!--div class="left_arrow"></div-->
             <div id="page_content"></div>
-            <div class="right_arrow"></div>
+            <!--div class="right_arrow"></div-->
         </div>
+    </div>
+    <div class="cp_navigation_bar">
+        <div class="nav_page_number">
+            <h4 id="nav_page_number">Page 1</h4>
+        </div>
+        <button class="left_arrow btn btn-default">
+            <span class="glyphicon glyphicon-chevron-left" />
+        </button>
+        <button class="right_arrow btn btn-default">
+            <span class="glyphicon glyphicon-chevron-right" />
+        </button>
     </div>
 </html>

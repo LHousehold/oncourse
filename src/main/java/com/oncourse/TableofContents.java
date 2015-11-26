@@ -5,13 +5,13 @@ import javax.faces.bean.RequestScoped;
 import java.util.ArrayList;
 import java.util.List;
 
-@ManagedBean(name = "tableOfContents", eager = true)
+@ManagedBean(name = "tableofContents", eager = true)
 @RequestScoped
-public class TableOfContents {
+public class TableofContents {
 
     private List<Section> sections = new ArrayList<Section>();
 
-    public TableOfContents() {
+    public TableofContents() {
         this.sections.add(new Section("Digital Sampling","1","1"));
         this.sections.add(new Section("Machine Learning","7","7"));
         this.sections.add(new Section("Capstone","9","9"));

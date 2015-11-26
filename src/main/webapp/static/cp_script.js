@@ -3,6 +3,8 @@ $(document).ready(function() {
 
     var load_page = function(course_code, page_number){
         $("#page_content").load("cppage.xhtml", {"coursecode": course_code, "pagenumber": page_number});
+
+        $('#nav_page_number').text("Page " + page_number);
     };
 
     $('#page_content').ready(function(e){
