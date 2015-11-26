@@ -17,7 +17,7 @@ public class TableOfContents {
         this.sections.add(new Section("Capstone","9","9"));
     }
 
-    public List<Section> getSections() {
+    public List<Section> getCPSections() {
         return sections;
     }
 

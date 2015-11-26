@@ -16,12 +16,7 @@
                             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                         </button>
                         <div class="toc_list list-group">
-                            <a href="http://www.google.com.com" class="list-group-item toc_section" data-page-number="25">Google</a>
-                            <a href="#" class="list-group-item toc_subsection" data-page-number="35">Mail</a>
-                            <a href="#" class="list-group-item" data-page-number="65">YouTube</a>
-                            <a href="#" class="list-group-item" data-page-number="45">Item 4</a>
-                            <a href="#" class="list-group-item" data-page-number="55">Item 5</a>
-                            <ui:repeat value="#{tableOfContents.getSections()}" var="section">
+                            <ui:repeat value="#{tableOfContents.getCPSections()}" var="section">
                                 <a href="#" class="list-group-item" data-page-number="#{section.pageNumber}" data-section-code="#{section.sectionNumber}">
                                     <h:outputText value="#{section.sectionName}" />
                                 </a>
