@@ -10,7 +10,7 @@
     <!-- nothing on this page is how we have to do this; this is just for my development -->
     <div class="cppage_top" data-page-number="#{pagenumber}">
 
-        #{coursePackageDisplay.pageFetch()}<br>
+        <h:outputText value="#{coursePackageDisplay.pageFetch(1,1)}" escape="false" />
 
         You are on page #{pagenumber} of #{coursecode}
     </div>

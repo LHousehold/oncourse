@@ -48,13 +48,13 @@ public class CoursePackageDisplay {
         this.db = db;
     }
 
-    //public String pageFetch(int cpid, int page) {
-    public String pageFetch() {
+    public String pageFetch(int cpid, int page) {
+
 
         // this is where you actually start using it
        Course_package cp = new Course_package();
-       cp.cpid = 1;
-       cp.page = 1;
+       cp.cpid = cpid;
+       cp.page = page;
        cp = (Course_package) db.readTable(cp, Course_package.class);
 
        String ret = "";
@@ -64,7 +64,21 @@ public class CoursePackageDisplay {
            // and has no useful values
            // you could use a tmp "pointer" instead
            cp = (Course_package) cp.next();
-           ret += cp.source;
+
+           /*ret += "<iframe width='420' height='315' src='https://www.youtube.com/embed/" + cp.source +
+            "'frameborder='0' allowfullscreen></iframe><br>";*/
+
+
+           if (cp.media_type.equals("YOUTUBE")){
+               ret += "<iframe width='420' height='315' src='https://www.youtube.com/embed/" + cp.source +
+                "'frameborder='0' allowfullscreen></iframe><br>";
+           }
+           else if (cp.media_type.equals("PDF")){
+               //Do this later...
+           }
+
+
+           //ret += cp.source+"<br>";
        }
        return ret;
     }
