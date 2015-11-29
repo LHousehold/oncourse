@@ -57,6 +57,8 @@ public class CoursePackageDisplay {
        cp.page = page;
        cp = (Course_package) db.readTable(cp, Course_package.class);
 
+       //String ret = "<div class='pos_all'>";
+
        String ret = "";
 
        while (cp.next() != null){
@@ -65,21 +67,48 @@ public class CoursePackageDisplay {
            // you could use a tmp "pointer" instead
            cp = (Course_package) cp.next();
 
-           /*ret += "<iframe width='420' height='315' src='https://www.youtube.com/embed/" + cp.source +
-            "'frameborder='0' allowfullscreen></iframe><br>";*/
-
+           if (cp.location.equals("TOP")){
+               ret += "<div class='pos_top'>";
+           }
+           else if (cp.location.equals("BOTTOM")){
+               ret += "<div class='pos_bottom'>";
+           }
+           else if (cp.location.equals("LEFT")){
+               ret += "<div class='pos_left'>";
+           }
+           else if (cp.location.equals("RIGHT")){
+               ret += "<div class='pos_right'>";
+           }
+           else if (cp.location.equals("TL")){
+               ret += "<div class='pos_tl'>";
+           }
+           else if (cp.location.equals("TR")){
+               ret += "<div class='pos_tr'>";
+           }
+           else if (cp.location.equals("BL")){
+               ret += "<div class='pos_bl'>";
+           }
+           else if (cp.location.equals("BR")){
+               ret += "<div class='pos_br'>";
+           }
+           else if (cp.location.equals("FULL")){
+               ret += "<div class='pos_full'>";
+           }
 
            if (cp.media_type.equals("YOUTUBE")){
-               ret += "<iframe width='420' height='315' src='https://www.youtube.com/embed/" + cp.source +
-                "'frameborder='0' allowfullscreen></iframe><br>";
+               ret += "<iframe width='420' height='315' src='https://www.youtube.com/embed/"
+                + cp.source + "'frameborder='0' allowfullscreen></iframe>";
+
+
            }
            else if (cp.media_type.equals("PDF")){
                //Do this later...
            }
-
+           ret += "</div>";
 
            //ret += cp.source+"<br>";
        }
+       //ret += "</div>";
        return ret;
     }
 
