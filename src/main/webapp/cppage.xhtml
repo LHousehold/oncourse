@@ -9,7 +9,8 @@
     <ui:param name="pagenumber" value="#{request.getParameter('pagenumber')}" />
     <!-- nothing on this page is how we have to do this; this is just for my development -->
     <div class="cppage_top" data-page-number="#{pagenumber}">
-        Some stuff that Chris will write
+
+        #{coursePackageDisplay.pageFetch()}<br>
 
         You are on page #{pagenumber} of #{coursecode}
     </div>
