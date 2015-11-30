@@ -7,7 +7,7 @@ $(document).ready(function() {
         $('#nav_page_number').text("Page " + page_number);
     };
 
-    function set_page_height(){
+    var set_page_height= function(){
         var page_content = document.querySelector('#page_content');
 
         if(page_content){
@@ -18,7 +18,7 @@ $(document).ready(function() {
 
             page_content.style.height = windowHeight - heightOffset + "px";
         }
-    }
+    };
 
     window.onresize = set_page_height;
 
