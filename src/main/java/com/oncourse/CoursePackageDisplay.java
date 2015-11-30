@@ -96,7 +96,7 @@ public class CoursePackageDisplay {
            }
 
            if (cp.media_type.equals("YOUTUBE")){
-               ret += "<iframe width='420' height='315' src='https://www.youtube.com/embed/"
+               ret += "<iframe class = 'iframeStyle' src='https://www.youtube.com/embed/"
                 + cp.source + "'frameborder='0' allowfullscreen></iframe>";
 
 
