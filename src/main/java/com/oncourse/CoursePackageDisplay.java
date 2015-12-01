@@ -102,8 +102,14 @@ public class CoursePackageDisplay {
 
            }
            else if (cp.media_type.equals("PDF")){
-               //Do this later...
+               ret += "<embed class = 'pos_full' src='" + cp.source + "'>";
            }
+           else if (cp.media_type.equals("MP3")){
+               //ret += "<audio src=''" + cp.source + "' controls='controls'/>";
+               //ret += "<source src='" + cp.source + "' type='audio/mpeg'>";
+               ret += "<embed src='" + cp.source + "' autostart = '0' type='audio/mp3' class = 'pos_full'/> TRACK ONE </embed>";
+           }
+
            ret += "</div>";
 
            //ret += cp.source+"<br>";
