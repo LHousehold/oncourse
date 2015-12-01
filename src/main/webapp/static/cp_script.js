@@ -7,12 +7,30 @@ $(document).ready(function() {
         $('#nav_page_number').text("Page " + page_number);
     };
 
+    var set_page_height= function(){
+        var page_content = document.querySelector('#page_content');
+
+        if(page_content){
+            var jq_page_content = $('#page_content');
+
+            var heightOffset = jq_page_content.offset().top;
+            var windowHeight = window.innerHeight;
+
+            page_content.style.height = windowHeight - heightOffset + "px";
+        }
+    };
+
+    window.onresize = set_page_height;
+
     $('#page_content').ready(function(e){
         // When course package loads, load first page
         var course_code = $(".coursepackage_title").attr("data-course-code");
         var page_number = 1;
 
         load_page(course_code,page_number);
+
+        //dynamically setting height
+        set_page_height();
     });
 
     $('.section_reference').click(function(e){
