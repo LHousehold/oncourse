@@ -152,12 +152,22 @@ h1,h2,h3,h4,h5,a,p {
     visibility: hidden;
     opacity: 0;
     transition: linear 0.2s;
+    width: 300px;
 }
 
 .toc_button:hover > .toc_list {
     transform: translateY(0);
     visibility: visible;
     opacity: 1;
+}
+
+.toc_list > .section {
+    font-weight: bold;
+    font-size: medium;
+}
+
+.toc_list > .subsection {
+    text-indent: 12px;
 }
 
 /*.sub_menu {
