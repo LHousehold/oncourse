@@ -102,12 +102,14 @@ public class CoursePackageDisplay {
 
            }
            else if (cp.media_type.equals("PDF")){
-               ret += "<embed class = 'pos_full' src='" + cp.source + "'>";
+               //ret += "<embed class = 'pos_full' src='" + cp.source + "'>";
+               ret += "<iframe class = 'iframeStyle' src='" + cp.source + "' width='' height='' border=''></iframe>";
            }
            else if (cp.media_type.equals("MP3")){
                //ret += "<audio src=''" + cp.source + "' controls='controls'/>";
                //ret += "<source src='" + cp.source + "' type='audio/mpeg'>";
-               ret += "<embed src='" + cp.source + "' autostart = '0' type='audio/mp3' class = 'pos_full'/> TRACK ONE </embed>";
+               //ret += "<embed src='" + cp.source + "' autostart = '0' type='audio/mp3' class = 'pos_full'/> TRACK ONE </embed>";
+               ret += "<audio controls><source src='" + cp.source + "' type='audio/mpeg'>Your browser does not support the audio element.</audio>";
            }
 
            ret += "</div>";
