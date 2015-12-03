@@ -1,4 +1,3 @@
-
 use oncourse;
 
 TRUNCATE TABLE course_package;
