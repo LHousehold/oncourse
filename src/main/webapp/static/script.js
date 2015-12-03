@@ -31,8 +31,9 @@ $(document).ready(function() {
 
   $('.course_menu_item').click(function(e){
       var course_code = $(this).attr("data-course-code");
+      var cpid = $(this).attr("data-cpid");
 
-      $("#coursepackage_content").load("coursepackage.xhtml", {"coursecode":course_code});
+      $("#coursepackage_content").load("coursepackage.xhtml", {"coursecode":course_code, "cpid": cpid});
   });
 
   $(document).keydown(function(e){

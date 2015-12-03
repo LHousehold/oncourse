@@ -6,9 +6,10 @@
     xmlns:f="http://java.sun.com/jsf/core">
     <script src="static/cp_script.js" type="text/javascript"></script>
     <ui:param name="coursecode" value="#{request.getParameter('coursecode')}" />
+    <ui:param name="cpid" value="#{request.getParameter('cpid')}" />
     <div class="row-fluid">
         <div class="col-md-12">
-            <div class="coursepackage_title" data-course-code="#{coursecode}">
+            <div class="coursepackage_title" data-course-code="#{coursecode}" data-cpid="#{cpid}">
                 <h2>#{coursecode}</h2>
                 <div class="button_row">
                     <div class="toc_button">

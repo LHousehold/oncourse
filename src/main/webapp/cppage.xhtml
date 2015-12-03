@@ -5,13 +5,9 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core">
     <script src="static/pg_script.js" type="text/javascript"></script>
-    <ui:param name="coursecode" value="#{request.getParameter('coursecode')}" />
     <ui:param name="pagenumber" value="#{request.getParameter('pagenumber')}" />
-    <!-- nothing on this page is how we have to do this; this is just for my development -->
-    <div class="pos_all cppage_top" data-page-number="#{pagenumber}">
-
-        <h:outputText value="#{coursePackageDisplay.pageFetch(1,pagenumber)}" escape="false" />
-
-        <!--You are on page #{pagenumber} of #{coursecode}-->
+    <ui:param name="cpid" value="#{request.getParameter('cpid')}" />
+    <div class="pos_all" id="cppage_top" data-page-number="#{pagenumber}">
+        <h:outputText value="#{coursePackageDisplay.pageFetch(cpid,pagenumber)}" escape="false" />
     </div>
 </html>
