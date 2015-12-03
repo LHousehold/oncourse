@@ -12,9 +12,9 @@ public class TableofContents {
     private List<Section> sections = new ArrayList<Section>();
 
     public TableofContents() {
-        this.sections.add(new Section("Digital Sampling","1","1"));
-        this.sections.add(new Section("Machine Learning","7","7"));
-        this.sections.add(new Section("Capstone","9","9"));
+        this.sections.add(new Section("Digital Sampling","1","1","section"));
+        this.sections.add(new Section("Machine Learning","7","7","subsection"));
+        this.sections.add(new Section("Capstone","9","9","section"));
     }
 
     public List<Section> getCPSections() {

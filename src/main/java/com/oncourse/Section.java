@@ -5,11 +5,13 @@ public class Section {
 	private String sectionName;
 	private String pageNumber;
 	private String sectionNumber;
+	private String sectionType;
 
-	public Section(String sectionName, String pageNumber, String sectionNumber){
+	public Section(String sectionName, String pageNumber, String sectionNumber, String sectionType){
 		this.sectionName = sectionName;
 		this.pageNumber = pageNumber;
 		this.sectionNumber = sectionNumber;
+		this.sectionType = sectionType;
 	}
 
 	public String getSectionName(){
@@ -34,6 +36,14 @@ public class Section {
 
 	public void setSectionNumber(String sectionNumber){
 		this.sectionNumber = sectionNumber;
+	}
+
+	public String getSectionType(){
+		return sectionType;
+	}
+
+	public void setSectionType(String sectionNumber){
+		this.sectionType = sectionType;
 	}
 
 }
