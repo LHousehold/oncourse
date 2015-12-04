@@ -3,7 +3,6 @@ $(document).ready(function() {
 
     var load_page = function(cpid, page_number){
         cpid = parseInt(cpid,10);
-        console.log(cpid);
         page_number = parseInt(page_number,10);
         $("#page_content").load("cppage.xhtml", {"cpid": cpid, "pagenumber": page_number});
 
