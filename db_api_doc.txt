@@ -1,0 +1,79 @@
+// ***************************************************
+// the following is the documentation on using the
+// database interface api
+//
+// The goal of the api is to simplify accesses to the database
+//
+// This point of the interface is to encompass the data
+// representation of a queries results into different classes.
+//
+// A template file to implement your own query is included
+// "template_DbTable_implementer.txt"
+// Copy the contents of the file to create a new class for your
+// query and follow the steps inside to customize it appropriately
+// ***************************************************
+
+
+// ***************************************************
+//  this import must be in the file where this is used
+
+import javax.faces.bean.ManagedProperty
+
+// ***************************************************
+
+
+
+// ***************************************************
+// this code must appear in your own class declaration where it is used
+
+@ManagedProperty(value="#{dbConnection}")
+private DbConnector db;
+
+// must provide the setter method
+// don't actually call this yourself
+public void setdb(DbConnector db) {
+    this.db = db;
+}
+
+// ***************************************************
+
+
+
+// ***************************************************
+// This is an example of using the interface
+
+
+// in this example Course_package is a class that represents
+// a query and the data it will return
+Course_package cp = new Course_package();
+
+// these are the parameters that are variable in the query
+cp.cpid = 1;
+cp.page = 1;
+
+// this function is called to run the query
+cp = (Course_package) db.readTable(cp, Course_package.class);
+
+// the queries will usually return more than one result
+// so you must loop through them
+//
+// continue reading even if you know your query returns one result
+while (cp.next() != null){
+
+    // this call to cp.next must be called first
+    //
+    // even if you know your query returns one result
+    // you must still call next() at least once
+    cp = (Course_package) cp.next();
+
+    // after that call you can read all the values from one entry
+    String something = cp.media_type;
+
+}
+
+// ***************************************************
+
+
+
+
+
