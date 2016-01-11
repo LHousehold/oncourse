@@ -20,7 +20,6 @@ import java.sql.*;
 @ApplicationScoped
 public class DbConnector {
 
-    private String yay = "YAY";
     private Connection conn;
 
     public DbConnector() {
@@ -46,26 +45,13 @@ public class DbConnector {
 
     // entry should be a new instance of the type of table you are reading from
     public <T extends DbTable> DbTable readTable(DbTable entry, Class<T> type) {
-        //String query = "SELECT * FROM course_package WHERE cpid = " + cpid + " AND page = " + page;
-
-        // when this is created, the first entry willl just act as a head and have no valuse by it self
+        // when this is created, the first entry will just act as a head and have no valuse by it self
         // call next to get the first entry with values
         //T entry;
         String query;
         System.out.println("begin");
 
         query  = entry.readQuery();
-
-//        try {
-//            entry = type.newInstance();
-//            query = entry.readQuery();
-//        } catch (InstantiationException x) {
-//            x.printStackTrace();
-//            return null;
-//        } catch (IllegalAccessException x) {
-//            x.printStackTrace();
-//            return null;
-//        }
 
         System.out.println("start to read from table");
         try {
@@ -84,9 +70,11 @@ public class DbConnector {
                     newEntry.fill(rs);
                     entry.push(newEntry);
                 } catch (InstantiationException x) {
+                    System.err.println("InstantiationException");
                     x.printStackTrace();
                     return null;
                 } catch (IllegalAccessException x) {
+                    System.err.println("IllegalAccessException");
                     x.printStackTrace();
                     return null;
                 }
@@ -101,10 +89,6 @@ public class DbConnector {
         System.out.println("finied");
         return entry;
 
-    }
-
-    public String tst() {
-        return yay;
     }
 
     private void open() {
