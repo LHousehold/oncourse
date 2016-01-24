@@ -192,6 +192,17 @@ h1,h2,h3,h4,h5,a,p {
     color: red;
 }*/
 
+/* course package editor page */
+.edit {
+    padding: 1px;
+    border-radius: 3px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.edit:hover {
+}
 
 /* index page */
 .top {
