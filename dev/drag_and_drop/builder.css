@@ -4,19 +4,22 @@
 
 #grid {
     position: absolute;
+    display: inline-block;
     right: 0;
     top 0;
-    float: right;
-    height: 100px;
-    width: 50%;
+    margin: 2px;
+    height: 95%;
+    width: 49%;
 }
 
 #file_menu {
     position: absolute;
+    display: inline-block;
     left: 0;
     top: 0;
-    height: 100px;
-    width: 50%;
+    margin: 2px;
+    height: 95%;
+    width: 49%;
 }
 
 #container {
@@ -24,4 +27,8 @@
     display: block;
     height: 100%;
     width: 95%;
+}
+
+.file_item {
+    
 }
