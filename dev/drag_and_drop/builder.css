@@ -30,5 +30,8 @@
 }
 
 .file_item {
-    
+    border: solid 1px black;
+    position: relative;
+    height: 20px;
+    width: 80%;
 }
