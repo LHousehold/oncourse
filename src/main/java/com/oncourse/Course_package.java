@@ -40,7 +40,8 @@ public class Course_package implements DbTable {
     // build query for writing the database
     public String writeQuery() {
         // nothing yet, just testing
-        return "";
+        return "INSERT INTO course_package (cpid, media_type, page, source, location)" +
+                   "VALUES (" + cpid + ",'" + media_type + "'," + page + ",'" + source + "','" + location + "')";
     }
 
     // for simple linked list methods
