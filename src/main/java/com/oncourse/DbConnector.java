@@ -94,13 +94,9 @@ public class DbConnector {
     private void open() {
 
         try {
-            // The newInstance() call is a work around for some
-            // broken Java implementations
-
-            //Class.forName("com.mysql.jdbc.Driver");
             Class.forName("org.mariadb.jdbc.Driver").newInstance();
         } catch (Exception ex) {
-            // handle the error
+            System.out.println("Error: can not create instance of mariadb jdbc driver");
         }
 
         try {
@@ -108,7 +104,6 @@ public class DbConnector {
                     "jdbc:mariadb://localhost/oncourse",
                     "oc",
                     "");
-            //conn = DriverManager.getConnection(url, user, password);
             if (this.conn != null) {
                 System.out.println("Connected to the database oncourse");
             }
