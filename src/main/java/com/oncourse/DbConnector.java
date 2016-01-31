@@ -91,6 +91,30 @@ public class DbConnector {
 
     }
 
+    public void writeTable(DbTable entry) {
+
+        String query;
+        System.out.println("begin write");
+
+        query  = entry.writeQuery();
+        System.out.println(query);
+
+        try {
+            // create the java statement
+            Statement st = conn.createStatement();
+
+            // execute the query, no return value
+            st.executeUpdate(query);
+        }
+        catch (SQLException e)
+        {
+            System.err.println("Error reading the Database");
+            System.err.println(e.getMessage());
+        }
+
+        System.out.println("finished write");
+    }
+
     private void open() {
 
         try {
