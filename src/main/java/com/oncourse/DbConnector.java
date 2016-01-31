@@ -31,10 +31,10 @@ public class DbConnector {
     public void closeConn() {
         try {
             conn.close();
-            System.out.println("Connected to the database oncourse");
+            System.out.println("Disconnected from the database");
         }
         catch (SQLException ex) {
-            System.out.println("An error occurred. Maybe user/password is invalid");
+            System.out.println("An error occurred while disconnecting");
             ex.printStackTrace();
         }
     }
