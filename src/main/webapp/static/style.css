@@ -192,17 +192,6 @@ h1,h2,h3,h4,h5,a,p {
     color: red;
 }*/
 
-/* course package editor page */
-.edit {
-    padding: 1px;
-    border-radius: 3px;
-    cursor: pointer;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.edit:hover {
-}
 
 /* index page */
 .top {
@@ -223,8 +212,60 @@ h1,h2,h3,h4,h5,a,p {
 .course_list {
 }
 
-.course_list_title {
+.list_title {
 	margin-left: 15px;
+}
+
+/* course editor page */
+.courseeditor_top {
+    margin-top: 200px;
+}
+
+.edit_title_row {
+    margin-top: 30px;
+    text-align: left;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+}
+
+.edit_title_row textarea {
+    font-size: 20px;
+}
+
+.edit_coursepackage_title {
+    width: 72% !important;
+}
+
+.edit_course_code {
+    width: 28% !important;
+}
+
+.section_row {
+    margin-top: 30px;
+}
+
+.section_block {
+    margin-bottom: 20px;
+}
+
+.section_title {
+    font-size: 16px;
+}
+
+.section_btn {
+    padding: 3px;
+}
+
+.add_subsection_btn {
+    width: 50%;
+    //margin-left: 50%;
+    margin-top: 5px;
+}
+
+.subsection_block {
+    //margin-left: 10%;
+    width: 90%;
+    margin-top: 5px;
 }
 
 /* login page */
