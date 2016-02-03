@@ -202,6 +202,7 @@ h1,h2,h3,h4,h5,a,p {
     vertical-align: top;
 	float: left;
 	width: 140px;
+    text-align: center;
 }
 
 .content_top {
@@ -222,14 +223,15 @@ h1,h2,h3,h4,h5,a,p {
 }
 
 .edit_title_row {
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: left;
-    padding-bottom: 30px;
+    padding-bottom: 40px;
     border-bottom: 1px solid #ddd;
 }
 
-.edit_title_row textarea {
-    font-size: 20px;
+.edit_title_row h2 {
+    display: inline;
+    margin-right: 10px;
 }
 
 .edit_coursepackage_title {
@@ -245,7 +247,15 @@ h1,h2,h3,h4,h5,a,p {
 }
 
 .section_block {
-    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 16px;
+}
+
+.section_block h3 {
+    display: inline;
+    margin-right: 20px;
 }
 
 .section_title {
@@ -258,14 +268,53 @@ h1,h2,h3,h4,h5,a,p {
 
 .add_subsection_btn {
     width: 50%;
-    //margin-left: 50%;
     margin-top: 5px;
 }
 
 .subsection_block {
-    //margin-left: 10%;
-    width: 90%;
+    width: 95%;
     margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 10px;
+    margin-left: 5%;
+}
+
+.subsection_block h4 {
+    display: inline;
+    margin-right: 20px;
+}
+
+.section_options_btn {
+    float: right;
+    padding: 6px;
+    font-size: 24px;
+}
+
+.subsection_options_btn {
+    float: right;
+    padding: 3px;
+    padding-right: 13px;
+    font-size: 22px;
+}
+
+.option_box {
+    position: absolute;
+    z-index: 100;
+    padding: 15px 0 0 0;
+    transform: translateY(-15px);
+    visibility: hidden;
+    opacity: 0;
+    transition: linear 0.2s;
+    width: 100px;
+    right: 14px;
+}
+
+.subsection_options_btn:hover, .section_options_btn:hover > .option_box {
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
 }
 
 /* login page */
