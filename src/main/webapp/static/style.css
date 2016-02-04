@@ -242,6 +242,19 @@ h1,h2,h3,h4,h5,a,p {
     width: 28% !important;
 }
 
+.edit {
+    cursor: pointer;
+}
+
+.edit:hover::after {
+    font-family: 'Glyphicons Halflings';
+    content: "\270f";
+    font-size: 12px;
+    position: relative;
+    bottom: 8px;
+    left: 2px;
+}
+
 .section_row {
     margin-top: 30px;
 }
@@ -286,7 +299,29 @@ h1,h2,h3,h4,h5,a,p {
     margin-right: 20px;
 }
 
-.section_options_btn {
+.section_btns {
+    float: right;
+}
+
+.section_btns button {
+    /*font-size: 20px;*/
+}
+
+.subsection_btns {
+    float: right;
+    position: relative;
+    bottom: 2px;
+    right: 6px;
+}
+
+.subsection_btns button {
+}
+
+.add_section {
+    margin-top: 5px;
+}
+
+/*.section_options_btn {
     float: right;
     padding: 6px;
     font-size: 24px;
@@ -315,7 +350,7 @@ h1,h2,h3,h4,h5,a,p {
     transform: translateY(0);
     visibility: visible;
     opacity: 1;
-}
+}*/
 
 /* login page */
 .logo_row {
