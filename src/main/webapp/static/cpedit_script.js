@@ -26,8 +26,8 @@ $(document).ready(function() {
     });
 
     $("#sections_content").on("click", ".add_subsection", function(e){
-        var newsec = $('<div class="subsection_block secblock" data-section="1.1"> \
-<h4 class="subsecnum">1.1</h4> \
+        var newsec = $('<div class="subsection_block secblock"> \
+<h4 class="subsecnum" data-section="1">1.1</h4> \
 <h4 class="subsectitle edit" contenteditable="true">New Subsection</h4> \
 <div class="subsection_btns"> \
 <button class="btn btn-default remove_subsection" title="Remove Subsection"><span class="glyphicon glyphicon-remove"></span></button> \
@@ -41,8 +41,8 @@ $(document).ready(function() {
 
     $("#sections_content").on("click", ".add_section", function(e){
         var newsec = $('<div class="section_row"> \
-<div class="section_block secblock" data-section="1"> \
-<h3 class="secnum">1.</h3> \
+<div class="section_block secblock"> \
+<h3 class="secnum" data-section="1">1.</h3> \
 <h3 class="sectitle edit" contenteditable="true">New Section</h3> \
 <div class="section_btns"> \
 <button class="btn btn-default remove_section" title="Remove Section"><span class="glyphicon glyphicon-remove"></span></button> \
@@ -57,7 +57,11 @@ $(document).ready(function() {
     });
 
     $("#sections_content").on("click", ".remove_section", function(e){
-        var r = confirm("Are you absolutely sure you want to remove this section?\nAll contained pages will be deleted.");
+        if ($(this).closest(".section_row").find(".secnum").data("section") == 1) {
+            alert("Cannot remove first section");
+            return;
+        }
+        var r = confirm("Are you absolutely sure you want to remove this section?\n\nAll contained pages will be deleted.");
         if (r) {
             $(this).closest(".section_row").remove();
         }
@@ -66,7 +70,7 @@ $(document).ready(function() {
     });
 
     $("#sections_content").on("click", ".remove_subsection", function(e){
-        var r = confirm("Are you sure you want to remove this subsection?\nAll contained pages will be deleted.");
+        var r = confirm("Are you sure you want to remove this subsection?\n\nAll contained pages will be deleted.");
         if (r) {
             $(this).closest(".secblock").remove();
         }
@@ -75,13 +79,14 @@ $(document).ready(function() {
     });
 
     function refresh_indices() {
-        var i = 0;
         $(".section_row").each(function(i) {
             var secnum = $(this).find(".secnum");
             secnum.html(i+1 + ".");
+            secnum.attr("data-section",i+1);
             $(this).find(".subsecnum").each(function(j) {
                 var subsecnum = $(this);
                 subsecnum.html((i+1) + "." + (j+1));
+                subsecnum.attr("data-section",(i+1) + "." + (j+1))
             });
         });
     }
