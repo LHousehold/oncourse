@@ -40,7 +40,7 @@ public void setdb(DbConnector db) {
 
 
 // ***************************************************
-// This is an example of using the interface
+// This is an example of using the interface To Read from the table
 
 
 // in this example Course_package is a class that represents
@@ -70,6 +70,26 @@ while (cp.next() != null){
     String something = cp.media_type;
 
 }
+// ***************************************************
+
+
+// ***************************************************
+// This is an example of using the interface To Write
+
+// test insert
+Course_package ins = new Course_package();
+
+// note that no id is given because the database sets this automaticly
+// so the underliying query should not try to write its own
+
+ins.cpid = 1;
+ins.media_type = "YOUTUBE";
+ins.page = 7;
+ins.source = "nmI9H5gT8wQ";
+ins.location = "FULL";
+
+db.writeTable(ins);
+
 
 // ***************************************************
 

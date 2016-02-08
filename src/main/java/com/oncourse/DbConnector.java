@@ -31,10 +31,10 @@ public class DbConnector {
     public void closeConn() {
         try {
             conn.close();
-            System.out.println("Connected to the database oncourse");
+            System.out.println("Disconnected from the database");
         }
         catch (SQLException ex) {
-            System.out.println("An error occurred. Maybe user/password is invalid");
+            System.out.println("An error occurred while disconnecting");
             ex.printStackTrace();
         }
     }
@@ -91,16 +91,36 @@ public class DbConnector {
 
     }
 
+    public void writeTable(DbTable entry) {
+
+        String query;
+        System.out.println("begin write");
+
+        query  = entry.writeQuery();
+        System.out.println(query);
+
+        try {
+            // create the java statement
+            Statement st = conn.createStatement();
+
+            // execute the query, no return value
+            st.executeUpdate(query);
+        }
+        catch (SQLException e)
+        {
+            System.err.println("Error reading the Database");
+            System.err.println(e.getMessage());
+        }
+
+        System.out.println("finished write");
+    }
+
     private void open() {
 
         try {
-            // The newInstance() call is a work around for some
-            // broken Java implementations
-
-            //Class.forName("com.mysql.jdbc.Driver");
             Class.forName("org.mariadb.jdbc.Driver").newInstance();
         } catch (Exception ex) {
-            // handle the error
+            System.out.println("Error: can not create instance of mariadb jdbc driver");
         }
 
         try {
@@ -108,7 +128,6 @@ public class DbConnector {
                     "jdbc:mariadb://localhost/oncourse",
                     "oc",
                     "");
-            //conn = DriverManager.getConnection(url, user, password);
             if (this.conn != null) {
                 System.out.println("Connected to the database oncourse");
             }
