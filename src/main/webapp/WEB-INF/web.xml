@@ -2,13 +2,20 @@
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
-<web-app>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+
+ <session-config>
+     <session-timeout>
+         30
+     </session-timeout>
+ </session-config>
+
   <display-name>On Course Educational Platform</display-name>
-
-  <welcome-file-list>
-      <welcome-file>index.xhtml</welcome-file>
-  </welcome-file-list>
-
+  <servlet-mapping>
+      <servlet-name>Faces Servlet</servlet-name>
+      <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
   <servlet>
       <servlet-name>Faces Servlet</servlet-name>
       <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -26,9 +33,9 @@
       <servlet-name>Faces Servlet</servlet-name>
       <url-pattern>*.faces</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-      <servlet-name>Faces Servlet</servlet-name>
-      <url-pattern>*.xhtml</url-pattern>
-  </servlet-mapping>
+
+  <welcome-file-list>
+      <welcome-file>index.xhtml</welcome-file>
+  </welcome-file-list>
 
 </web-app>

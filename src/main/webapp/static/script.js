@@ -36,6 +36,10 @@ $(document).ready(function() {
       $("#coursepackage_content").load("coursepackage.xhtml", {"coursecode":course_code, "cpid": cpid});
   });
 
+  $('.upload_item').click(function(e){
+      $("#coursepackage_content").load("upload.xhtml");
+  });
+
   $(document).keydown(function(e){
       if (e.keyCode == 37) {
           // left key
