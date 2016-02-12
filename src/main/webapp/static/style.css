@@ -304,7 +304,7 @@ h1,h2,h3,h4,h5,a,p {
 }
 
 .section_btns button {
-    /*font-size: 20px;*/
+    height: 30px;
 }
 
 .subsection_btns {
@@ -315,6 +315,7 @@ h1,h2,h3,h4,h5,a,p {
 }
 
 .subsection_btns button {
+    height: 30px;
 }
 
 .add_section {

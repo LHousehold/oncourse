@@ -25,6 +25,11 @@ $(document).ready(function() {
         }
     });
 
+    $("#sections_content").on("click", ".edit_section", function(e){
+        //$("#coursepackage_content").load("pageeditor.xhtml", {"pagenumber":pagenumber, "cpid": cpid});
+        $("#coursepackage_content").load("pageeditor.xhtml");
+    });
+
     $("#sections_content").on("click", ".add_subsection", function(e){
         var newsec = $('<div class="subsection_block secblock"> \
 <h4 class="subsecnum" data-section="1">1.1</h4> \
@@ -57,8 +62,8 @@ $(document).ready(function() {
     });
 
     $("#sections_content").on("click", ".remove_section", function(e){
-        if ($(this).closest(".section_row").find(".secnum").data("section") == 1) {
-            alert("Cannot remove first section");
+        if ($("#sections_content").find(".section_row").length == 1) {
+            alert("Cannot remove only section");
             return;
         }
         var r = confirm("Are you absolutely sure you want to remove this section?\n\nAll contained pages will be deleted.");
