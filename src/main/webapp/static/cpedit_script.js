@@ -1,6 +1,10 @@
 $(document).ready(function() {
     // All the Javascript that coursepackageeditor.xhtml will need
 
+    $("#sections_content").load(function(e) {
+        $("#edit_course_name").click();
+    });
+
     $("#sections_content").on("focus", ".edit", function(e){
         setTimeout(function(){
             // ensure focus is complete
@@ -95,5 +99,18 @@ $(document).ready(function() {
             });
         });
     }
+
+    $(".upload_button").click(function(e) {
+        $(".upload_form_file").click();
+    });
+
+    $(".upload_form_file").change(function(e) {
+        $(".upload_form").submit();
+    });
+
+    $(".upload_form").submit(function(e) {
+        e.preventDefault();
+        alert("Upload Successful!");
+    });
 
 })

@@ -53,6 +53,16 @@ h1,h2,h3,h4,h5,a,p {
 	cursor: pointer;
 }
 
+/* home page */
+.welcome_frame {
+    padding: 70px;
+    border: 1px #337ab7 solid;
+    margin-top: 20vh;
+    margin-left: 15%;
+    margin-right: 15%;
+    border-radius: 5px;
+}
+
 /* course package page */
 .coursepackage_title {
     text-align: left;
@@ -320,6 +330,14 @@ h1,h2,h3,h4,h5,a,p {
 
 .add_section {
     margin-top: 5px;
+}
+
+.upload_form {
+    display: none;
+}
+
+.upload_button {
+    float: right;
 }
 
 /*.section_options_btn {

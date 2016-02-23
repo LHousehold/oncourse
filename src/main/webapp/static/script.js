@@ -29,6 +29,10 @@ $(document).ready(function() {
     return false;
   });
 
+  $('.option_menu_item').click(function(e){
+      $("#coursepackage_content").load("home.xhtml");
+  });
+
   $('.course_menu_item').click(function(e){
       var course_code = $(this).attr("data-course-code");
       var cpid = $(this).attr("data-cpid");
@@ -37,10 +41,14 @@ $(document).ready(function() {
   });
 
   $('.course_edit_item').click(function(e){
-      var course_code = $(this).attr("data-course-code");
+      //var course_code = $(this).attr("data-course-code");
       var cpid = $(this).attr("data-cpid");
 
-      $("#coursepackage_content").load("coursepackageeditor.xhtml", {"coursecode":course_code, "cpid": cpid});
+
+      var course_code = prompt("Please enter a Course Code for your new course", "APS100");
+      if (course_code != null) {
+          $("#coursepackage_content").load("coursepackageeditor.xhtml", {"coursecode":course_code, "cpid": cpid});
+      }
   });
 
 
