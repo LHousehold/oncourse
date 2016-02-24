@@ -1,3 +1,5 @@
+package com.oncourse;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,24 +11,31 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
+import javax.faces.bean.ManagedProperty;
+
 @ManagedBean
 @ViewScoped
+
+
 public class FileUploadMBean implements Serializable {
+
+    @ManagedProperty(value="#{dbConnection}")
+
+    private DbConnector db;
+
+    public void setdb(DbConnector db) {
+        this.db = db;
+    }
+
+
     private static final long serialVersionUID = 1L;
     private Part file1;
-    private Part file2;
     private String message;
     public Part getFile1() {
         return file1;
     }
     public void setFile1(Part file1) {
         this.file1 = file1;
-    }
-    public Part getFile2() {
-        return file2;
-    }
-    public void setFile2(Part file2) {
-        this.file2 = file2;
     }
     public String getMessage() {
         return message;
@@ -70,29 +79,25 @@ public class FileUploadMBean implements Serializable {
             if (inputStream != null) {
                 inputStream.close();
             }
+
+            // test insert
+            FileQuery nFile = new FileQuery();
+
+            // note that no id is given because the database sets this automaticly
+            // so the underliying query should not try to write its own
+
+            nFile.cpid = 9001;
+            nFile.media_type = "pdf";
+            nFile.source = path + File.separator + "files" + File.separator + "uploads"
+                    + File.separator + fileName;
+            nFile.name = fileName;
+
+            db.writeTable(nFile);
+
             file1Success = true;
         }
-        boolean file2Success = false;
-        if (file2 != null && file2.getSize() > 0) {
-            String fileName = Utils.getFileNameFromPart(file2);
-            File outputFile = new File(path + File.separator + "files" + File.separator + "uploads"
-                    + File.separator + fileName);
-            inputStream = file2.getInputStream();
-            outputStream = new FileOutputStream(outputFile);
-            byte[] buffer = new byte[Constants.BUFFER_SIZE];
-            int bytesRead = 0;
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
-            }
-            if (outputStream != null) {
-                outputStream.close();
-            }
-            if (inputStream != null) {
-                inputStream.close();
-            }
-            file2Success = true;
-        }
-        if (file1Success || file2Success) {
+
+        if (file1Success) {
             System.out.println("File uploaded to : " + path);
             /**
             * set the success message when the file upload is successful
