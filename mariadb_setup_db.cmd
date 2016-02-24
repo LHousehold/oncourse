@@ -58,4 +58,14 @@ permission_level varchar(255) NOT NULL DEFAULT 'read',
 PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS files
+(
+id int AUTO_INCREMENT,
+cpid int NOT NULL,
+name varchar(255) NOT NULL,
+source varchar(255) NOT NULL,
+media_type varchar(20) NOT NULL,
+PRIMARY KEY (id)
+);
+
 GRANT ALL PRIVILEGES ON oncourse.* TO 'oc'@'localhost';

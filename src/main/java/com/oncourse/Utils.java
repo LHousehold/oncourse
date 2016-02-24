@@ -1,3 +1,5 @@
+package com.oncourse;
+
 import javax.servlet.http.Part;
 public class Utils {
     public static String getFileNameFromPart(Part part) {
