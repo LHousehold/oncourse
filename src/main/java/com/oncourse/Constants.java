@@ -1,3 +1,5 @@
+package com.oncourse;
+
 public class Constants {
     private Constants() {
     }
