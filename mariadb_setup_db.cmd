@@ -18,8 +18,10 @@ CREATE TABLE IF NOT EXISTS course_package_section
 (
 id int AUTO_INCREMENT,
 cpid int NOT NULL,
+section_index int NOT NULL,
 section_name varchar(255) NOT NULL,
-page int NOT NULL,
+section_type int NOT NULL,
+first_page int NOT NULL,
 PRIMARY KEY (id)
 );
 
