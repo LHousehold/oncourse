@@ -68,7 +68,11 @@ public class FileQuery implements DbTable {
 // write your query to write the database here (some design decisions may still affect this functionality)
 // ##################################
         return "INSERT INTO files (cpid, media_type, name, source)" +
+<<<<<<< HEAD
                   "VALUES (" + cpid + ",'" + media_type + "','" + name + "','" + source + "')";
+=======
+                  "VALUES (" + cpid + ",'" + media_type + "'," + name + ",'" + source + "')";
+>>>>>>> add FileQuery.java
     }
 
     // for simple linked list methods
