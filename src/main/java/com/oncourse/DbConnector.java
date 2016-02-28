@@ -44,14 +44,14 @@ public class DbConnector {
     }
 
     // entry should be a new instance of the type of table you are reading from
-    public <T extends DbTable> DbTable readTable(DbTable entry, Class<T> type) {
+    public <T extends DbTable> DbTable readTable(DbTable entry, String where, Class<T> type) {
         // when this is created, the first entry will just act as a head and have no valuse by it self
         // call next to get the first entry with values
         //T entry;
         String query;
         System.out.println("begin");
 
-        query  = entry.readQuery();
+        query  = entry.readQuery(where);
 
         System.out.println("start to read from table");
         try {

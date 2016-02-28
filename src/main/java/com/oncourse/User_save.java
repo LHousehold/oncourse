@@ -29,9 +29,10 @@ public class User_save implements DbTable {
     }
 
     // build query for reading the database
-    public String readQuery() {
+    public String readQuery(String where) {
         // still want to write this for how we actually want to query it
-        return "SELECT * FROM user_save WHERE cpid = " + this.cpid + " AND uid = " + this.uid;
+        //return "SELECT * FROM user_save WHERE cpid = " + this.cpid + " AND uid = " + this.uid;
+        return "SELECT * FROM user_save WHERE " + where;
     }
 
     // build query for writing the database
