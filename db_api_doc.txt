@@ -47,12 +47,8 @@ public void setdb(DbConnector db) {
 // a query and the data it will return
 Course_package cp = new Course_package();
 
-// these are the parameters that are variable in the query
-cp.cpid = 1;
-cp.page = 1;
-
-// this function is called to run the query
-cp = (Course_package) db.readTable(cp, Course_package.class);
+// now pass in the parameters for WHERE to call read
+cp = (Course_package) db.readTable(cp, "cpid = " + cpid + " AND page = " + page, Course_package.class);
 
 // the queries will usually return more than one result
 // so you must loop through them
