@@ -115,6 +115,30 @@ public class DbConnector {
         System.out.println("finished write");
     }
 
+    // genericQuery can be used for INSERT or UPDATE or DELETE
+    // or any other query with no return
+    public void genericQuery(String query){
+        System.out.println("begin genericQuery");
+
+        System.out.println(""+query); // weird, won't print unless concatenated with other string. Hence ""
+
+        try {
+            // create the java statement
+            Statement st = conn.createStatement();
+
+            // execute the query, no return value
+            st.executeUpdate(query);
+        }
+        catch (SQLException e)
+        {
+            System.err.println("Error reading the Database");
+            System.err.println(e.getMessage());
+        }
+
+        System.out.println("finished genericQuery");
+
+    }
+
     private void open() {
 
         try {
