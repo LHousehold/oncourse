@@ -49,7 +49,7 @@ public class DbConnector {
         // call next to get the first entry with values
         //T entry;
         String query;
-        System.out.println("begin");
+        System.out.println("begin read:" + type.toString());
 
         query  = entry.readQuery(where);
 
@@ -86,7 +86,7 @@ public class DbConnector {
             System.err.println(e.getMessage());
         }
 
-        System.out.println("finied");
+        System.out.println("finished read:" + type.toString());
         return entry;
 
     }
