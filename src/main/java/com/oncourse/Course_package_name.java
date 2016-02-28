@@ -27,8 +27,9 @@ public class Course_package_name implements DbTable {
     }
 
     // build query for reading the database
-    public String readQuery() {
-        return "SELECT * FROM course_package_name WHERE id = " + this.id;
+    public String readQuery(String where) {
+        //return "SELECT * FROM course_package_name WHERE id = " + this.id;
+        return "SELECT * FROM course_package_name WHERE " + where;
     }
 
     // build query for writing the database

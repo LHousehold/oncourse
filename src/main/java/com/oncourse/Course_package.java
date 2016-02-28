@@ -33,8 +33,9 @@ public class Course_package implements DbTable {
     }
 
     // build query for reading the database
-    public String readQuery() {
-        return "SELECT * FROM course_package WHERE cpid = " + this.cpid + " AND page = " + this.page;
+    public String readQuery(String where) {
+        //return "SELECT * FROM course_package WHERE cpid = " + this.cpid + " AND page = " + this.page;
+        return "SELECT * FROM course_package WHERE " + where;
     }
 
     // build query for writing the database

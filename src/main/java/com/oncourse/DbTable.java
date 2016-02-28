@@ -18,7 +18,8 @@ public interface DbTable {
 
     // basicly you add a new query and fill in the members that are use for the where query
     // build query for reading the database
-    public String readQuery();
+    // where: the argument to the WHERE part of a query
+    public String readQuery(String where);
 
     // build query for writing the database
     public String writeQuery();
