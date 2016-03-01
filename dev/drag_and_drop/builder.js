@@ -6,10 +6,10 @@ function set_drag_listener () {
     // add event listeners for all the static elements
     var i = 0;
     while (i < grid_items.length) {
-        grid_items[i].ondrop = drop;
-        grid_items[i].ondragover = allowDrop;
-        grid_items[i].ondragenter = drag_enter;
-        grid_items[i].ondragleave = drag_leave;
+        grid_items[i].ondrop = grid_drop;
+        grid_items[i].ondragover = grid_allowDrop;
+        grid_items[i].ondragenter = grid_drag_enter;
+        grid_items[i].ondragleave = grid_drag_leave;
         i += 1;
     }
     
@@ -22,7 +22,7 @@ function set_drag_listener () {
 }
 
 function add_file_item_events (el) {
-    el.ondragstart = drag;
+    el.ondragstart = file_item_drag;
 }
 
 function add_drag_style (el) {
@@ -33,11 +33,11 @@ function remove_drag_style (el) {
     el.classList.remove("drag_hover");
 }
 
-function drag_enter (ev) {
+function grid_drag_enter (ev) {
     add_drag_style(ev.target);
 }
 
-function drag_leave (ev) {
+function grid_drag_leave (ev) {
     remove_drag_style(ev.target);
 }
 
@@ -45,16 +45,16 @@ function drag_leave (ev) {
 //    remove_drag_style(ev.target);
 //}
 
-function allowDrop(ev) {
+function grid_allowDrop(ev) {
     ev.preventDefault();
 }
 
-function drag(ev) {
+function file_item_drag(ev) {
     ev.dataTransfer.setData("id", ev.target.id);
     console.log("drag");
 }
 
-function drop(ev) {
+function grid_drop(ev) {
     ev.preventDefault();
     var id = ev.dataTransfer.getData("id");
     var file = document.getElementById(id);
