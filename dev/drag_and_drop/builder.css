@@ -4,7 +4,6 @@
 
 #grid {
     position: absolute;
-    display: inline-block;
     right: 0;
     top 0;
     margin: 2px;
@@ -22,7 +21,7 @@
     width: 49%;
 }
 
-#container {
+#item_container {
     position: absolute;
     display: block;
     height: 100%;
@@ -34,4 +33,55 @@
     position: relative;
     height: 20px;
     width: 80%;
+}
+
+.grid_item {
+    position: absolute;
+    height: 30%;
+    width: 30%;
+}
+
+#TL {
+    top: 0;
+    left: 0;
+}
+
+#T {
+    top: 0;
+    left: 33%;
+}
+
+#TR {
+    top: 0;
+    left: 66%;
+}
+
+#L {
+    top: 33%;
+    left: 0;
+}
+
+#M {
+    top: 33%;
+    left: 33%;
+}
+
+#R {
+    top:33%;
+    left: 66%;
+}
+
+#BL {
+    top: 66%;
+    left: 0;
+}
+
+#B {
+    top: 66%;
+    left: 33%;
+}
+
+#BR {
+    top:66%;
+    left: 66%;
 }
