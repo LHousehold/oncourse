@@ -3,6 +3,7 @@ function set_drag_listener () {
     
     var file_items = document.querySelectorAll(".file_item");
     
+    // add event listeners for all the static elements
     var i = 0;
     while (i < grid_items.length) {
         grid_items[i].ondrop = drop;
@@ -12,11 +13,16 @@ function set_drag_listener () {
         i += 1;
     }
     
+    // add event listeners for dynamic elements (file_items)
     i = 0;
     while (i < file_items.length) {
-        file_items[i].ondragstart = drag;
+        add_file_item_events(file_items[i]);
         i += 1;
     }
+}
+
+function add_file_item_events (el) {
+    el.ondragstart = drag;
 }
 
 function add_drag_style (el) {
