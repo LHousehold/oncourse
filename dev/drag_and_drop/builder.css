@@ -41,6 +41,10 @@
     width: 30%;
 }
 
+.drag_hover {
+    background-color: red;
+}
+
 #TL {
     top: 0;
     left: 0;
