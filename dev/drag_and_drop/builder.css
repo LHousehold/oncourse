@@ -41,6 +41,10 @@
     width: 30%;
 }
 
+.grid_disabled {
+    background-color: grey;
+}
+
 .drag_hover {
     background-color: red;
 }
