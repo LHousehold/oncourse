@@ -3,14 +3,14 @@ package com.oncourse;
 
 public class Section {
 	private String sectionName;
-	private String pageNumber;
-	private String sectionNumber;
+	private int pageNumber;
+	private double sectionIndex;
 	private String sectionType;
 
-	public Section(String sectionName, String pageNumber, String sectionNumber, String sectionType){
+	public Section(String sectionName, int pageNumber, double sectionIndex, String sectionType){
 		this.sectionName = sectionName;
 		this.pageNumber = pageNumber;
-		this.sectionNumber = sectionNumber;
+		this.sectionIndex = sectionIndex;
 		this.sectionType = sectionType;
 	}
 
@@ -22,27 +22,27 @@ public class Section {
 		this.sectionName = sectionName;
 	}
 
-	public String getPageNumber(){
+	public int getPageNumber(){
 		return pageNumber;
 	}
 
-	public void setPageNumber(String pageNumber){
+	public void setPageNumber(int pageNumber){
 		this.pageNumber = pageNumber;
 	}
 
-	public String getSectionNumber(){
-		return sectionNumber;
+	public double getSectionIndex(){
+		return sectionIndex;
 	}
 
-	public void setSectionNumber(String sectionNumber){
-		this.sectionNumber = sectionNumber;
+	public void setSectionIndex(double sectionIndex){
+		this.sectionIndex = sectionIndex;
 	}
 
 	public String getSectionType(){
 		return sectionType;
 	}
 
-	public void setSectionType(String sectionNumber){
+	public void setSectionType(String sectionType){
 		this.sectionType = sectionType;
 	}
 

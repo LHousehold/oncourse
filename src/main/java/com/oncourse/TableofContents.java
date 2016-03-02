@@ -4,27 +4,34 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedProperty;
 
 @ManagedBean(name = "tableofContents", eager = true)
 @RequestScoped
 public class TableofContents {
 
-    private List<Section> sections = new ArrayList<Section>();
+    @ManagedProperty(value="#{dbConnection}")
+    private DbConnector db;
 
-    public TableofContents() {
-        this.sections.add(new Section("Title","1","1","section"));
-        this.sections.add(new Section("1. JSP Overview","2","2","section"));
-        this.sections.add(new Section("Why use JSP?","2","3","subsection"));
-        this.sections.add(new Section("Advantages of JSP","2","4","subsection"));
-        this.sections.add(new Section("2. JSP Environment Setup","3","5","section"));
-        this.sections.add(new Section("Setting up Java Development Kit","3","6","subsection"));
-        this.sections.add(new Section("Setting up Web Server: Tomcat","3","7","subsection"));
-        this.sections.add(new Section("Tutorial Videos","4","8","subsection"));
-        this.sections.add(new Section("3. JSP Architecture","5","9","section"));
-        this.sections.add(new Section("JSP Processing","5","10","subsection"));
+    public void setdb(DbConnector db){
+        this.db = db;
     }
 
-    public List<Section> getCPSections() {
+    private List<Section> sections = new ArrayList<Section>();
+
+    // public TableofContents() {
+    // }
+
+    public List<Section> getCPSections(int cpid) {
+        Course_package_section cps = new Course_package_section();
+        cps = (Course_package_section) db.readTable(cps, "cpid = " + cpid, Course_package_section.class);
+
+        while(cps.next != null) {
+            cps = (Course_package_section) cps.next();
+            System.out.println("\n\ncps.sectionName\n\n");
+            this.sections.add(new Section(cps.sectionName,cps.pageNumber,cps.sectionIndex,cps.sectionType));
+        }
+
         return sections;
     }
 
