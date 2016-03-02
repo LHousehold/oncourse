@@ -54,9 +54,7 @@ public class FileUploadMBean implements Serializable {
         ///usr/share/tomcat/webapps/oncourse
         //This is the path I'm getting....
 
-        boolean file1Success = false;
-
-        //System.out.println("Mother Fuck: " + file1.getSize());
+        String file1Success = "false";
 
         if (file1 != null && file1.getSize() > 0) {
             String fileName = Utils.getFileNameFromPart(file1);
@@ -65,6 +63,8 @@ public class FileUploadMBean implements Serializable {
             */
             File outputFile = new File(path + File.separator + "files" + File.separator + "uploads"
                     + File.separator + fileName);
+
+            String extension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
 
             inputStream = file1.getInputStream();
             outputStream = new FileOutputStream(outputFile);
@@ -87,24 +87,42 @@ public class FileUploadMBean implements Serializable {
             // so the underliying query should not try to write its own
 
             nFile.cpid = 9001;
-            nFile.media_type = "pdf";
+            //nFile.media_type = "pdf";
+
+            if(extension.equals("pdf"))
+                nFile.media_type = "pdf";
+            else if(extension.equals("mp4"))
+                nFile.media_type = "video";
+            else if(extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png") || extension.equals("gif"))
+                nFile.media_type = "image";
+            else if(extension.equals("mp3"))
+                nFile.media_type = "audio";
+            else
+                file1Success = "incompatible";
+
+
             nFile.source = path + File.separator + "files" + File.separator + "uploads"
                     + File.separator + fileName;
             nFile.name = fileName;
 
             db.writeTable(nFile);
 
-            file1Success = true;
+            if(!file1Success.equals("incompatible"))
+                file1Success = "true";
         }
 
-        if (file1Success) {
+        if (file1Success.equals("true")) {
             System.out.println("File uploaded to : " + path);
             /**
             * set the success message when the file upload is successful
             */
             setMessage("File successfully uploaded!");
 
-        } else {
+        }
+        else if(file1Success.equals("incompatible")){
+            setMessage("Incompatible file type uploaded. Please upload a supported file type.")
+        }
+        else {
             /**
             * set the error message when error occurs during the file upload
             */
