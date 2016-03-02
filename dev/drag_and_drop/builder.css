@@ -102,6 +102,15 @@
 
 /* styles for content tiles */
 
+.rem_button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+}
+
 .pos_M {
     position: absolute;
     top:0%;

@@ -79,9 +79,7 @@ function get_effected_grids (grid) {
 }
 
 function enable_grids(grid) {
-    var id = grid.id;
-    
-    var effected_grids = document.querySelectorAll("." + id);
+    var effected_grids = get_effected_grids(grid);
     
     var i = 0;
     while (i < effected_grids.length) {
@@ -94,8 +92,6 @@ function enable_grids(grid) {
 }
 
 function disable_grids(grid) {
-    var id = grid.id;
-    
     var effected_grids = get_effected_grids(grid);
     
     var i = 0;
@@ -108,12 +104,30 @@ function disable_grids(grid) {
     }
 }
 
+function remove_file_from_grid(ev) {
+    var tile = ev.target.parentElement;
+    var grid_id = tile.attributes.getNamedItem("grid_id").nodeValue;
+    
+    tile.parentElement.removeChild(tile);
+    
+    enable_grids(document.getElementById(grid_id));
+}
+
 function add_file_to_grid (grid, file) {
     disable_grids(grid);
+    
+    // tile for content
     var tile = document.createElement("div");
     tile.classList.add("grid_tile");
     tile.classList.add("pos_" + grid.id);
     tile.setAttribute("grid_id", grid.id);
+    
+    // x button to remove content
+    var remove_button = document.createElement("div");
+    remove_button.classList.add("rem_button");
+    remove_button.onclick = remove_file_from_grid;
+    tile.appendChild(remove_button);
+    
     document.getElementById("drag_grid").appendChild(tile);
 }
 
