@@ -42,11 +42,7 @@ public class Course_package_section implements DbTable {
 
     // build query for writing the database
     public String writeQuery() {
-// ##################################
-// write your query to write the database here (some design decisions may still affect this functionality)
-// ##################################
-        //return "INSERT INTO course_package (cpid, media_type, page, source, location)" +
-        //           "VALUES (" + cpid + ",'" + media_type + "'," + page + ",'" + source + "','" + location + "')";
+        // nothing yet, just testing
         return "";
     }
 

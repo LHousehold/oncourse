@@ -28,7 +28,6 @@ public class TableofContents {
 
         while(cps.next != null) {
             cps = (Course_package_section) cps.next();
-            System.out.println("\n\ncps.sectionName\n\n");
             this.sections.add(new Section(cps.sectionName,cps.pageNumber,cps.sectionIndex,cps.sectionType));
         }
 
