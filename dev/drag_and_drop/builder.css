@@ -45,9 +45,15 @@
     background-color: grey;
 }
 
+.grid_tile {
+    border-color: red;
+}
+
 .drag_hover {
     background-color: red;
 }
+
+/* styles for grid */
 
 #TL {
     top: 0;
@@ -92,4 +98,78 @@
 #BR {
     top:66%;
     left: 66%;
+}
+
+/* styles for content tiles */
+
+.pos_M {
+    position: absolute;
+    top:0%;
+    left:0%;
+    width:100%;
+    height:100%;
+}
+
+.pos_T {
+    position: absolute;
+    top:0%;
+    left:0%;
+    width:100%;
+    height:50%;
+}
+
+.pos_B {
+    position: absolute;
+    top:50%;
+    left:0%;
+    width:100%;
+    height:50%;
+}
+
+.pos_L {
+    position: absolute;
+    top:0%;
+    left:0%;
+    width:50%;
+    height:100%;
+}
+
+.pos_R {
+    position: absolute;
+    top:0%;
+    left:50%;
+    width:50%;
+    height:100%;
+}
+
+.pos_TL {
+    position: absolute;
+    top:0%;
+    left:0%;
+    width:50%;
+    height:50%;
+}
+
+.pos_TR {
+    position: absolute;
+    top:0%;
+    left:50%;
+    width:50%;
+    height:50%;
+}
+
+.pos_BL {
+    position: absolute;
+    top:50%;
+    left:0%;
+    width:50%;
+    height:50%;
+}
+
+.pos_BR {
+    position: absolute;
+    top:50%;
+    left:50%;
+    width:50%;
+    height:50%;
 }

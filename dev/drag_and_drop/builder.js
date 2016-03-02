@@ -46,6 +46,38 @@ function remove_drag_style (el) {
     el.classList.remove("drag_hover");
 }
 
+function get_effected_grids (grid) {
+    var tiles = document.querySelectorAll(".grid_tile");
+    
+    var effected_grids_group = grid.attributes
+        .getNamedItem("grid_group")
+        .nodeValue
+        .split(" ");
+    
+    // filter out duplicate groups to make sure the right
+    // grid elements are effected
+    var i = 0;
+    while (i < tiles.length) {
+        var tile_grid_id = tiles[i].attributes.getNamedItem("grid_id");
+        var used_grid = document.getElementById(tile_grid_id.nodeValue);
+        var tile_grid_group = used_grid.attributes
+            .getNamedItem("grid_group")
+            .nodeValue
+            .split(" ");
+        effected_grids_group = effected_grids_group.filter(function(val) {
+            return tile_grid_group.indexOf(val) == -1;
+        });
+        i += 1;
+    }
+    
+    // get actual elements
+    var effected_grids = effected_grids_group.map(function(val) {
+       return document.getElementById(val);
+    });
+    
+    return effected_grids;
+}
+
 function enable_grids(grid) {
     var id = grid.id;
     
@@ -64,7 +96,7 @@ function enable_grids(grid) {
 function disable_grids(grid) {
     var id = grid.id;
     
-    var effected_grids = document.querySelectorAll("." + id);
+    var effected_grids = get_effected_grids(grid);
     
     var i = 0;
     while (i < effected_grids.length) {
@@ -77,9 +109,12 @@ function disable_grids(grid) {
 }
 
 function add_file_to_grid (grid, file) {
-    //console.log(file);
-    //console.log(grid);
     disable_grids(grid);
+    var tile = document.createElement("div");
+    tile.classList.add("grid_tile");
+    tile.classList.add("pos_" + grid.id);
+    tile.setAttribute("grid_id", grid.id);
+    document.getElementById("drag_grid").appendChild(tile);
 }
 
 function grid_drag_enter (ev) {
@@ -89,10 +124,6 @@ function grid_drag_enter (ev) {
 function grid_drag_leave (ev) {
     remove_drag_style(ev.target);
 }
-
-//function drag_end (ev) {
-//    remove_drag_style(ev.target);
-//}
 
 function grid_allowDrop(ev) {
     ev.preventDefault();
