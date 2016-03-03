@@ -100,7 +100,6 @@ public class FileUploadMBean implements Serializable {
             else
                 file1Success = "incompatible";
 
-
             nFile.source = path + File.separator + "files" + File.separator + "uploads"
                     + File.separator + fileName;
             nFile.name = fileName;
