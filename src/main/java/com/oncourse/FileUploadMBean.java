@@ -90,13 +90,13 @@ public class FileUploadMBean implements Serializable {
             //nFile.media_type = "pdf";
 
             if(extension.equals("pdf"))
-                nFile.media_type = "pdf";
+                nFile.media_type = "PDF";
             else if(extension.equals("mp4"))
-                nFile.media_type = "video";
+                nFile.media_type = "VIDEO";
             else if(extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png") || extension.equals("gif"))
-                nFile.media_type = "image";
+                nFile.media_type = "IMAGE";
             else if(extension.equals("mp3"))
-                nFile.media_type = "audio";
+                nFile.media_type = "MP3";
             else
                 file1Success = "incompatible";
 
@@ -105,10 +105,10 @@ public class FileUploadMBean implements Serializable {
                     + File.separator + fileName;
             nFile.name = fileName;
 
-            db.writeTable(nFile);
-
-            if(!file1Success.equals("incompatible"))
+            if(file1Success.equals("incompatible") == false){
+                db.writeTable(nFile);
                 file1Success = "true";
+            }
         }
 
         if (file1Success.equals("true")) {
@@ -120,7 +120,7 @@ public class FileUploadMBean implements Serializable {
 
         }
         else if(file1Success.equals("incompatible")){
-            setMessage("Incompatible file type uploaded. Please upload a supported file type.")
+            setMessage("Incompatible file type uploaded. Please upload a supported file type.");
         }
         else {
             /**
