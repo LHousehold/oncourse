@@ -53,13 +53,12 @@ public class FileQuery implements DbTable {
     }
 
     // build query for reading the database
-    public String readQuery() {
+    public String readQuery(String where) {
 // ##################################
 // write your query to read the database here
 // ##################################
         //return "SELECT * FROM course_package WHERE cpid = " + this.cpid + " AND page = " + this.page;
-        return "SELECT * FROM files WHERE cpid = " + this.cpid + " AND media_type = " + this.media_type +
-                " AND name = " + this.name + " AND source = " + this.source;
+        return "SELECT * FROM files WHERE " + where + ";";
     }
 
     // build query for writing the database
@@ -68,7 +67,7 @@ public class FileQuery implements DbTable {
 // write your query to write the database here (some design decisions may still affect this functionality)
 // ##################################
         return "INSERT INTO files (cpid, media_type, name, source)" +
-                  "VALUES (" + cpid + ",'" + media_type + "'," + name + ",'" + source + "')";
+                  "VALUES (" + cpid + ",'" + media_type + "','" + name + "','" + source + "')";
     }
 
     // for simple linked list methods
