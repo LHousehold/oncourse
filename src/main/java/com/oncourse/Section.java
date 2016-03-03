@@ -34,6 +34,10 @@ public class Section {
 		return sectionIndex;
 	}
 
+	public int getSectionIndexInt(){
+		return (int)Math.floor(sectionIndex);
+	}
+
 	public void setSectionIndex(double sectionIndex){
 		this.sectionIndex = sectionIndex;
 	}

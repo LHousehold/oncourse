@@ -42,8 +42,8 @@ $(document).ready(function() {
 <button class="btn btn-default remove_subsection" title="Remove Subsection"><span class="glyphicon glyphicon-remove"></span></button> \
 <button class="btn btn-default edit_subsection" title="Edit Subsection"><span class="glyphicon glyphicon-list-alt"></span></button> \
 <button class="btn btn-default add_subsection" title="Add Subsection"><span class="glyphicon glyphicon-plus"></span></button> \
-<div> \
-<div>').insertAfter($(this).closest(".secblock"));
+</div> \
+</div>').insertAfter($(this).closest(".secblock"));
         refresh_indices();
         newsec.find(".edit").focus();
     });

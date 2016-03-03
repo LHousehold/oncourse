@@ -30,7 +30,7 @@
 				  	<a href="#" class="list-group-item option_menu_item" data-option="manage">Manage Courses</a>
 				</div>
 				<div class="course_list_title"><h5>Enrolled Courses</h5></div>
-                <f:metadata><f:event type="preRenderView" listener="#{courseList.populate()}" /></f:metadata>
+                <f:metadata><f:event type="preRenderView" listener="#{courseList.init()}" /></f:metadata>
 				<div class="list-group course_list">
                     <ui:repeat value="#{courseList.getCoursePackages()}" var="cp">
                         <a href="#" class="list-group-item course_menu_item" data-course-code="#{cp.courseCode}" data-cpid="#{cp.cpid}">

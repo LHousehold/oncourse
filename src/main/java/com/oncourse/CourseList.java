@@ -19,7 +19,7 @@ public class CourseList {
 
     private List<CoursePackage> packages = new ArrayList<CoursePackage>();
 
-    public void populate() {
+    public void init(){
         Course_package_name cpn = new Course_package_name();
         cpn = (Course_package_name) db.readTable(cpn, "TRUE",Course_package_name.class);
 

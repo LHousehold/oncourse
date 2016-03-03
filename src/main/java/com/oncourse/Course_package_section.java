@@ -11,7 +11,7 @@ public class Course_package_section implements DbTable {
     // table columns
     int id;
     int cpid;
-    int sectionIndex;
+    double sectionIndex;
     String sectionType;
     String sectionName;
     int pageNumber;
@@ -20,7 +20,7 @@ public class Course_package_section implements DbTable {
         try {
             this.id = rs.getInt("id");
             this.cpid = rs.getInt("cpid");
-            this.sectionIndex = rs.getInt("section_index");
+            this.sectionIndex = rs.getDouble("section_index");
             this.sectionType = rs.getString("section_type");
             this.sectionName = rs.getString("section_name");
             this.pageNumber = rs.getInt("page_number");

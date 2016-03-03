@@ -81,7 +81,7 @@ INSERT INTO course_package_section
 VALUES (NULL,2,1,"Title","section",1);
 
 INSERT INTO course_package_section
-VALUES (NULL,2,2,"1. JSP Overview","section",2);
+VALUES (NULL,2,2,"JSP Overview","section",2);
 
 INSERT INTO course_package_section
 VALUES (NULL,2,2.1,"Why use JSP?","subsection",2);
@@ -90,7 +90,7 @@ INSERT INTO course_package_section
 VALUES (NULL,2,2.2,"Advantages of JSP","subsection",2);
 
 INSERT INTO course_package_section
-VALUES (NULL,2,3,"2. JSP Environment Setup","section",3);
+VALUES (NULL,2,3,"JSP Environment Setup","section",3);
 
 INSERT INTO course_package_section
 VALUES (NULL,2,3.1,"Setting up Java Development Kit","subsection",3);
