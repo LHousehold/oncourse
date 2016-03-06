@@ -53,7 +53,7 @@ public class DbConnector {
 
         query  = entry.readQuery(where);
 
-        System.out.println("start to read from table");
+        System.out.println("start to read from table: " + query);
         try {
             // create the java statement
             Statement st = conn.createStatement();
