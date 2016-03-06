@@ -113,12 +113,13 @@ function remove_file_from_grid(ev) {
     enable_grids(document.getElementById(grid_id));
 }
 
-function add_tile(id) {
+function add_tile(grid_id, cp_table_id) {
     // tile for content
     var tile = document.createElement("div");
     tile.classList.add("grid_tile");
-    tile.classList.add("pos_" + id);
-    tile.setAttribute("grid_id", id);
+    tile.classList.add("pos_" + grid_id);
+    tile.setAttribute("grid_id", grid_id);
+    tile.setAttribute("cp_table_id", cp_table_id);
 
     // x button to remove content
     var remove_button = document.createElement("div");
@@ -161,20 +162,20 @@ function save_page (file) {
 }
 
 // this version of the function is needed for initialization
-function initial_tile_add (id) {
-    var loc_id = location_db_or_local(id);
+function initial_tile_add (grid_id, cp_table_id) {
+    var loc_id = location_db_or_local(grid_id);
 
     var grid = document.getElementById(loc_id);
 
     disable_grids(grid);
 
-    add_tile(grid.id);
+    add_tile(grid.id, cp_table_id);
 }
 
 function add_file_to_grid (grid, file) {
     disable_grids(grid);
 
-    add_tile(grid.id);
+    add_tile(grid.id, 1); // 1 is a test value
 }
 
 function grid_drag_enter (ev) {

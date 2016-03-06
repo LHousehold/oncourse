@@ -53,7 +53,7 @@ public class PageEditor {
 
            cp = (Course_package) cp.next();
 
-           ret += "initial_tile_add('" + cp.location + "');";
+           ret += "initial_tile_add('" + cp.location + "', " + cp.id +");";
 
        }
 
