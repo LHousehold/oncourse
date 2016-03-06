@@ -76,22 +76,6 @@ public class FileUploadMBean implements Serializable {
 
             String extension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
 
-            inputStream = file1.getInputStream();
-            outputStream = new FileOutputStream(outputFile);
-            byte[] buffer = new byte[Constants.BUFFER_SIZE];
-            int bytesRead = 0;
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
-            }
-            if (outputStream != null) {
-                outputStream.close();
-            }
-            if (inputStream != null) {
-                inputStream.close();
-            }
-
-
-
             // note that no id is given because the database sets this automaticly
             // so the underliying query should not try to write its own
 
@@ -114,6 +98,22 @@ public class FileUploadMBean implements Serializable {
             nFile.name = fileName;
 
             if(file1Success.equals("incompatible") == false){
+
+                inputStream = file1.getInputStream();
+                outputStream = new FileOutputStream(outputFile);
+                byte[] buffer = new byte[Constants.BUFFER_SIZE];
+                int bytesRead = 0;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+
+
                 db.writeTable(nFile);
                 file1Success = "true";
             }
