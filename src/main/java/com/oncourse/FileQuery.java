@@ -63,8 +63,8 @@ public class FileQuery implements DbTable {
 
     // build query for writing the database
     public String writeQuery() {
-        return "INSERT INTO files (cpid, media_type, name, source)"
-        + "VALUES (" + cpid + ",'" + media_type + "','" + name + "','" + source + "')";
+        return "INSERT INTO files (cpid, media_type, name, source)" +
+                  "VALUES (" + cpid + ",'" + media_type + "','" + name + "','" + source + "')";
     }
 
     // for simple linked list methods
