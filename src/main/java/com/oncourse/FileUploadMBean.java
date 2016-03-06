@@ -7,14 +7,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
 import javax.faces.bean.ManagedProperty;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 
 
 public class FileUploadMBean implements Serializable {
@@ -26,7 +26,6 @@ public class FileUploadMBean implements Serializable {
     public void setdb(DbConnector db) {
         this.db = db;
     }
-
 
     private static final long serialVersionUID = 1L;
     private Part file1;
@@ -43,7 +42,10 @@ public class FileUploadMBean implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
-    public String uploadFile() throws IOException {
+    public String uploadCourseFile(int coursePackageid) {
+
+        System.out.println("Howard is a piece of poo and is worth " + coursePackageid);
+
         InputStream inputStream = null;
         OutputStream outputStream = null;
         FacesContext context = FacesContext.getCurrentInstance();
@@ -64,7 +66,7 @@ public class FileUploadMBean implements Serializable {
             // test insert
             FileQuery nFile = new FileQuery();
 
-            nFile.cpid = 9002;
+            nFile.cpid = coursePackageid;
 
             File outputFile = new File(path + File.separator + "uploads" + File.separator + nFile.cpid
                     + File.separator + fileName);
@@ -92,23 +94,24 @@ public class FileUploadMBean implements Serializable {
             nFile.name = fileName;
 
             if(file1Success.equals("incompatible") == false){
-
-                System.out.println("Howard is a piece of poo...");
-
-                inputStream = file1.getInputStream();
-                outputStream = new FileOutputStream(outputFile);
-                byte[] buffer = new byte[Constants.BUFFER_SIZE];
-                int bytesRead = 0;
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
+                try{
+                    inputStream = file1.getInputStream();
+                    outputStream = new FileOutputStream(outputFile);
+                    byte[] buffer = new byte[Constants.BUFFER_SIZE];
+                    int bytesRead = 0;
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+                    if (outputStream != null) {
+                        outputStream.close();
+                    }
+                    if (inputStream != null) {
+                        inputStream.close();
+                    }
                 }
-                if (outputStream != null) {
-                    outputStream.close();
+                catch(Exception e){
+                    System.err.println("Error in File Input");
                 }
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-
 
                 db.writeTable(nFile);
                 file1Success = "true";
