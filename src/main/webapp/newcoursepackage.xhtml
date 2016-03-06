@@ -7,34 +7,47 @@
     <script src="static/cpedit_script.js" type="text/javascript"></script>
     <ui:param name="coursecode" value="#{request.getParameter('coursecode')}" />
     <ui:param name="cpid" value="#{request.getParameter('cpid')}" />
-    <div id="sections_content">
-        <div class="row-fluid edit_title_row">
-            <div class="col-md-12">
-                <h2 class="edit_course_code">#{coursecode}</h2>
-                <h2> - </h2>
-                <h2 class="edit" id="edit_course_name" contenteditable="true">Course Name</h2>
-                <button class="btn btn-default upload_button">Upload Material</button>
-                <h:form enctype="multipart/form-data" class="upload_form">
-                    <h:inputFile value="#{demoBean.file1}" class="upload_form_file"></h:inputFile>
-                    <h:commandButton action="#{demoBean.upload()}" value="Upload" class="upload_form_btn"></h:commandButton>
-                </h:form>
+    <h:head></h:head>
+    <h:body>
+        <div id="sections_content">
+            <div class="row-fluid edit_title_row">
+                <div class="col-md-12">
+                    <h2 class="edit_course_code">#{coursecode}</h2>
+                    <h2> - </h2>
+                    <h2 class="edit" id="edit_course_name" contenteditable="true">Course Name</h2>
+                    <button class="btn btn-default upload_button">Upload Material</button>
+                    <!-- <h:form enctype="multipart/form-data" class="upload_form">
+                        <h:inputFile value="#{demoBean.file1}" class="upload_form_file"></h:inputFile>
+                        <h:commandButton action="#{demoBean.upload()}" value="Upload" class="upload_form_btn"></h:commandButton>
+                    </h:form> -->
+                    <h:form prependid="false" enctype="multipart/form-data" onsubmit="">
+                        <h:panelGrid>
+                            <!-- input for files -->
+                            <h:inputFile value="#{fileUploadMBean.file1}"></h:inputFile>
+                            <!-- action which is responsible for uploading file(s) -->
+                            <h:commandButton action="#{fileUploadMBean.uploadFile()}" value="Upload">
+                                <f:ajax execute="@form" render="@form"/>
+                            </h:commandButton>
+                        </h:panelGrid>
+                    </h:form>
+                </div>
             </div>
-        </div>
-        <div class="row-fluid">
-            <div class="col-md-12">
-                <div class="section_row">
-                    <div class="section_block secblock">
-                        <h3 class="secnum" data-section="1">1.</h3>
-                        <h3 class="sectitle edit" contenteditable="true">New Section</h3>
-                        <div class="section_btns">
-                            <button class="btn btn-default remove_section" title="Remove Section"><span class="glyphicon glyphicon-remove"></span></button>
-                            <button class="btn btn-default edit_section" title="Edit Section"><span class="glyphicon glyphicon-list-alt"></span></button>
-                            <button class="btn btn-default add_subsection" title="Add Subsection"><span class="glyphicon glyphicon-plus"></span></button>
+            <div class="row-fluid">
+                <div class="col-md-12">
+                    <div class="section_row">
+                        <div class="section_block secblock">
+                            <h3 class="secnum" data-section="1">1.</h3>
+                            <h3 class="sectitle edit" contenteditable="true">New Section</h3>
+                            <div class="section_btns">
+                                <button class="btn btn-default remove_section" title="Remove Section"><span class="glyphicon glyphicon-remove"></span></button>
+                                <button class="btn btn-default edit_section" title="Edit Section"><span class="glyphicon glyphicon-list-alt"></span></button>
+                                <button class="btn btn-default add_subsection" title="Add Subsection"><span class="glyphicon glyphicon-plus"></span></button>
+                            </div>
                         </div>
+                        <button class="btn btn-default btn-block add_section" title="Add Section"><span class="glyphicon glyphicon-plus"></span></button>
                     </div>
-                    <button class="btn btn-default btn-block add_section" title="Add Section"><span class="glyphicon glyphicon-plus"></span></button>
                 </div>
             </div>
         </div>
-    </div>
+    </h:body>
 </html>
