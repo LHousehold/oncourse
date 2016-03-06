@@ -30,7 +30,7 @@ public class FileUploadMBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Part file1;
-    private String message;
+    private String message = null;
     public Part getFile1() {
         return file1;
     }
@@ -76,12 +76,6 @@ public class FileUploadMBean implements Serializable {
 
             String extension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
 
-            // note that no id is given because the database sets this automaticly
-            // so the underliying query should not try to write its own
-
-
-            //nFile.media_type = "pdf";
-
             if(extension.equals("pdf"))
                 nFile.media_type = "PDF";
             else if(extension.equals("mp4"))
@@ -98,6 +92,8 @@ public class FileUploadMBean implements Serializable {
             nFile.name = fileName;
 
             if(file1Success.equals("incompatible") == false){
+
+                System.out.println("Howard is a piece of poo...");
 
                 inputStream = file1.getInputStream();
                 outputStream = new FileOutputStream(outputFile);
