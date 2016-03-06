@@ -129,9 +129,42 @@ function add_tile(id) {
     document.getElementById("drag_grid").appendChild(tile);
 }
 
+function location_db_or_local(loc) {
+    var db_format =     ["TL",  "TOP",   "TR",   "LEFT",    "FULL", "RIGHT",    "BL",   "BOTTOM",   "BR"];
+    var local_format =  ["TL",  "T",     "TR",   "L",       "M",    "R",        "BL",   "B",        "BR"];
+
+    var i = 0;
+
+    // check if db format
+    while ( i < db_format.length ) {
+        if (db_format[i] == loc) {
+            return local_format[i];
+        }
+        i += 1;
+    }
+
+    i = 0;
+    // check if local format
+    while ( i < local_format.length ) {
+        if (local_format[i] == loc) {
+            return db_format[i];
+        }
+        i += 1;
+    }
+
+}
+
+function save_page (file) {
+    $.post( "page_edit_save.xhtml", { cpid: '4'}, function( data ) {
+        document.getElementById("file_menu").innerHTML = data;
+    });
+}
+
 // this version of the function is needed for initialization
 function initial_tile_add (id) {
-    var grid = document.getElementById(id);
+    var loc_id = location_db_or_local(id);
+
+    var grid = document.getElementById(loc_id);
 
     disable_grids(grid);
 
