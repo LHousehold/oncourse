@@ -63,19 +63,8 @@ public class FileQuery implements DbTable {
 
     // build query for writing the database
     public String writeQuery() {
-// ##################################
-// write your query to write the database here (some design decisions may still affect this functionality)
-// ##################################
-        return "INSERT INTO files (cpid, media_type, name, source)" +
-<<<<<<< HEAD
-<<<<<<< HEAD
-                  "VALUES (" + cpid + ",'" + media_type + "','" + name + "','" + source + "')";
-=======
-                  "VALUES (" + cpid + ",'" + media_type + "'," + name + ",'" + source + "')";
->>>>>>> add FileQuery.java
-=======
-                  "VALUES (" + cpid + ",'" + media_type + "','" + name + "','" + source + "')";
->>>>>>> basic upload now working
+        return "INSERT INTO files (cpid, media_type, name, source)"
+        + "VALUES (" + cpid + ",'" + media_type + "','" + name + "','" + source + "')";
     }
 
     // for simple linked list methods
