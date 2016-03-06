@@ -49,7 +49,7 @@ public class FileUploadMBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         ServletContext servletContext = (ServletContext) context
                 .getExternalContext().getContext();
-        String path = servletContext.getRealPath("");
+        String path = "/var/www/oncourse";
 
         ///usr/share/tomcat/webapps/oncourse
         //This is the path I'm getting....
@@ -61,8 +61,18 @@ public class FileUploadMBean implements Serializable {
             /**
             * destination where the file will be uploaded
             */
-            File outputFile = new File(path + File.separator + "files" + File.separator + "uploads"
+            // test insert
+            FileQuery nFile = new FileQuery();
+
+            nFile.cpid = 9002;
+
+            File outputFile = new File(path + File.separator + "uploads" + File.separator + nFile.cpid
                     + File.separator + fileName);
+
+            File outputFolder = new File(path + File.separator + "uploads" + File.separator + nFile.cpid
+                    + File.separator);
+
+            outputFolder.mkdir();
 
             String extension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
 
@@ -80,13 +90,12 @@ public class FileUploadMBean implements Serializable {
                 inputStream.close();
             }
 
-            // test insert
-            FileQuery nFile = new FileQuery();
+
 
             // note that no id is given because the database sets this automaticly
             // so the underliying query should not try to write its own
 
-            nFile.cpid = 9001;
+
             //nFile.media_type = "pdf";
 
             if(extension.equals("pdf"))
