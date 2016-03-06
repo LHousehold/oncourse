@@ -1,8 +1,8 @@
 function set_drag_listener () {
     var grid_items = document.querySelectorAll(".grid_item");
-    
+
     var file_items = document.querySelectorAll(".file_item");
-    
+
     // add event listeners for all the static elements
     var i = 0;
     while (i < grid_items.length) {
@@ -12,7 +12,7 @@ function set_drag_listener () {
         grid_items[i].ondragleave = grid_drag_leave;
         i += 1;
     }
-    
+
     // add event listeners for dynamic elements (file_items)
     i = 0;
     while (i < file_items.length) {
@@ -48,12 +48,12 @@ function remove_drag_style (el) {
 
 function get_effected_grids (grid) {
     var tiles = document.querySelectorAll(".grid_tile");
-    
+
     var effected_grids_group = grid.attributes
         .getNamedItem("grid_group")
         .nodeValue
         .split(" ");
-    
+
     // filter out duplicate groups to make sure the right
     // grid elements are effected
     var i = 0;
@@ -69,22 +69,22 @@ function get_effected_grids (grid) {
         });
         i += 1;
     }
-    
+
     // get actual elements
     var effected_grids = effected_grids_group.map(function(val) {
        return document.getElementById(val);
     });
-    
+
     return effected_grids;
 }
 
 function enable_grids(grid) {
     var effected_grids = get_effected_grids(grid);
-    
+
     var i = 0;
     while (i < effected_grids.length) {
         if (effected_grids[i].attributes.getNamedItem("grid_disabled")) {
-            effected_grids[i].attributes.removeNamedItem("grid_disabled");  
+            effected_grids[i].attributes.removeNamedItem("grid_disabled");
             effected_grids[i].classList.remove("grid_disabled");
         }
         i += 1;
@@ -93,7 +93,7 @@ function enable_grids(grid) {
 
 function disable_grids(grid) {
     var effected_grids = get_effected_grids(grid);
-    
+
     var i = 0;
     while (i < effected_grids.length) {
         if (!effected_grids[i].attributes.getNamedItem("grid_disabled")) {
@@ -107,28 +107,41 @@ function disable_grids(grid) {
 function remove_file_from_grid(ev) {
     var tile = ev.target.parentElement;
     var grid_id = tile.attributes.getNamedItem("grid_id").nodeValue;
-    
+
     tile.parentElement.removeChild(tile);
-    
+
     enable_grids(document.getElementById(grid_id));
 }
 
-function add_file_to_grid (grid, file) {
-    disable_grids(grid);
-    
+function add_tile(id) {
     // tile for content
     var tile = document.createElement("div");
     tile.classList.add("grid_tile");
-    tile.classList.add("pos_" + grid.id);
-    tile.setAttribute("grid_id", grid.id);
-    
+    tile.classList.add("pos_" + id);
+    tile.setAttribute("grid_id", id);
+
     // x button to remove content
     var remove_button = document.createElement("div");
     remove_button.classList.add("rem_button");
     remove_button.onclick = remove_file_from_grid;
     tile.appendChild(remove_button);
-    
+
     document.getElementById("drag_grid").appendChild(tile);
+}
+
+// this version of the function is needed for initialization
+function initial_tile_add (id) {
+    var grid = document.getElementById(id);
+
+    disable_grids(grid);
+
+    add_tile(grid.id);
+}
+
+function add_file_to_grid (grid, file) {
+    disable_grids(grid);
+
+    add_tile(grid.id);
 }
 
 function grid_drag_enter (ev) {
@@ -153,7 +166,7 @@ function grid_drop(ev) {
     var grid = ev.target;
     var id = ev.dataTransfer.getData("id");
     var file = document.getElementById(id);
-    
+
     remove_drag_style(grid);
 
     if (is_disabled_grid(grid)) {
@@ -161,6 +174,6 @@ function grid_drop(ev) {
         return;
     }
     else {
-        add_file_to_grid(grid, file);   
-    }    
+        add_file_to_grid(grid, file);
+    }
 }

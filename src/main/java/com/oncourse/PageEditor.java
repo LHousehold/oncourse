@@ -42,4 +42,51 @@ public class PageEditor {
         return ret;
     }
 
+    public String getTiles(int cpid, int pagenumber) {
+
+       Course_package cp = new Course_package();
+       cp = (Course_package) db.readTable(cp, "cpid = " + cpid + " AND page = " + pagenumber, Course_package.class);
+
+       String ret = "<script type='text/javascript'>";
+
+       while (cp.next() != null){
+
+           cp = (Course_package) cp.next();
+
+           if (cp.location.equals("TL")){
+               ret += "initial_tile_add('TL');";
+           }
+           if (cp.location.equals("TOP")){
+               ret += "initial_tile_add('T');";
+           }
+           if (cp.location.equals("TR")){
+               ret += "initial_tile_add('TR');";
+           }
+           if (cp.location.equals("LEFT")){
+               ret += "initial_tile_add('L');";
+           }
+           if (cp.location.equals("FULL")){
+               ret += "initial_tile_add('M');";
+           }
+           if (cp.location.equals("RIGHT")){
+               ret += "initial_tile_add('R');";
+           }
+           if (cp.location.equals("BL")){
+               ret += "initial_tile_add('BL');";
+           }
+           if (cp.location.equals("BOTTOM")){
+               ret += "initial_tile_add('B');";
+           }
+           if (cp.location.equals("BR")){
+               ret += "initial_tile_add('BR');";
+           }
+
+       }
+
+       ret += "</script>";
+
+       return ret;
+
+    }
+
 }
