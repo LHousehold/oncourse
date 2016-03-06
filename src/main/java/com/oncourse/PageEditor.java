@@ -19,68 +19,27 @@ public class PageEditor {
     public String getFiles(int cpid) {
 
         // this is where you actually start using it
-       //Course_package cp = new Course_package();
-       //cp.cpid = cpid;
-       //cp.page = page;
-       //cp = (Course_package) db.readTable(cp, Course_package.class);
+        FileQuery files = new FileQuery();
+        files = (FileQuery) db.readTable(files, "cpid=" + cpid, FileQuery.class);
 
-       //String ret = "<div class='pos_all'>";
+        //String ret = "<div class='pos_all'>";
 
-       String ret = "HELLO cp# " + cpid;
+        String ret = "";
 
-       //while (cp.next() != null){
+        int fileNum = 0;
 
-       //    cp = (Course_package) cp.next();
+        while (files.next() != null){
 
-       //    if (cp.location.equals("TOP")){
-       //        ret += "<div class='pos_top'>";
-       //    }
-       //    else if (cp.location.equals("BOTTOM")){
-       //        ret += "<div class='pos_bottom'>";
-       //    }
-       //    else if (cp.location.equals("LEFT")){
-       //        ret += "<div class='pos_left'>";
-       //    }
-       //    else if (cp.location.equals("RIGHT")){
-       //        ret += "<div class='pos_right'>";
-       //    }
-       //    else if (cp.location.equals("TL")){
-       //        ret += "<div class='pos_tl'>";
-       //    }
-       //    else if (cp.location.equals("TR")){
-       //        ret += "<div class='pos_tr'>";
-       //    }
-       //    else if (cp.location.equals("BL")){
-       //        ret += "<div class='pos_bl'>";
-       //    }
-       //    else if (cp.location.equals("BR")){
-       //        ret += "<div class='pos_br'>";
-       //    }
-       //    else if (cp.location.equals("FULL")){
-       //        ret += "<div class='pos_full'>";
-       //    }
+            files = (FileQuery) files.next();
 
-       //    if (cp.media_type.equals("YOUTUBE")){
-       //        ret += "<iframe class = 'iframeStyle' src='https://www.youtube.com/embed/"
-       //         + cp.source + "'frameborder='0' allowfullscreen></iframe>";
+            ret += "<div id='file" + fileNum + "' class='file_item' draggable='true'" +
+                "media_type='" + files.media_type + "' media_source='" + files.source + "'>" + files.name + "</div>";
 
+            fileNum += 1;
 
-       //    }
-       //    else if (cp.media_type.equals("PDF")){
-       //        //ret += "<embed class = 'pos_full' src='" + cp.source + "'>";
-       //        ret += "<iframe class = 'iframeStyle' src='" + cp.source + "' width='' height='' border=''></iframe>";
-       //    }
-       //    else if (cp.media_type.equals("MP3")){
-       //        //ret += "<audio src=''" + cp.source + "' controls='controls'/>";
-       //        //ret += "<source src='" + cp.source + "' type='audio/mpeg'>";
-       //        //ret += "<embed src='" + cp.source + "' autostart = '0' type='audio/mp3' class = 'pos_full'/> TRACK ONE </embed>";
-       //        ret += "<audio controls><source src='" + cp.source + "' type='audio/mpeg'>Your browser does not support the audio element.</audio>";
-       //    }
+        }
 
-       //    ret += "</div>";
-
-       //}
-       return ret;
+        return ret;
     }
 
 }
