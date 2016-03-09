@@ -1,6 +1,21 @@
 $(document).ready(function() {
     // All the Javascript that coursepackageeditor.xhtml will need
 
+    $("#save_cp").click(function(e) {
+        var cp_data = ""
+        // need to collect all data from the course package
+        var sections = $(".secblock");
+
+        var i;
+        var temp_data;
+        for (i = 0; i < sections.length; i++) {
+            temp_data = ""
+        }
+
+        $(".save_cp_data")[0].value = cp_data;
+        $(".save_cp_command").click();
+    });
+
     $("#sections_content").load(function(e) {
         $("#edit_course_name").click();
     });

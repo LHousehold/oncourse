@@ -340,6 +340,14 @@ h1,h2,h3,h4,h5,a,p {
     float: right;
 }
 
+#save_cp {
+    float: right;
+}
+
+#save_cp_form {
+    display: none;
+}
+
 /*.section_options_btn {
     float: right;
     padding: 6px;

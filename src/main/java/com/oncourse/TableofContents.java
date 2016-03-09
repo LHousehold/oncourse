@@ -4,6 +4,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
+import javax.faces.context.ExternalContext;
+import org.json.*;
+import java.util.Map;
 
 @ManagedBean(name = "tableofContents", eager = true)
 @RequestScoped
@@ -54,6 +58,14 @@ public class TableofContents {
         }
 
         return sectionTops;
+    }
+
+    public void save_all() {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        String data = ec.getRequestParameterMap().get("save_cp_form:save_cp_data");
+
+        System.out.println("Saving !!!");
+        System.out.println(data);
     }
 
 }
