@@ -62,10 +62,16 @@ public class TableofContents {
 
     public void save_all() {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        String data = ec.getRequestParameterMap().get("save_cp_form:save_cp_data");
+        String new_data = ec.getRequestParameterMap().get("save_cp_form:save_cp_data");
+        String old_data = ec.getRequestParameterMap().get("save_cp_form:original_cp_data");
 
-        System.out.println("Saving !!!");
-        System.out.println(data);
+        System.out.println("Data: " + old_data);
+        System.out.println("Updated to: " + new_data);
+
+        // JSONObject json_data = new JSONObject(data);
+
+        // String course_package_name = json_data.getString("course_name");
+        // db.genericQuery("UPDATE course_package_name SET page_number=5 WHERE TRUE;");
     }
 
 }

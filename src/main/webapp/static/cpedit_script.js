@@ -2,23 +2,47 @@ $(document).ready(function() {
     // All the Javascript that coursepackageeditor.xhtml will need
 
     $("#save_cp").click(function(e) {
-        var cp_data = ""
-        // need to collect all data from the course package
-        var sections = $(".secblock");
-
-        var i;
-        var temp_data;
-        for (i = 0; i < sections.length; i++) {
-            temp_data = ""
-        }
+        var cp_data = get_data();
 
         $(".save_cp_data")[0].value = cp_data;
         $(".save_cp_command").click();
+        // clicking save_cp_command will send the original data and the new data to the database, to be compared and reflect changes
+        // assume this works: update original data to new data for future comparison
+        $(".original_cp_data")[0].value = cp_data;
     });
 
-    $("#sections_content").load(function(e) {
-        $("#edit_course_name").click();
+    $("#sections_content").ready(function(e) {
+        $(".original_cp_data")[0].value = get_data();
     });
+
+    var get_data = function() {
+        // need to collect all data from the course package
+        var temp_data;
+        var cp_data;
+        var course_name = $("#edit_course_name").html();
+        var cp_data = "{'course_name':'" + course_name + "','sections':[";
+        $(".secblock").each(function(i){
+            var section_index = $(this).find(".secnum").attr("data-section");
+            var section_type = "";
+            var section_name = "";
+            if ($(this).hasClass("section_block")) {
+                section_name = $(this).find(".sectitle").html();
+                section_type = "section";
+            }
+            else {
+                section_name = $(this).find(".subsectitle").html();
+                section_type = "subsection";
+            }
+            var page_number = 0;
+            temp_data = "{'index':'" + section_index + "', 'name':'" + section_name + "', 'type':'" + section_type + "', 'page':'" + page_number + "'},";
+            cp_data = cp_data + temp_data;
+        });
+
+        cp_data = cp_data.substring(0, cp_data.length - 1);
+        cp_data = cp_data + "]}";
+        console.log(cp_data);
+        return cp_data;
+    };
 
     $("#sections_content").on("focus", ".edit", function(e){
         setTimeout(function(){
@@ -102,7 +126,7 @@ $(document).ready(function() {
         refresh_indices();
     });
 
-    function refresh_indices() {
+    var refresh_indices = function() {
         $(".section_row").each(function(i) {
             var secnum = $(this).find(".secnum");
             secnum.html(i+1 + ".");
@@ -114,18 +138,5 @@ $(document).ready(function() {
             });
         });
     }
-
-    $(".upload_button").click(function(e) {
-        $(".upload_form_file").click();
-    });
-
-    $(".upload_form_file").change(function(e) {
-        $(".upload_form").submit();
-    });
-
-    $(".upload_form").submit(function(e) {
-        e.preventDefault();
-        alert("Upload Successful!");
-    });
 
 })

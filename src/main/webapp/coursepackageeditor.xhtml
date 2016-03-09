@@ -17,9 +17,9 @@
                     <h2 class="edit" id="edit_course_name" contenteditable="true">#{courseList.getName(cpid)}</h2>
                     <button class="btn btn-default" id="save_cp">Save Course Package</button>
                     <h:form id="save_cp_form" prependid="false">
-                        <!-- <h:inputText binding="#{data}" class="save_cp_data" value="some more test data" /> -->
                         <h:commandButton class="save_cp_command" action="#{tableofContents.save_all()}" >
-                            <h:inputText id="save_cp_data" class="save_cp_data" value="" />
+                            <h:inputText id="save_cp_data" class="save_cp_data" />
+                            <h:inputText id="original_cp_data" class="original_cp_data" />
                             <f:ajax render="@none"/>
                         </h:commandButton>
                     </h:form>
