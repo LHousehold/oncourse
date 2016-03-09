@@ -5,15 +5,10 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:param name="cpid" value="#{request.getParameter('cpid')}" />
-    <ui:param name="testcpid" value="#{request.getParameter('cpid')}" />
-
     <h:head>
-    <title>File Upload</title>
+        <title>File Upload</title>
     </h:head>
-
     <h:body>
-        <h2>#{testcpid}</h2>
-        <h2>#{cpid}</h2>
         <p>
             <!-- Shows the error or success message -->
             <h:outputText value="#{fileUploadMBean.message}" rendered="#{!empty fileUploadMBean.message}"></h:outputText>
@@ -23,7 +18,9 @@
                     <!-- input for files -->
                     <h:inputFile value="#{fileUploadMBean.file1}"></h:inputFile>
                     <!-- action which is responsible for uploading file(s) -->
-                    <h:commandButton action="#{fileUploadMBean.uploadCourseFile(testcpid)}" value="Upload"></h:commandButton>
+                    <h:commandButton action="#{fileUploadMBean.uploadCourseFile()}" value="Upload">
+                        <f:param name="coursePackageid" value="#{cpid}" />
+                    </h:commandButton>
                 </h:panelGrid>
             </h:form>
         </p>

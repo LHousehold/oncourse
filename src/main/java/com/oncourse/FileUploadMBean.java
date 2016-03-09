@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
 import javax.faces.bean.ManagedProperty;
+import java.util.Map;
 
 @ManagedBean
 @RequestScoped
@@ -42,13 +43,17 @@ public class FileUploadMBean implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
-    public String uploadCourseFile(int coursePackageid) {
+    public String uploadCourseFile() {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        Map<String,String> params = context.getExternalContext().getRequestParameterMap();
+	    String coursePackageids = params.get("coursePackageid");
+        int coursePackageid = Integer.valueOf(coursePackageids);
 
         System.out.println("Howard is a piece of poo and is worth " + coursePackageid);
 
         InputStream inputStream = null;
         OutputStream outputStream = null;
-        FacesContext context = FacesContext.getCurrentInstance();
         ServletContext servletContext = (ServletContext) context
                 .getExternalContext().getContext();
         String path = "/var/www/oncourse";
