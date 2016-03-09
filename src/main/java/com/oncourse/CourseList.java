@@ -29,6 +29,13 @@ public class CourseList {
         }
     }
 
+    public String getName(int cpid) {
+        Course_package_name cpn = new Course_package_name();
+        cpn = (Course_package_name) db.readTable(cpn, "cpid = " + cpid,Course_package_name.class);
+        cpn = (Course_package_name) cpn.next();
+        return cpn.name;
+    }
+
     public List<CoursePackage> getCoursePackages() {
 
         return packages;
