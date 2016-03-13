@@ -16,6 +16,18 @@ public class PageEditor {
         this.db = db;
     }
 
+    public int savePage(int cpid, int page, String media_type, String source, String location) {
+        Course_package cp = new Course_package();
+
+        cp.cpid = cpid;
+        cp.page = page;
+        cp.media_type = media_type;
+        cp.source = source;
+        cp.location = location;
+
+        return db.getIdWrite(cp);
+    }
+
     public String getFiles(int cpid) {
 
         // this is where you actually start using it
