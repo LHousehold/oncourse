@@ -20,13 +20,6 @@
 
                         <h:outputText value="#{PageEditor.getFiles(cpid)}" escape="false" />
 
-                        <!--
-                        <div id="file1" class="file_item" draggable="true" media_type="PDF" media_source="./files/McDonald.pdf">
-                            McDonald.pdf
-                        </div>
-                        <div class="file_item" draggable="true">
-                        </div>
-                        -->
                     </div>
 
                     <div id="grid">
@@ -52,7 +45,10 @@
                         </div>
                     </div>
                 </div>
-                <h:outputText value="#{PageEditor.getTiles(1, 5)}" escape="false" />
+
+                <!-- this call to getTiles needs to be called with the passed parameters -->
+                <h:outputText value="#{PageEditor.getTiles(500, 1)}" escape="false" />
+
                 <script type="text/javascript">
                     set_drag_listener();
                     var set_page_height= function(){
