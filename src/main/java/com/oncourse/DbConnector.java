@@ -115,6 +115,43 @@ public class DbConnector {
         System.out.println("finished write");
     }
 
+    public int getIdWrite(DbTable entry) {
+
+        String query;
+        System.out.println("begin id write: " + entry.toString());
+
+        query  = entry.writeQuery();
+        System.out.println(query);
+
+        int ret = -1;
+
+        try {
+            // create the java statement
+            Statement st = conn.createStatement();
+
+            // execute the query, no return value
+            st.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            //numero = stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+
+            ResultSet generatedKeys = st.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                ret = generatedKeys.getInt("id");
+            }
+            else {
+                System.err.println("error getting generated key");
+            }
+
+        }
+        catch (SQLException e)
+        {
+            System.err.println("Error reading the Database");
+            System.err.println(e.getMessage());
+        }
+
+        return ret;
+    }
+
     // genericQuery can be used for INSERT or UPDATE or DELETE
     // or any other query with no return
     public void genericQuery(String query){
