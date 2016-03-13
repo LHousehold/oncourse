@@ -70,7 +70,7 @@ public class PageEditor {
 
            cp = (Course_package) cp.next();
 
-           ret += "initial_tile_add('" + cp.location + "', " + cp.id +");";
+           ret += "initial_tile_add('" + cp.location + "', " + cp.id +", '" + cp.media_type + "', '" + cp.source + "');";
 
        }
 

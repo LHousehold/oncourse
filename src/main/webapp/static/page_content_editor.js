@@ -123,13 +123,29 @@ function remove_file_from_grid(ev) {
     enable_grids(document.getElementById(grid_id));
 }
 
+function insert_media(tile, media_type, source) {
+    if (media_type == "PDF"){
+        tile.innerHTML = "<iframe class = 'iframeStyle' src='" + source + "'></iframe>";
+    }
+    else if (media_type == "MP3") {
+        tile.innerHTML = "<audio controls><source src='" + source +
+            "' type='audio/mpeg'>Your browser does not support the audio element.</audio>";
+    }
+    else if (media_type == "YOUTUBE") {
+        tile.innerHTML = "<iframe class = 'iframeStyle' src='https://www.youtube.com/embed/"
+            + source + "'frameborder='0' allowfullscreen></iframe>";
+    }
+}
+
 // must call finalize tile after calling this to add id and remove button
-function add_tile(grid_id) {
+function add_tile(grid_id, media_type, source) {
     // tile for content
     var tile = document.createElement("div");
     tile.classList.add("grid_tile");
     tile.classList.add("pos_" + grid_id);
     tile.setAttribute("grid_id", grid_id);
+
+    insert_media(tile, media_type, source);
 
     document.getElementById("drag_grid").appendChild(tile);
 
@@ -209,14 +225,14 @@ function save_page (grid, file , tile) {
 }
 
 // this version of the function is needed for initialization
-function initial_tile_add (grid_id, cp_table_id) {
+function initial_tile_add (grid_id, cp_table_id, media_type, source) {
     var loc_id = location_db_or_local(grid_id);
 
     var grid = document.getElementById(loc_id);
 
     disable_grids(grid);
 
-    var tile = add_tile(grid.id);
+    var tile = add_tile(grid.id, media_type, source);
 
     finalize_tile(tile, cp_table_id);
 }
@@ -224,7 +240,10 @@ function initial_tile_add (grid_id, cp_table_id) {
 function add_file_to_grid (grid, file) {
     disable_grids(grid);
 
-    var tile = add_tile(grid.id); // 1 is a test value
+    var media_type = file.getAttribute("data_media_type");
+    var source = file.getAttribute("data_media_source");
+
+    var tile = add_tile(grid.id, media_type, source); // 1 is a test value
 
     save_page(grid, file, tile);
 }
