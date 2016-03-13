@@ -46,8 +46,10 @@
                     </div>
                 </div>
 
+                <div id="packegeID" style="display:none;" data_cpid="#{cpid}" data_page="#{pagenumber}"></div>
+
                 <!-- this call to getTiles needs to be called with the passed parameters -->
-                <h:outputText value="#{PageEditor.getTiles(500, 1)}" escape="false" />
+                <h:outputText value="#{PageEditor.getTiles(cpid, pagenumber)}" escape="false" />
 
                 <script type="text/javascript">
                     set_drag_listener();
