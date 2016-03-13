@@ -113,21 +113,27 @@ function remove_file_from_grid(ev) {
     enable_grids(document.getElementById(grid_id));
 }
 
-function add_tile(grid_id, cp_table_id) {
+// must call finalize tile after calling this to add id and remove button
+function add_tile(grid_id) {
     // tile for content
     var tile = document.createElement("div");
     tile.classList.add("grid_tile");
     tile.classList.add("pos_" + grid_id);
     tile.setAttribute("grid_id", grid_id);
-    tile.setAttribute("cp_table_id", cp_table_id);
+
+    document.getElementById("drag_grid").appendChild(tile);
+
+    return tile;
+}
+
+function finalize_tile(tile, data_table_id) {
+    tile.setAttribute("data_table_id", data_table_id);
 
     // x button to remove content
     var remove_button = document.createElement("div");
     remove_button.classList.add("rem_button");
     remove_button.onclick = remove_file_from_grid;
     tile.appendChild(remove_button);
-
-    document.getElementById("drag_grid").appendChild(tile);
 }
 
 function location_db_or_local(loc) {
@@ -155,10 +161,41 @@ function location_db_or_local(loc) {
 
 }
 
-function save_page (file) {
-    $.post( "page_edit_save.xhtml", { cpid: '4'}, function( data ) {
-        document.getElementById("file_menu").innerHTML = data;
-    });
+// this will return the id of the new entry it adds in the course_package table
+function save_page (grid, file , tile) {
+
+    if (!file)
+        return;
+
+    // get all the information for generating the post parameters
+    var cp_cpid, cp_pagenumber, cp_media_type, cp_source, cp_location;
+
+    var packegeID = document.getElementById("packegeID");
+
+    // package and page info
+    cp_cpid = packegeID.getAttribute("data_cpid");
+    cp_pagenumber = packegeID.getAttribute("data_page");
+
+    // content info
+    cp_media_type = file.getAttribute("data_media_type");
+    cp_source = file.getAttribute("data_media_source");
+
+    // layout info (converted to database format
+    cp_location = location_db_or_local(grid.getAttribute("id"));
+
+    $.post( "page_edit_save.xhtml",
+        {
+            cpid: cp_cpid,
+            pagenumber: cp_pagenumber,
+            media_type: cp_media_type,
+            source: cp_source,
+            location: cp_location
+        },
+        function( data ) {
+            var parser = new DOMParser();
+            var htmlDoc = parser.parseFromString(data, "text/html");
+            finalize_tile(tile, htmlDoc.firstElementChild.innerText);
+        });
 }
 
 // this version of the function is needed for initialization
@@ -169,13 +206,17 @@ function initial_tile_add (grid_id, cp_table_id) {
 
     disable_grids(grid);
 
-    add_tile(grid.id, cp_table_id);
+    var tile = add_tile(grid.id);
+
+    finalize_tile(tile, cp_table_id);
 }
 
 function add_file_to_grid (grid, file) {
     disable_grids(grid);
 
-    add_tile(grid.id, 1); // 1 is a test value
+    var tile = add_tile(grid.id); // 1 is a test value
+
+    save_page(grid, file, tile);
 }
 
 function grid_drag_enter (ev) {
