@@ -104,11 +104,21 @@ function disable_grids(grid) {
     }
 }
 
+function delete_from_db (table_id) {
+    $.post( "page_edit_remove.xhtml",
+        {
+            id: parseInt(table_id),
+        });
+}
+
 function remove_file_from_grid(ev) {
     var tile = ev.target.parentElement;
     var grid_id = tile.attributes.getNamedItem("grid_id").nodeValue;
 
     tile.parentElement.removeChild(tile);
+
+    var table_id = tile.getAttribute("data_table_id");
+    delete_from_db(table_id);
 
     enable_grids(document.getElementById(grid_id));
 }

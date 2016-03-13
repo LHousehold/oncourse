@@ -28,6 +28,11 @@ public class PageEditor {
         return db.getIdWrite(cp);
     }
 
+    public int removePage(int id) {
+        db.genericQuery("DELETE FROM course_package WHERE id=" + id);
+        return 0;
+    }
+
     public String getFiles(int cpid) {
 
         // this is where you actually start using it
