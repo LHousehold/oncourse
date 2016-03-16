@@ -1,6 +1,3 @@
-* {
-    border: solid black 1px;
-}
 
 #grid {
     position: absolute;
@@ -29,28 +26,35 @@
 }
 
 .file_item {
-    border: solid 1px black;
+    margin: 0 0 3px 0;
+    box-shadow: 1px 0px 3px 0px grey;
+    background-color: #dfe2ff;
     position: relative;
     height: 20px;
     width: 80%;
+    font-family: Arial;
 }
 
 .grid_item {
     position: absolute;
-    height: 30%;
+    height: 32%;
     width: 30%;
+    background-color: #e8e8e8;
+    box-shadow: 1px 0px 3px 0px grey;
+    transition-duration: 0.2s;
 }
 
 .grid_disabled {
-    background-color: grey;
+    opacity: 0.3;
 }
 
 .grid_tile {
-    border-color: red;
+    border: solid 1px;
+    border-color: crimson;
 }
 
 .drag_hover {
-    background-color: red;
+    background-color: #cbffff;
 }
 
 /* styles for grid */
@@ -108,7 +112,17 @@
     right: 0;
     width: 20px;
     height: 20px;
-    background-color: red;
+    background-color: #ffc7c7;
+    margin: 2px;
+    border-radius: 2px;
+}
+
+.rem_button:after {
+    position: relative;
+    left: 4px;
+    font-family: Arial;
+    font-size: 13pt;
+    content: "X";
 }
 
 .pos_M {
