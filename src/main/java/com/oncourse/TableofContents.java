@@ -109,7 +109,7 @@ public class TableofContents {
         for (int j = 0; j < sectionarray_n.length(); j++) {
             JSONObject object = sectionarray_n.getJSONObject(j);
             Section new_section = new Section(object.getInt("id"), object.getString("name"), object.getInt("page"), object.getDouble("index"), object.getString("type"));
-            sections_o.put(object.getInt("id"), new_section);
+            sections_n.put(object.getInt("id"), new_section);
         }
 
         // now we traverse through the old map; if we find an element in both maps, we compare them and operate accordingly
@@ -120,7 +120,25 @@ public class TableofContents {
 
         for (Map.Entry<Integer, Section> entry : sections_o.entrySet())
         {
-            
+            int key = (int)entry.getKey();
+            Section old_section = entry.getValue();
+            Section new_section = sections_n.get(key);
+            if (new_section != null) {
+                
+
+                // remove from list of new sections
+                sections_n.remove(key);
+            }
+            else { // this section has been removed
+
+            }
+        }
+
+        if (sections_n.size() != 0) {
+            for (Map.Entry<Integer, Section> entry : sections_n.entrySet())
+            {
+                // every section to be seen in a new section
+            }
         }
 
     }
