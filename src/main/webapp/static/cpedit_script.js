@@ -95,17 +95,17 @@ $(document).ready(function() {
 
     $("#sections_content").on("click", ".add_section", function(e){
         var newsec = $('<div class="section_row"> \
-<div class="section_block secblock"> \
-<h3 class="secnum" data-section="1">1.</h3> \
-<h3 class="sectitle edit" contenteditable="true">New Section</h3> \
-<div class="section_btns"> \
-<button class="btn btn-default remove_section" title="Remove Section"><span class="glyphicon glyphicon-remove"></span></button> \
-<button class="btn btn-default edit_section" title="Edit Section"><span class="glyphicon glyphicon-list-alt"></span></button> \
-<button class="btn btn-default add_subsection" title="Add Subsection"><span class="glyphicon glyphicon-plus"></span></button> \
-</div> \
-</div> \
-<button class="btn btn-default btn-block add_section" title="Add Section"><span class="glyphicon glyphicon-plus"></span></button> \
-</div>').insertAfter($(this).closest(".section_row")).focus();
+            <div class="section_block secblock"> \
+                <h3 class="secnum" data-section-id="-1" data-section="0" data-pagenumber="0">0.</h3> \
+                <h3 class="sectitle edit" contenteditable="true">New Section</h3> \
+                <div class="section_btns"> \
+                    <button class="btn btn-default remove_section" title="Remove Section"><span class="glyphicon glyphicon-remove"></span></button> \
+                    <button class="btn btn-default edit_section" title="Edit Section"><span class="glyphicon glyphicon-list-alt"></span></button> \
+                    <button class="btn btn-default add_subsection" title="Add Subsection"><span class="glyphicon glyphicon-plus"></span></button> \
+                </div> \
+            </div> \
+            <button class="btn btn-default btn-block add_section" title="Add Section"><span class="glyphicon glyphicon-plus"></span></button> \
+        </div>').insertAfter($(this).closest(".section_row")).focus();
         refresh_indices();
         newsec.find(".edit").focus();
     });

@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ExternalContext;
 import org.json.*;
 import java.util.Map;
+import java.util.HashMap;
 
 @ManagedBean(name = "tableofContents", eager = true)
 @RequestScoped
@@ -92,9 +93,36 @@ public class TableofContents {
             db.genericQuery("UPDATE course_package_name SET name='" + ndata.getString("course_name") + "' WHERE id='" + cpid + "'");
         }
 
+        // traverse through array of sections and detect changes
+        JSONArray sectionarray_o = odata.getJSONArray("sections");
+        JSONArray sectionarray_n = ndata.getJSONArray("sections");
 
-        // String course_package_name = json_data.getString("course_name");
-        // db.genericQuery("UPDATE course_package_name SET page_number=5 WHERE TRUE;");
+        HashMap<Integer, Section> sections_o = new HashMap<Integer, Section>();
+        HashMap<Integer, Section> sections_n = new HashMap<Integer, Section>();
+
+        // populate two maps
+        for (int i = 0; i < sectionarray_o.length(); i++) {
+            JSONObject object = sectionarray_o.getJSONObject(i);
+            Section new_section = new Section(object.getInt("id"), object.getString("name"), object.getInt("page"), object.getDouble("index"), object.getString("type"));
+            sections_o.put(object.getInt("id"), new_section);
+        }
+        for (int j = 0; j < sectionarray_n.length(); j++) {
+            JSONObject object = sectionarray_n.getJSONObject(j);
+            Section new_section = new Section(object.getInt("id"), object.getString("name"), object.getInt("page"), object.getDouble("index"), object.getString("type"));
+            sections_o.put(object.getInt("id"), new_section);
+        }
+
+        // now we traverse through the old map; if we find an element in both maps, we compare them and operate accordingly
+        // and remove the element from the second map
+        // if we find the element in just the first map, it means we have a removal; operate accordingly
+        // when we're done with the old map, traverse the new map
+        // any elements remaining in the new map are new sections and have to be inserted
+
+        for (Map.Entry<Integer, Section> entry : sections_o.entrySet())
+        {
+            
+        }
+
     }
 
 }
