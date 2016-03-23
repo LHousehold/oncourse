@@ -20,9 +20,13 @@ $(document).ready(function() {
         var temp_data;
         var cp_data;
         var course_name = $("#edit_course_name").html();
-        var cp_data = "{'course_name':'" + course_name + "','sections':[";
+        var cpid = $("#sections_content").attr("data-cpid");
+        var cp_data = "{'cpid':'" + cpid + "', 'course_name':'" + course_name + "','sections':[";
         $(".secblock").each(function(i){
-            var section_index = $(this).find(".secnum").attr("data-section");
+            var secnum = $(this).find(".secnum");
+            var section_id = secnum.attr("data-section-id");
+            var page_number = secnum.attr("data-pagenumber");
+            var section_index = secnum.attr("data-section");
             var section_type = "";
             var section_name = "";
             if ($(this).hasClass("section_block")) {
@@ -33,8 +37,7 @@ $(document).ready(function() {
                 section_name = $(this).find(".subsectitle").html();
                 section_type = "subsection";
             }
-            var page_number = 0;
-            temp_data = "{'index':'" + section_index + "', 'name':'" + section_name + "', 'type':'" + section_type + "', 'page':'" + page_number + "'},";
+            temp_data = "{'id':'" + section_id + "', 'index':'" + section_index + "', 'name':'" + section_name + "', 'type':'" + section_type + "', 'page':'" + page_number + "'},";
             cp_data = cp_data + temp_data;
         });
 
@@ -69,8 +72,11 @@ $(document).ready(function() {
     });
 
     $("#sections_content").on("click", ".edit_section", function(e){
-        //$("#coursepackage_content").load("pageeditor.xhtml", {"pagenumber":pagenumber, "cpid": cpid});
-        $("#coursepackage_content").load("pageeditor.xhtml");
+        var pagenumber = $(this).closest(".secnum").attr("data-pagenumber");
+        var cpid = $("#sections_content").attr("data-cpid");
+
+        $("#coursepackage_content").load("pageeditor.xhtml", {"pagenumber":pagenumber, "cpid": cpid});
+        // $("#coursepackage_content").load("pageeditor.xhtml");
     });
 
     $("#sections_content").on("click", ".add_subsection", function(e){

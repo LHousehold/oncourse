@@ -2,16 +2,26 @@ package com.oncourse;
 
 
 public class Section {
+	private int sectionID;
 	private String sectionName;
 	private int pageNumber;
 	private double sectionIndex;
 	private String sectionType;
 
-	public Section(String sectionName, int pageNumber, double sectionIndex, String sectionType){
+	public Section(int sectionID, String sectionName, int pageNumber, double sectionIndex, String sectionType){
+		this.sectionID = sectionID;
 		this.sectionName = sectionName;
 		this.pageNumber = pageNumber;
 		this.sectionIndex = sectionIndex;
 		this.sectionType = sectionType;
+	}
+
+	public int getSectionID(){
+		return sectionID;
+	}
+
+	public void setSectionID(int sectionID){
+		this.sectionID = sectionID;
 	}
 
 	public String getSectionName(){

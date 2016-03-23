@@ -76,6 +76,8 @@ public class FileUploadMBean implements Serializable {
             File outputFile = new File(path + File.separator + "uploads" + File.separator + nFile.cpid
                     + File.separator + fileName);
 
+            System.out.println("out: " + outputFile);
+
             File outputFolder = new File(path + File.separator + "uploads" + File.separator + nFile.cpid
                     + File.separator);
 
@@ -94,7 +96,7 @@ public class FileUploadMBean implements Serializable {
             else
                 file1Success = "incompatible";
 
-            nFile.source = path + File.separator + "files" + File.separator + "uploads"
+            nFile.source = path + File.separator + "uploads" + File.separator + nFile.cpid
                     + File.separator + fileName;
             nFile.name = fileName;
 
