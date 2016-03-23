@@ -49,7 +49,7 @@ public class PageEditor {
 
             files = (FileQuery) files.next();
 
-            ret += "<div id='file" + fileNum + "' class='file_item' draggable='true'" +
+            ret += "<div id='file" + fileNum + "' class='file_item list-group-item' draggable='true'" +
                 "data_media_type='" + files.media_type + "' data_media_source='" + files.source + "'>" + files.name + "</div>";
 
             fileNum += 1;

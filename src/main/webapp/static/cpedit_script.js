@@ -69,8 +69,8 @@ $(document).ready(function() {
     });
 
     $("#sections_content").on("click", ".edit_section", function(e){
-        //$("#coursepackage_content").load("pageeditor.xhtml", {"pagenumber":pagenumber, "cpid": cpid});
-        $("#coursepackage_content").load("pageeditor.xhtml");
+        $("#coursepackage_content").load("pageeditor.xhtml", {"pagenumber": 1, "cpid": 2});
+        // $("#coursepackage_content").load("pageeditor.xhtml");
     });
 
     $("#sections_content").on("click", ".add_subsection", function(e){
