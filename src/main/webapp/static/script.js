@@ -46,7 +46,7 @@ $(document).ready(function() {
 
       var course_code = prompt("Please enter a Course Code for your new course", "APS100");
       if (course_code != null) {
-          $("#coursepackage_content").load("coursepackageeditor.xhtml", {"coursecode":course_code, "cpid": cpid});
+          $("#coursepackage_content").load("newcoursepackage.xhtml", {"coursecode":course_code, "cpid": cpid});
       }
   });
 

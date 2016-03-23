@@ -53,9 +53,7 @@ public class CoursePackageDisplay {
 
         // this is where you actually start using it
        Course_package cp = new Course_package();
-       cp.cpid = cpid;
-       cp.page = page;
-       cp = (Course_package) db.readTable(cp, Course_package.class);
+       cp = (Course_package) db.readTable(cp, "cpid = " + cpid + " AND page = " + page, Course_package.class);
 
        //String ret = "<div class='pos_all'>";
 

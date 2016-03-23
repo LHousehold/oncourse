@@ -75,3 +75,32 @@ VALUES (NULL,2,"PDF", 5, "./jsftut/page3_1.pdf", "LEFT");
 
 INSERT INTO course_package
 VALUES (NULL,2,"PDF", 5, "./jsftut/page3_2.pdf", "RIGHT");
+
+
+INSERT INTO course_package_section
+VALUES (NULL,2,1,"Title","section",1);
+
+INSERT INTO course_package_section
+VALUES (NULL,2,2,"JSP Overview","section",2);
+
+INSERT INTO course_package_section
+VALUES (NULL,2,2.1,"Why use JSP?","subsection",2);
+
+INSERT INTO course_package_section
+VALUES (NULL,2,2.2,"Advantages of JSP","subsection",2);
+
+INSERT INTO course_package_section
+VALUES (NULL,2,3,"JSP Environment Setup","section",3);
+
+INSERT INTO course_package_section
+VALUES (NULL,2,3.1,"Setting up Java Development Kit","subsection",3);
+
+INSERT INTO course_package_section
+VALUES (NULL,2,3.2,"Setting up Web Server: Tomcat","subsection",3);
+
+
+INSERT INTO course_package_name
+VALUES (NULL,"McDonald's Nutrition","MCD100",1);
+
+INSERT INTO course_package_name
+VALUES (NULL,"Introduction to JSP","JSP100",2);

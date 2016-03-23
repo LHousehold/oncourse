@@ -16,7 +16,7 @@ import java.sql.SQLException;
 // ##################################
 // change the class name Course_package -> "what ever represents your query"
 // ##################################
-public class Course_package implements DbTable {
+public class FileQuery implements DbTable {
 
     // for linked list
     DbTable next = null;
@@ -25,24 +25,22 @@ public class Course_package implements DbTable {
 // ##################################
 // add member variables to hold all the data you expect to return from the query
 // ##################################
-    //int id;
-    //int cpid;
-    //String media_type;
-    //int page;
-    //String source;
-    //String location;
+    int id;
+    int cpid;
+    String name;
+    String media_type;
+    String source;
 
     public void fill(ResultSet rs) {
         try {
 // ##################################
 // call rs.getInt/getString to put the data into the member variables
 // ##################################
-            //this.id = rs.getInt("id");
-            //this.cpid = rs.getInt("cpid");
-            //this.media_type = rs.getString("media_type");
-            //this.page = rs.getInt("page");
-            //this.source = rs.getString("source");
-            //this.location = rs.getString("location");
+            this.id = rs.getInt("id");
+            this.cpid = rs.getInt("cpid");
+            this.media_type = rs.getString("media_type");
+            this.name = rs.getString("name");
+            this.source = rs.getString("source");
         }
         catch (SQLException e) {
             System.out.println("error while filling entry");
@@ -59,16 +57,14 @@ public class Course_package implements DbTable {
 // ##################################
 // write your query to read the database here
 // ##################################
-        return "SELECT * FROM course_package WHERE " + where;
+        //return "SELECT * FROM course_package WHERE cpid = " + this.cpid + " AND page = " + this.page;
+        return "SELECT * FROM files WHERE " + where + ";";
     }
 
     // build query for writing the database
     public String writeQuery() {
-// ##################################
-// write your query to write the database here (some design decisions may still affect this functionality)
-// ##################################
-        //return "INSERT INTO course_package (cpid, media_type, page, source, location)" +
-        //           "VALUES (" + cpid + ",'" + media_type + "'," + page + ",'" + source + "','" + location + "')";
+        return "INSERT INTO files (cpid, media_type, name, source)" +
+                  "VALUES (" + cpid + ",'" + media_type + "','" + name + "','" + source + "')";
     }
 
     // for simple linked list methods

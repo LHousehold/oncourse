@@ -18,8 +18,10 @@ CREATE TABLE IF NOT EXISTS course_package_section
 (
 id int AUTO_INCREMENT,
 cpid int NOT NULL,
+section_index decimal(6,2) NOT NULL,
 section_name varchar(255) NOT NULL,
-page int NOT NULL,
+section_type varchar(100) NOT NULL,
+page_number int NOT NULL,
 PRIMARY KEY (id)
 );
 
@@ -36,7 +38,8 @@ CREATE TABLE IF NOT EXISTS course_package_name
 (
 id int AUTO_INCREMENT,
 name varchar(255) NOT NULL,
-course_code varchar(255),
+course_code varchar(255) NOT NULL,
+cpid int NOT NULL,
 PRIMARY KEY (id)
 );
 
@@ -55,6 +58,16 @@ id int AUTO_INCREMENT,
 uid int NOT NULL,
 cpid int NOT NULL,
 permission_level varchar(255) NOT NULL DEFAULT 'read',
+PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS files
+(
+id int AUTO_INCREMENT,
+cpid int NOT NULL,
+name varchar(255) NOT NULL,
+source varchar(255) NOT NULL,
+media_type varchar(20) NOT NULL,
 PRIMARY KEY (id)
 );
 

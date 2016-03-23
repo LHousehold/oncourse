@@ -3,34 +3,75 @@ package com.oncourse;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import java.util.ArrayList;
-import java.util.List;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
+import javax.faces.context.ExternalContext;
+import org.json.*;
+import java.util.Map;
 
 @ManagedBean(name = "tableofContents", eager = true)
 @RequestScoped
 public class TableofContents {
 
-    private List<Section> sections = new ArrayList<Section>();
+    @ManagedProperty(value="#{dbConnection}")
+    private DbConnector db;
 
-    public TableofContents() {
-        this.sections.add(new Section("Title","1","1","section"));
-        this.sections.add(new Section("1. JSP Overview","2","2","section"));
-        this.sections.add(new Section("Why use JSP?","2","3","subsection"));
-        this.sections.add(new Section("Advantages of JSP","2","4","subsection"));
-        this.sections.add(new Section("2. JSP Environment Setup","3","5","section"));
-        this.sections.add(new Section("Setting up Java Development Kit","3","6","subsection"));
-        this.sections.add(new Section("Setting up Web Server: Tomcat","3","7","subsection"));
-        this.sections.add(new Section("Tutorial Videos","4","8","subsection"));
-        this.sections.add(new Section("3. JSP Architecture","5","9","section"));
-        this.sections.add(new Section("JSP Processing","5","10","subsection"));
+    public void setdb(DbConnector db){
+        this.db = db;
     }
 
-    public List<Section> getCPSections() {
+    // private ArrayList<Section> sections = new ArrayList<Section>();
+    // private ArrayList<SectionTop> sectionTops = new ArrayList<SectionTop>();
+
+    // public TableofContents() {
+    // }
+
+    public ArrayList<Section> getCPSections(int cpid) {
+        ArrayList<Section> sections = new ArrayList<Section>();
+
+        Course_package_section cps = new Course_package_section();
+        cps = (Course_package_section) db.readTable(cps, "cpid = " + cpid, Course_package_section.class);
+
+        while(cps.next != null) {
+            cps = (Course_package_section) cps.next();
+            sections.add(new Section(cps.sectionName,cps.pageNumber,cps.sectionIndex,cps.sectionType));
+        }
+
         return sections;
     }
 
-    public void setSections(){
-        this.sections = sections;
+    public ArrayList<SectionTop> buildEditor(int cpid) {
+        ArrayList<Section> sections = getCPSections(cpid);
+        ArrayList<SectionTop> sectionTops = new ArrayList<SectionTop>();
 
+        int topIndex = 0;
+
+        for (Section section : sections) {
+            if (section.getSectionType().equals("section")) {
+                sectionTops.add(new SectionTop(section));
+            }
+            else if (section.getSectionType().equals("subsection")) {
+                topIndex = (int)Math.floor(section.getSectionIndex());
+                // minus 1 because section indexes start at 1 in the database for aesthetic purposes
+                sectionTops.get(topIndex - 1).addSubsection(section);
+            }
+        }
+
+        return sectionTops;
+    }
+
+    public void save_all() {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        String new_data = ec.getRequestParameterMap().get("save_cp_form:save_cp_data");
+        String old_data = ec.getRequestParameterMap().get("save_cp_form:original_cp_data");
+
+        System.out.println("Data: " + old_data);
+        System.out.println("Updated to: " + new_data);
+
+        // JSONObject json_data = new JSONObject(data);
+
+        // String course_package_name = json_data.getString("course_name");
+        // db.genericQuery("UPDATE course_package_name SET page_number=5 WHERE TRUE;");
     }
 
 }

@@ -2,6 +2,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml"
         xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <head>
         <ui:include src="head.xhtml" />
@@ -29,24 +30,24 @@
 				  	<a href="#" class="list-group-item option_menu_item" data-option="manage">Manage Courses</a>
 				</div>
 				<div class="course_list_title"><h5>Enrolled Courses</h5></div>
+                <f:metadata><f:event type="preRenderView" listener="#{courseList.init()}" /></f:metadata>
 				<div class="list-group course_list">
-                    <!-- this needs to draw from the database to see what courses the user is enrolled in -->
-				  	<a href="#" class="list-group-item course_menu_item" data-course-code="MCD100" data-cpid="1">MCD100</a>
-				  	<a href="#" class="list-group-item course_menu_item" data-course-code="JSP100" data-cpid="2">JSP100</a>
-				  	<a href="#" class="list-group-item course_menu_item" data-course-code="ECE472" data-cpid="3">ECE472</a>
-				  	<a href="#" class="list-group-item course_menu_item" data-course-code="ECE431" data-cpid="4">ECE431</a>
-				  	<a href="#" class="list-group-item course_menu_item" data-course-code="ECE496" data-cpid="5">ECE496</a>
+                    <ui:repeat value="#{courseList.getCoursePackages()}" var="cp">
+                        <a href="#" class="list-group-item course_menu_item" data-course-code="#{cp.courseCode}" data-cpid="#{cp.cpid}">
+                            #{cp.courseCode}
+                        </a>
+                    </ui:repeat>
 				</div>
 				<div class="course_list_title"><h5>Manage Courses</h5></div>
 				<div class="list-group course_list">
 				  	<a href="#" class="list-group-item course_edit_item_new">New Course Package</a>
 				</div>
                 <div class="list-group course_list">
-                    <a href="#" class="list-group-item course_edit_item" data-course-code="MCD100" data-cpid="1">MCD100</a>
-                    <a href="#" class="list-group-item course_edit_item" data-course-code="JSP100" data-cpid="2">JSP100</a>
-                    <a href="#" class="list-group-item course_edit_item" data-course-code="ECE472" data-cpid="3">ECE472</a>
-                    <a href="#" class="list-group-item course_edit_item" data-course-code="ECE431" data-cpid="4">ECE431</a>
-                    <a href="#" class="list-group-item course_edit_item" data-course-code="ECE496" data-cpid="5">ECE496</a>
+                    <ui:repeat value="#{courseList.getCoursePackages()}" var="cp">
+                        <a href="#" class="list-group-item course_edit_item" data-course-code="#{cp.courseCode}" data-cpid="#{cp.cpid}">
+                            #{cp.courseCode}
+                        </a>
+                    </ui:repeat>
                     <a href="#" class="list-group-item upload_item">Upload</a>
                 </div>
 			</div>

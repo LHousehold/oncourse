@@ -44,16 +44,16 @@ public class DbConnector {
     }
 
     // entry should be a new instance of the type of table you are reading from
-    public <T extends DbTable> DbTable readTable(DbTable entry, Class<T> type) {
+    public <T extends DbTable> DbTable readTable(DbTable entry, String where, Class<T> type) {
         // when this is created, the first entry will just act as a head and have no valuse by it self
         // call next to get the first entry with values
         //T entry;
         String query;
-        System.out.println("begin");
+        System.out.println("begin read: " + type.toString());
 
-        query  = entry.readQuery();
+        query  = entry.readQuery(where);
 
-        System.out.println("start to read from table");
+        System.out.println("start to read from table: " + query);
         try {
             // create the java statement
             Statement st = conn.createStatement();
@@ -86,7 +86,7 @@ public class DbConnector {
             System.err.println(e.getMessage());
         }
 
-        System.out.println("finied");
+        System.out.println("finished read");
         return entry;
 
     }
@@ -94,7 +94,7 @@ public class DbConnector {
     public void writeTable(DbTable entry) {
 
         String query;
-        System.out.println("begin write");
+        System.out.println("begin write: " + entry.toString());
 
         query  = entry.writeQuery();
         System.out.println(query);
@@ -113,6 +113,67 @@ public class DbConnector {
         }
 
         System.out.println("finished write");
+    }
+
+    public int getIdWrite(DbTable entry) {
+
+        String query;
+        System.out.println("begin id write: " + entry.toString());
+
+        query  = entry.writeQuery();
+        System.out.println(query);
+
+        int ret = -1;
+
+        try {
+            // create the java statement
+            Statement st = conn.createStatement();
+
+            // execute the query, no return value
+            st.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            //numero = stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+
+            ResultSet generatedKeys = st.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                ret = generatedKeys.getInt("id");
+            }
+            else {
+                System.err.println("error getting generated key");
+            }
+
+        }
+        catch (SQLException e)
+        {
+            System.err.println("Error reading the Database");
+            System.err.println(e.getMessage());
+        }
+
+        return ret;
+    }
+
+    // genericQuery can be used for INSERT or UPDATE or DELETE
+    // or any other query with no return
+    public void genericQuery(String query){
+        System.out.println("begin genericQuery");
+
+        System.out.println(""+query); // weird, won't print unless concatenated with other string. Hence ""
+
+        try {
+            // create the java statement
+            Statement st = conn.createStatement();
+
+            // execute the query, no return value
+            st.executeUpdate(query);
+        }
+        catch (SQLException e)
+        {
+            System.err.println("Error reading the Database");
+            System.err.println(e.getMessage());
+        }
+
+        System.out.println("finished genericQuery");
+
     }
 
     private void open() {

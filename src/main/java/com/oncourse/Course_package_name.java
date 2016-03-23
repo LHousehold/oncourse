@@ -11,24 +11,27 @@ public class Course_package_name implements DbTable {
     // table columns
     int id;
     String name;
-    String course_code;
+    String courseCode;
+    int cpid;
 
     public void fill(ResultSet rs) {
         try {
             this.id = rs.getInt("id");
             this.name = rs.getString("name");
-            this.course_code = rs.getString("Course_code");
+            this.courseCode = rs.getString("course_code");
+            this.cpid = rs.getInt("cpid");
         }
         catch (SQLException e) {
             System.out.println("error while filling entry");
             e.printStackTrace();
         }
-        System.out.format("%s, %s, %s\n", this.id, this.name, this.course_code);
+        //System.out.format("%s, %s, %s\n", this.id, this.name, this.course_code);
     }
 
     // build query for reading the database
-    public String readQuery() {
-        return "SELECT * FROM course_package_name WHERE id = " + this.id;
+    public String readQuery(String where) {
+        //return "SELECT * FROM course_package_name WHERE id = " + this.id;
+        return "SELECT * FROM course_package_name WHERE " + where;
     }
 
     // build query for writing the database

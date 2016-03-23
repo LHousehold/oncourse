@@ -17,8 +17,8 @@
                             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                         </button>
                         <div class="toc_list list-group">
-                            <ui:repeat value="#{tableofContents.getCPSections()}" var="section">
-                                <a href="#" class="list-group-item section_reference #{section.sectionType}" data-page-number="#{section.pageNumber}" data-section-code="#{section.sectionNumber}">
+                            <ui:repeat value="#{tableofContents.getCPSections(cpid)}" var="section">
+                                <a href="#" class="list-group-item section_reference #{section.sectionType}" data-page-number="#{section.pageNumber}">
                                     #{section.sectionName}
                                 </a>
                             </ui:repeat>

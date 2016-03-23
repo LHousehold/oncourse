@@ -1,0 +1,69 @@
+<html>
+
+    <head>
+
+        <link rel="stylesheet" href="builder.css">
+
+        <script src="builder.js"></script>
+
+    </head>
+
+<body>
+
+    <div id="item_container">
+        <div id="file_menu">
+            <div id="file1" class="file_item" draggable="true" media_type="PDF" media_source="./files/McDonald.pdf">
+                McDonald.pdf
+            </div>
+            <div class="file_item" draggable="true">
+            </div>
+            <div class="file_item" draggable="true">
+            </div>
+            <div class="file_item" draggable="true">
+            </div>
+            <div class="file_item" draggable="true">
+            </div>
+            <div class="file_item" draggable="true">
+            </div>
+            <div class="file_item" draggable="true">
+            </div>
+            <div class="file_item" draggable="true">
+            </div>
+            <div class="file_item" draggable="true">
+            </div>
+            <div class="file_item" draggable="true">
+            </div>
+            <div class="file_item" draggable="true">
+            </div>
+            <div class="file_item" draggable="true">
+            </div>
+        </div>
+
+        <div id="grid">
+            <div id="drag_grid">
+                <div id="TL" class="grid_item" grid_group="M T L TL">
+                </div>
+                <div id="T" class="grid_item" grid_group="M T L R TL TR">
+                </div>
+                <div id="TR" class="grid_item" grid_group="M T R TR">
+                </div>
+                <div id="L" class="grid_item" grid_group="M L T B TL BL">
+                </div>
+                <div id="M" class="grid_item" grid_group="M T L R B TL TR BL BR">
+                </div>
+                <div id="R" class="grid_item" grid_group="M R T B TR BR">
+                </div>
+                <div id="BL" class="grid_item" grid_group="M B L BL">
+                </div>
+                <div id="B" class="grid_item" grid_group="M B L R BL BR">
+                </div>
+                <div id="BR" class="grid_item" grid_group="M B R BR">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        set_drag_listener();
+    </script>
+</body>
+</html>
