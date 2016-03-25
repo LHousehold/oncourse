@@ -43,6 +43,20 @@ public class TableofContents {
         return sections;
     }
 
+    public ArrayList<SectionID> getIDs(int cpid) {
+        ArrayList<SectionID> sections = new ArrayList<SectionID>();
+
+        Course_package_section cps = new Course_package_section();
+        cps = (Course_package_section) db.readTable(cps, "cpid = " + cpid, Course_package_section.class);
+
+        while(cps.next != null) {
+            cps = (Course_package_section) cps.next();
+            sections.add(new SectionID(cps.id,cps.sectionIndex));
+        }
+
+        return sections;
+    }
+
     public ArrayList<SectionTop> buildEditor(int cpid) {
         ArrayList<Section> sections = getCPSections(cpid);
         ArrayList<SectionTop> sectionTops = new ArrayList<SectionTop>();
@@ -104,6 +118,7 @@ public class TableofContents {
             JSONObject object1 = sectionarray_o.getJSONObject(i);
             Section new_section = new Section(object1.getInt("id"), object1.getString("name"), object1.getInt("page"), object1.getDouble("index"), object1.getString("type"));
             sections_o.put(object1.getInt("id"), new_section);
+            System.out.println("Old ID: " + object1.getInt("id"));
         }
         for (int j = 0; j < sectionarray_n.length(); j++) {
             JSONObject object2 = sectionarray_n.getJSONObject(j);
@@ -112,9 +127,11 @@ public class TableofContents {
             if (object2.getInt("id") == -1) {
                 // this is a new section; add to new sections array
                 new_sections.add(new_section);
+                System.out.println("New ID: " + object2.getInt("id"));
             }
             else {
                 sections_n.put(object2.getInt("id"), new_section);
+                System.out.println("New ID: " + object2.getInt("id"));
             }
         }
 

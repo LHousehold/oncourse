@@ -3,14 +3,17 @@ $(document).ready(function() {
 
     $("#save_cp").click(function(e) {
         var cp_data = get_data();
-        console.log("Old Data: " + $(".original_cp_data")[0].value);
-        console.log("New Data: " + cp_data);
 
         $(".save_cp_data")[0].value = cp_data;
         $(".save_cp_command").click();
         // clicking save_cp_command will send the original data and the new data to the database, to be compared and reflect changes
         // assume this works: update original data to new data for future comparison
-        $(".original_cp_data")[0].value = cp_data;
+
+        setTimeout(function(e) {
+            var cpid = $("#sections_content").attr("data-cpid");
+            $("#id_values").load("id_return.xhtml", {"cpid": cpid});
+        }, 100);
+
     });
 
     $("#sections_content").ready(function(e) {
