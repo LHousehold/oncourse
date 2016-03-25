@@ -2,16 +2,26 @@ package com.oncourse;
 
 
 public class Section {
+	private int sectionID;
 	private String sectionName;
 	private int pageNumber;
 	private double sectionIndex;
 	private String sectionType;
 
-	public Section(String sectionName, int pageNumber, double sectionIndex, String sectionType){
+	public Section(int sectionID, String sectionName, int pageNumber, double sectionIndex, String sectionType){
+		this.sectionID = sectionID;
 		this.sectionName = sectionName;
 		this.pageNumber = pageNumber;
 		this.sectionIndex = sectionIndex;
 		this.sectionType = sectionType;
+	}
+
+	public int getSectionID(){
+		return sectionID;
+	}
+
+	public void setSectionID(int sectionID){
+		this.sectionID = sectionID;
 	}
 
 	public String getSectionName(){
@@ -49,5 +59,16 @@ public class Section {
 	public void setSectionType(String sectionType){
 		this.sectionType = sectionType;
 	}
+
+	public boolean equals(Section that) {
+		if (!(that instanceof Section)) return false;
+
+		if (this.sectionID == that.getSectionID() && this.sectionName.equals(that.getSectionName()) &&
+		this.pageNumber == that.getPageNumber() && this.sectionIndex == that.getSectionIndex() &&
+		this.sectionType.equals(that.getSectionType())) return true;
+
+		else return false;
+	}
+
 
 }
