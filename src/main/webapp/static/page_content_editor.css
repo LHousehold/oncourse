@@ -12,6 +12,7 @@
     margin: 2px;
     height: 95%;
     width: 73%;
+    min-width: 560px;
 }
 
 #file_menu {
@@ -23,6 +24,8 @@
     height: 95%;
     width: 24%;
     min-width: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #item_container {
@@ -30,15 +33,22 @@
     display: block;
     height: 100%;
     width: 95%;
+    min-width: 780px;
+    min-height: 460px;
 }
 
 .file_item {
     position: relative;
     cursor: pointer;
+    text-align: left;
 }
 
 .file_item:hover {
     background-color: ghostwhite;
+}
+
+.file_item span {
+    margin-right: 5px;
 }
 
 .grid_item {
@@ -58,7 +68,7 @@
 }
 
 .grid_tile {
-    border-color: red;
+    background-color: ghostwhite;
 }
 
 .drag_hover {
@@ -128,7 +138,6 @@
     content: "\e014";
     color: crimson;
     font-size: 20px;
-
 }
 
 .pos_M {

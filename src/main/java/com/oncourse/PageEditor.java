@@ -50,7 +50,22 @@ public class PageEditor {
             files = (FileQuery) files.next();
 
             ret += "<div id='file" + fileNum + "' class='file_item list-group-item' draggable='true'" +
-                "data_media_type='" + files.media_type + "' data_media_source='" + files.source + "'>" + files.name + "</div>";
+                "data_media_type='" + files.media_type + "' data_media_source='" + files.source + "'>";
+
+            if (files.media_type.equals("PDF")) {
+                ret += "<span class='glyphicon glyphicon-file' aria-hidden='true'></span>";
+            }
+            else if (files.media_type.equals("MP3")) {
+                ret += "<span class='glyphicon glyphicon-headphones' aria-hidden='true'></span>";
+            }
+            else if (files.media_type.equals("IMAGE")) {
+                ret += "<span class='glyphicon glyphicon-picture' aria-hidden='true'></span>";
+            }
+            else if (files.media_type.equals("MP4")) {
+                ret += "<span class='glyphicon glyphicon-film' aria-hidden='true'></span>";
+            }
+
+            ret += files.name + "</div>";
 
             fileNum += 1;
 

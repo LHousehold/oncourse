@@ -1,3 +1,11 @@
+#cppage_top {
+    min-width: 780px;
+}
+
+.cp_grid {
+    background-color: ghostwhite;
+}
+
 .pos_all {
     position: relative;
     top:0%;
