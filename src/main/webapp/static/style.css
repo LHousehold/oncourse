@@ -410,16 +410,45 @@ iframe {
 }*/
 
 /* login page */
-.logo_row {
-	padding-top: 26vh;
-	text-align: center;
+.login_top {
+    width: 650px;
+    background-color: white;
+    border: 1px #337ab7 solid;
+    margin: 0 auto;
+    margin-top: 30vh;
+    border-radius: 3px;
+    padding: 60px;
+    text-align: center;
 }
 
-.login_box {
-	width: 100%;
-	padding: 20px;
-	margin-top: 20px;
-	border-radius: 2px;
+.login_top > * {
+    margin-bottom: 10px;
+}
+
+.login_top > h3 {
+    margin-bottom: 40px;
+}
+
+.login_top button {
+    padding-bottom: 7px;
+}
+
+.frame_bar {
+    background-color: #337ab7;
+    height: 80px;
+    width: 100%;
+}
+
+.frame_bar_top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.frame_bar_bottom {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
 }
 
 .cp_img {
