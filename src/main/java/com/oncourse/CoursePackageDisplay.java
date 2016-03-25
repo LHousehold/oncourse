@@ -66,48 +66,51 @@ public class CoursePackageDisplay {
            cp = (Course_package) cp.next();
 
            if (cp.location.equals("TOP")){
-               ret += "<div class='pos_top'>";
+               ret += "<div class='pos_top cp_grid'>";
            }
            else if (cp.location.equals("BOTTOM")){
-               ret += "<div class='pos_bottom'>";
+               ret += "<div class='pos_bottom cp_grid'>";
            }
            else if (cp.location.equals("LEFT")){
-               ret += "<div class='pos_left'>";
+               ret += "<div class='pos_left cp_grid'>";
            }
            else if (cp.location.equals("RIGHT")){
-               ret += "<div class='pos_right'>";
+               ret += "<div class='pos_right cp_grid'>";
            }
            else if (cp.location.equals("TL")){
-               ret += "<div class='pos_tl'>";
+               ret += "<div class='pos_tl cp_grid'>";
            }
            else if (cp.location.equals("TR")){
-               ret += "<div class='pos_tr'>";
+               ret += "<div class='pos_tr cp_grid'>";
            }
            else if (cp.location.equals("BL")){
-               ret += "<div class='pos_bl'>";
+               ret += "<div class='pos_bl cp_grid'>";
            }
            else if (cp.location.equals("BR")){
-               ret += "<div class='pos_br'>";
+               ret += "<div class='pos_br cp_grid'>";
            }
            else if (cp.location.equals("FULL")){
-               ret += "<div class='pos_full'>";
+               ret += "<div class='pos_full cp_grid'>";
            }
 
            if (cp.media_type.equals("YOUTUBE")){
                ret += "<iframe class = 'iframeStyle' src='https://www.youtube.com/embed/"
                 + cp.source + "'frameborder='0' allowfullscreen></iframe>";
-
-
            }
            else if (cp.media_type.equals("PDF")){
-               //ret += "<embed class = 'pos_full' src='" + cp.source + "'>";
                ret += "<iframe class = 'iframeStyle' src='" + cp.source + "' width='' height='' border=''></iframe>";
            }
            else if (cp.media_type.equals("MP3")){
-               //ret += "<audio src=''" + cp.source + "' controls='controls'/>";
-               //ret += "<source src='" + cp.source + "' type='audio/mpeg'>";
-               //ret += "<embed src='" + cp.source + "' autostart = '0' type='audio/mp3' class = 'pos_full'/> TRACK ONE </embed>";
-               ret += "<audio controls><source src='" + cp.source + "' type='audio/mpeg'>Your browser does not support the audio element.</audio>";
+               ret += "<span class='center_span'></span><audio class='cp_audio' controls><source src='" + cp.source +
+                   "' type='audio/mpeg'>Your browser does not support the audio element.</audio>";
+           }
+           else if (cp.media_type.equals("IMAGE")){
+               ret += "<span class='center_span'></span><img width=100% class='cp_img' src='" + cp.source +
+                   "' alt='Problem loading Image'>";
+           }
+           else if (cp.media_type.equals("MP4")){
+               ret += "<span class='center_span'></span><video width=100% class='cp_video' controls><source src='" + cp.source +
+                   "' type='video/mp4'>Your browser does not support the video element with mp4.</video>";
            }
 
            ret += "</div>";

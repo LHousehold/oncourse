@@ -57,8 +57,10 @@
                 var heightOffset = jq_page_content.offset().top;
                 var windowHeight = window.innerHeight;
 
+                var height = windowHeight - heightOffset - 20;
+
                 page_content.style.position = "absolute";
-                page_content.style.height = windowHeight - heightOffset + "px";
+                page_content.style.height = height + "px";
                 page_content.style.width = "100%";
             }
         };

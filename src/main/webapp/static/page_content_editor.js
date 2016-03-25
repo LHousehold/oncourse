@@ -128,12 +128,21 @@ function insert_media(tile, media_type, source) {
         tile.innerHTML = "<iframe class = 'iframeStyle' src='" + source + "'></iframe>";
     }
     else if (media_type == "MP3") {
-        tile.innerHTML = "<audio controls><source src='" + source +
+        tile.innerHTML = "<span class='center_span'></span>" +
+            "<audio class='cp_audio' controls><source src='" + source +
             "' type='audio/mpeg'>Your browser does not support the audio element.</audio>";
     }
     else if (media_type == "YOUTUBE") {
         tile.innerHTML = "<iframe class = 'iframeStyle' src='https://www.youtube.com/embed/"
             + source + "'frameborder='0' allowfullscreen></iframe>";
+    }
+    else if (media_type == "IMAGE"){
+        tile.innerHTML = "<span class='center_span'></span><img class='cp_img' src='" + source +
+            "' alt='Problem loading Image'>";
+    }
+    else if (media_type == "MP4"){
+        tile.innerHTML = "<span class='center_span'><video class='cp_video' controls><source src='" + source +
+            "' type='video/mp4'>Your browser does not support the video element with mp4.</video>";
     }
 }
 

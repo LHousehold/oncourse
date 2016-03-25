@@ -18,7 +18,9 @@ $(document).ready(function() {
             var heightOffset = jq_page_content.offset().top;
             var windowHeight = window.innerHeight;
 
-            page_content.style.height = windowHeight - heightOffset + "px";
+            var height = windowHeight - heightOffset - 55;
+
+            page_content.style.height = height + "px";
         }
     };
 
