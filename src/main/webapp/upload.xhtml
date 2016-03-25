@@ -7,22 +7,32 @@
     <ui:param name="cpid" value="#{request.getParameter('cpid')}" />
     <h:head>
         <title>File Upload</title>
+        <ui:include src="head.xhtml" />
+        <script src="static/upload_script.js" type="text/javascript"></script>
     </h:head>
     <h:body>
-        <p>
+        <!-- <p> -->
+        <div id="upload_button_div">
+            <button class="btn btn-default" id="front_select_btn">Choose File</button>
+            <h5 id="front_filename">No File Selected</h5>
+            <button class="btn btn-default" id="front_upload_btn">Upload File</button>
+        </div>
+
+        <div id="upload_div">
             <!-- Shows the error or success message -->
             <h:outputText value="#{fileUploadMBean.message}" rendered="#{!empty fileUploadMBean.message}"></h:outputText>
             <!-- notice the enctype for file upload -->
-            <h:form prependid="false" enctype="multipart/form-data" onsubmit="">
+            <h:form prependid="false" id="back_upload_form" enctype="multipart/form-data" onsubmit="">
                 <h:panelGrid>
                     <!-- input for files -->
-                    <h:inputFile value="#{fileUploadMBean.file1}"></h:inputFile>
+                    <h:inputFile value="#{fileUploadMBean.file1}" class="back_select_btn"></h:inputFile>
                     <!-- action which is responsible for uploading file(s) -->
-                    <h:commandButton action="#{fileUploadMBean.uploadCourseFile()}" value="Upload">
+                    <h:commandButton action="#{fileUploadMBean.uploadCourseFile()}" class="back_upload_btn" value="Upload">
                         <f:param name="coursePackageid" value="#{cpid}" />
                     </h:commandButton>
                 </h:panelGrid>
             </h:form>
-        </p>
+        </div>
+        <!-- </p> -->
     </h:body>
 </html>

@@ -342,10 +342,40 @@ h1,h2,h3,h4,h5,a,p {
 
 #save_cp {
     float: right;
+    margin-left: 10px;
 }
 
 #save_cp_form {
     display: none;
+}
+
+#upload_button {
+    float: right;
+}
+
+#upload_top {
+    position: absolute;
+    right: 20px;
+    top: 38px;
+    z-index: 99;
+    background: white;
+    visibility: hidden;
+    height: 0px;
+}
+
+#upload_div {
+    display: none;
+}
+
+#upload_button_div {
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+iframe {
+ border: 0 none;
 }
 
 /*.section_options_btn {

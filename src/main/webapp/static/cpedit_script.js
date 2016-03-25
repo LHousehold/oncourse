@@ -1,6 +1,24 @@
 $(document).ready(function() {
     // All the Javascript that coursepackageeditor.xhtml will need
 
+    $("#upload_button").click(function(e) {
+        var upload_top = $("#upload_top");
+
+        var visible = upload_top.attr("data-visible");
+
+        if (visible == "false") {
+            upload_top.css("visibility","visible");
+            upload_top.css("height","auto");
+            upload_top.attr("data-visible","true");
+        }
+        else {
+            upload_top.css("visibility","hidden");
+            upload_top.css("height","0px");
+            upload_top.attr("data-visible","false");
+        }
+
+    });
+
     $("#save_cp").click(function(e) {
         var cp_data = get_data();
 
@@ -40,7 +58,6 @@ $(document).ready(function() {
 
         cp_data = cp_data.substring(0, cp_data.length - 1);
         cp_data = cp_data + "]}";
-        console.log(cp_data);
         return cp_data;
     };
 
