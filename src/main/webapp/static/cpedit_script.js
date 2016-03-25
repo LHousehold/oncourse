@@ -3,6 +3,8 @@ $(document).ready(function() {
 
     $("#save_cp").click(function(e) {
         var cp_data = get_data();
+        console.log("Old Data: " + $(".original_cp_data")[0].value);
+        console.log("New Data: " + cp_data);
 
         $(".save_cp_data")[0].value = cp_data;
         $(".save_cp_command").click();
@@ -43,7 +45,7 @@ $(document).ready(function() {
 
         cp_data = cp_data.substring(0, cp_data.length - 1);
         cp_data = cp_data + "]}";
-        console.log(cp_data);
+
         return cp_data;
     };
 
@@ -81,14 +83,14 @@ $(document).ready(function() {
 
     $("#sections_content").on("click", ".add_subsection", function(e){
         var newsec = $('<div class="subsection_block secblock"> \
-<h4 class="subsecnum" data-section="1">1.1</h4> \
-<h4 class="subsectitle edit" contenteditable="true">New Subsection</h4> \
-<div class="subsection_btns"> \
-<button class="btn btn-default remove_subsection" title="Remove Subsection"><span class="glyphicon glyphicon-remove"></span></button> \
-<button class="btn btn-default edit_subsection" title="Edit Subsection"><span class="glyphicon glyphicon-list-alt"></span></button> \
-<button class="btn btn-default add_subsection" title="Add Subsection"><span class="glyphicon glyphicon-plus"></span></button> \
-</div> \
-</div>').insertAfter($(this).closest(".secblock"));
+                <h4 class="secnum subsect" data-section-type="subsection" data-section-id="-1" data-section="0" data-pagenumber="0">0</h4> \
+                <h4 class="subsectitle edit" contenteditable="true">New Subsection</h4> \
+                <div class="subsection_btns"> \
+                    <button class="btn btn-default remove_subsection" title="Remove Subsection"><span class="glyphicon glyphicon-remove"></span></button> \
+                    <button class="btn btn-default edit_section" title="Edit Subsection"><span class="glyphicon glyphicon-list-alt"></span></button> \
+                    <button class="btn btn-default add_subsection" title="Add Subsection"><span class="glyphicon glyphicon-plus"></span></button> \
+                </div> \
+            </div>').insertAfter($(this).closest(".secblock"));
         refresh_indices();
         newsec.find(".edit").focus();
     });
@@ -96,7 +98,7 @@ $(document).ready(function() {
     $("#sections_content").on("click", ".add_section", function(e){
         var newsec = $('<div class="section_row"> \
             <div class="section_block secblock"> \
-                <h3 class="secnum" data-section-id="-1" data-section="0" data-pagenumber="0">0.</h3> \
+                <h3 class="secnum sect" data-section-type="section" data-section-id="-1" data-section="0" data-pagenumber="0">0.</h3> \
                 <h3 class="sectitle edit" contenteditable="true">New Section</h3> \
                 <div class="section_btns"> \
                     <button class="btn btn-default remove_section" title="Remove Section"><span class="glyphicon glyphicon-remove"></span></button> \
@@ -134,13 +136,14 @@ $(document).ready(function() {
 
     var refresh_indices = function() {
         $(".section_row").each(function(i) {
-            var secnum = $(this).find(".secnum");
-            secnum.html(i+1 + ".");
-            secnum.attr("data-section",i+1);
-            $(this).find(".subsecnum").each(function(j) {
-                var subsecnum = $(this);
-                subsecnum.html((i+1) + "." + (j+1));
-                subsecnum.attr("data-section",(i+1) + "." + (j+1))
+            var sect = $(this).find(".sect");
+            sect.html(i+1 + ".");
+            sect.attr("data-section",i+1);
+
+            subsects = $(this).find(".subsect");
+            subsects.each(function(j) {
+                $(this).html((i+1) + "." + (j+1));
+                $(this).attr("data-section",(i+1) + "." + (j+1))
             });
         });
     }

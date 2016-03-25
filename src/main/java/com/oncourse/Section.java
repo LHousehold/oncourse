@@ -60,12 +60,11 @@ public class Section {
 		this.sectionType = sectionType;
 	}
 
-	@Override
 	public boolean equals(Section that) {
 		if (!(that instanceof Section)) return false;
 
-		if (this.sectionID.equals(that.getSectionID()) && this.sectionName.equals(that.getSectionName()) &&
-		this.pageNumber.equals(that.getPageNumber()) && this.sectionIndex.equals(that.getSectionIndex()) &&
+		if (this.sectionID == that.getSectionID() && this.sectionName.equals(that.getSectionName()) &&
+		this.pageNumber == that.getPageNumber() && this.sectionIndex == that.getSectionIndex() &&
 		this.sectionType.equals(that.getSectionType())) return true;
 
 		else return false;

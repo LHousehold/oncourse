@@ -9,6 +9,8 @@ import javax.faces.context.ExternalContext;
 import org.json.*;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 @ManagedBean(name = "tableofContents", eager = true)
 @RequestScoped
@@ -61,10 +63,6 @@ public class TableofContents {
         return sectionTops;
     }
 
-    private void updatedb() {
-
-    }
-
     public void save_all() {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         String new_data = ec.getRequestParameterMap().get("save_cp_form:save_cp_data");
@@ -99,17 +97,25 @@ public class TableofContents {
 
         HashMap<Integer, Section> sections_o = new HashMap<Integer, Section>();
         HashMap<Integer, Section> sections_n = new HashMap<Integer, Section>();
+        List<Section> new_sections = new ArrayList<Section>();
 
         // populate two maps
         for (int i = 0; i < sectionarray_o.length(); i++) {
-            JSONObject object = sectionarray_o.getJSONObject(i);
-            Section new_section = new Section(object.getInt("id"), object.getString("name"), object.getInt("page"), object.getDouble("index"), object.getString("type"));
-            sections_o.put(object.getInt("id"), new_section);
+            JSONObject object1 = sectionarray_o.getJSONObject(i);
+            Section new_section = new Section(object1.getInt("id"), object1.getString("name"), object1.getInt("page"), object1.getDouble("index"), object1.getString("type"));
+            sections_o.put(object1.getInt("id"), new_section);
         }
         for (int j = 0; j < sectionarray_n.length(); j++) {
-            JSONObject object = sectionarray_n.getJSONObject(j);
-            Section new_section = new Section(object.getInt("id"), object.getString("name"), object.getInt("page"), object.getDouble("index"), object.getString("type"));
-            sections_n.put(object.getInt("id"), new_section);
+            JSONObject object2 = sectionarray_n.getJSONObject(j);
+            Section new_section = new Section(object2.getInt("id"), object2.getString("name"), object2.getInt("page"), object2.getDouble("index"), object2.getString("type"));
+
+            if (object2.getInt("id") == -1) {
+                // this is a new section; add to new sections array
+                new_sections.add(new_section);
+            }
+            else {
+                sections_n.put(object2.getInt("id"), new_section);
+            }
         }
 
         // now we traverse through the old map; if we find an element in both maps, we compare them and operate accordingly
@@ -124,21 +130,32 @@ public class TableofContents {
             Section old_section = entry.getValue();
             Section new_section = sections_n.get(key);
             if (new_section != null) {
-                
+                if (new_section.equals(old_section)) {
+                    System.out.println("Section " + key + " has not changed");
+                }
+                else {
+                    // find out if names have been changed
+                    if (! old_section.getSectionName().equals(new_section.getSectionName()) ) {
+                        db.genericQuery("UPDATE course_package_section SET section_name=\"" + new_section.getSectionName() + "\" WHERE id=" + key);
+                    }
 
-                // remove from list of new sections
-                sections_n.remove(key);
+                    // find out if index has been changed
+                    if (old_section.getSectionIndex() != new_section.getSectionIndex()) {
+                        db.genericQuery("UPDATE course_package_section SET section_index=\"" + new_section.getSectionIndex() + "\" WHERE id=" + key);
+                    }
+                }
             }
             else { // this section has been removed
-
+                // delete section from database
+                db.genericQuery("DELETE FROM course_package_section WHERE id=" + key);
+                // REMEMBER TO REMOVE RELEVANT PAGES
             }
         }
 
-        if (sections_n.size() != 0) {
-            for (Map.Entry<Integer, Section> entry : sections_n.entrySet())
-            {
-                // every section to be seen in a new section
-            }
+        // now add any new sections from new_sections array
+        for (Section sect : new_sections) {
+            System.out.println("Made it here");
+            db.genericQuery("INSERT INTO course_package_section (cpid,section_index,section_name,section_type,page_number) VALUES (" + cpid + "," + sect.getSectionIndex() + ",\"" + sect.getSectionName() + "\",\"" + sect.getSectionType() + "\",0);");
         }
 
     }
