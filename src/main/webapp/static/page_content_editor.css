@@ -1,11 +1,17 @@
 
+/* custom styles */
+#page_content {
+    margin-top: 20px;
+}
+
+
 #grid {
     position: absolute;
     right: 0;
     top 0;
     margin: 2px;
     height: 95%;
-    width: 49%;
+    width: 73%;
 }
 
 #file_menu {
@@ -15,7 +21,8 @@
     top: 0;
     margin: 2px;
     height: 95%;
-    width: 49%;
+    width: 24%;
+    min-width: 200px;
 }
 
 #item_container {
@@ -26,35 +33,36 @@
 }
 
 .file_item {
-    margin: 0 0 3px 0;
-    box-shadow: 1px 0px 3px 0px grey;
-    background-color: #dfe2ff;
     position: relative;
-    height: 20px;
-    width: 80%;
-    font-family: Arial;
+    cursor: pointer;
+}
+
+.file_item:hover {
+    background-color: ghostwhite;
 }
 
 .grid_item {
     position: absolute;
-    height: 32%;
+    height: 30%;
     width: 30%;
-    background-color: #e8e8e8;
-    box-shadow: 1px 0px 3px 0px grey;
-    transition-duration: 0.2s;
+    background-color: #337ab7;
+    opacity: 0.75;
+    border: 1px #ddd dashed;
+    border-radius: 2px;
+    transition: 0.2s;
 }
 
 .grid_disabled {
-    opacity: 0.3;
+    background-color: #337ab7;
+    opacity: 0.2;
 }
 
 .grid_tile {
-    border: solid 1px;
-    border-color: crimson;
+    border-color: red;
 }
 
 .drag_hover {
-    background-color: #cbffff;
+    opacity: 1;
 }
 
 /* styles for grid */
@@ -110,19 +118,17 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 20px;
+    width: 30px;
     height: 20px;
-    background-color: #ffc7c7;
-    margin: 2px;
-    border-radius: 2px;
+    cursor: pointer;
 }
 
-.rem_button:after {
-    position: relative;
-    left: 4px;
-    font-family: Arial;
-    font-size: 13pt;
-    content: "X";
+.grid_tile:hover .rem_button:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e014";
+    color: crimson;
+    font-size: 20px;
+
 }
 
 .pos_M {
