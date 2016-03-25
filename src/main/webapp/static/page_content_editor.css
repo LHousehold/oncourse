@@ -1,6 +1,9 @@
-* {
-    border: solid black 1px;
+
+/* custom styles */
+#page_content {
+    margin-top: 20px;
 }
+
 
 #grid {
     position: absolute;
@@ -8,7 +11,7 @@
     top 0;
     margin: 2px;
     height: 95%;
-    width: 49%;
+    width: 73%;
 }
 
 #file_menu {
@@ -18,7 +21,8 @@
     top: 0;
     margin: 2px;
     height: 95%;
-    width: 49%;
+    width: 24%;
+    min-width: 200px;
 }
 
 #item_container {
@@ -29,20 +33,28 @@
 }
 
 .file_item {
-    border: solid 1px black;
     position: relative;
-    height: 20px;
-    width: 80%;
+    cursor: pointer;
+}
+
+.file_item:hover {
+    background-color: ghostwhite;
 }
 
 .grid_item {
     position: absolute;
     height: 30%;
     width: 30%;
+    background-color: #337ab7;
+    opacity: 0.75;
+    border: 1px #ddd dashed;
+    border-radius: 2px;
+    transition: 0.2s;
 }
 
 .grid_disabled {
-    background-color: grey;
+    background-color: #337ab7;
+    opacity: 0.2;
 }
 
 .grid_tile {
@@ -50,7 +62,7 @@
 }
 
 .drag_hover {
-    background-color: red;
+    opacity: 1;
 }
 
 /* styles for grid */
@@ -106,9 +118,17 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 20px;
+    width: 30px;
     height: 20px;
-    background-color: red;
+    cursor: pointer;
+}
+
+.grid_tile:hover .rem_button:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e014";
+    color: crimson;
+    font-size: 20px;
+
 }
 
 .pos_M {
