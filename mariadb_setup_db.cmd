@@ -30,7 +30,8 @@ CREATE TABLE IF NOT EXISTS users
 id int AUTO_INCREMENT,
 user_name varchar(255) NOT NULL,
 password varchar(255) NOT NULL,
-type varchar(10) DEFAULT 'student',
+type varchar(10) DEFAULT 'STUDENT',
+cpids varchar(255) NOT NULL,
 PRIMARY KEY (id)
 );
 
