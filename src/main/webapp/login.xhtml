@@ -6,6 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
       <head>
           <ui:include src="head.xhtml" />
+          <script src="static/login.js"></script>
       </head>
       <body>
           <div class="frame_bar frame_bar_top" />
@@ -17,10 +18,13 @@
               <div class="input-group">
                   <input id="password_enter" type="text" class="form-control" placeholder="Enter Password" />
                   <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Log In</button>
+                      <button class="btn btn-default" onclick="login();" type="button">Log In</button>
                   </span>
               </div>
           </div>
           <div class="frame_bar frame_bar_bottom" />
+          <script>
+              initLogin();
+          </script>
       </body>
 </html>
