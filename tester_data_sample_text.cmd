@@ -104,3 +104,15 @@ VALUES (NULL,"McDonald's Nutrition","MCD100",1);
 
 INSERT INTO course_package_name
 VALUES (NULL,"Introduction to JSP","JSP100",2);
+
+INSERT INTO users
+VALUES (NULL,"a","a","STUDENT", "1, 2");
+
+INSERT INTO users
+VALUES (NULL,"b","b","INSTRUCTOR", "1, 2");
+
+INSERT INTO users
+VALUES (NULL,"sam","password","STUDENT", "2");
+
+INSERT INTO users
+VALUES (NULL,"john","123456","INSTRUCTOR", "2");
