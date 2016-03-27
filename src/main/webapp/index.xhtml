@@ -4,6 +4,9 @@
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:f="http://xmlns.jcp.org/jsf/core"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:param name="uid" value="#{request.getParameter('uid')}" />
+
     <head>
         <ui:include src="head.xhtml" />
     </head>
@@ -30,9 +33,9 @@
 				  	<a href="#" class="list-group-item option_menu_item" data-option="manage">Manage Courses</a>
 				</div>
 				<div class="course_list_title"><h5>Enrolled Courses</h5></div>
-                <f:metadata><f:event type="preRenderView" listener="#{courseList.init()}" /></f:metadata>
+                <f:event type="preRenderView" listener="#{courseList.init(uid)}" />
 				<div class="list-group course_list">
-                    <ui:repeat value="#{courseList.getCoursePackages()}" var="cp">
+                    <ui:repeat value="#{courseList.getCoursePackages('VIEWER')}" var="cp">
                         <a href="#" class="list-group-item course_menu_item" data-course-code="#{cp.courseCode}" data-cpid="#{cp.cpid}">
                             #{cp.courseCode}
                         </a>
@@ -43,7 +46,7 @@
 				  	<a href="#" class="list-group-item course_edit_item_new">New Course Package</a>
 				</div>
                 <div class="list-group course_list">
-                    <ui:repeat value="#{courseList.getCoursePackages()}" var="cp">
+                    <ui:repeat value="#{courseList.getCoursePackages('EDITOR')}" var="cp">
                         <a href="#" class="list-group-item course_edit_item" data-course-code="#{cp.courseCode}" data-cpid="#{cp.cpid}">
                             #{cp.courseCode}
                         </a>

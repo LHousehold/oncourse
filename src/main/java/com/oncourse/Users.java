@@ -13,6 +13,7 @@ public class Users implements DbTable {
     String user_name;
     String password;
     String type;
+    String cpids;
 
     public void fill(ResultSet rs) {
         try {
@@ -20,12 +21,13 @@ public class Users implements DbTable {
             this.user_name = rs.getString("user_name");
             this.password = rs.getString("password");
             this.type = rs.getString("type");
+            this.cpids = rs.getString("cpids");
         }
         catch (SQLException e) {
             System.out.println("error while filling entry");
             e.printStackTrace();
         }
-        System.out.format("%s, %s, %s, %s\n", this.id, this.user_name, this.password, this.type);
+        System.out.format("%s, %s, %s, %s: %s\n", this.id, this.user_name, this.password, this.type, this.cpids);
     }
 
     // build query for reading the database
@@ -38,8 +40,8 @@ public class Users implements DbTable {
     // build query for writing the database
     public String writeQuery() {
         // nothing yet, just testing
-        return "INSERT INTO users (user_name, password, type)" +
-            "VALUES ('" + this.user_name + "', '" + this.password + "', " + this.type + "')";
+        return "INSERT INTO users (user_name, password, type, cpids)" +
+            "VALUES ('" + this.user_name + "', '" + this.password + "', " + this.type + "', " + this.cpids + "')";
     }
 
     // for simple linked list methods
