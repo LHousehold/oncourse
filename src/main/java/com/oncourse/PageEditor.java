@@ -45,6 +45,11 @@ public class PageEditor {
 
         int fileNum = 0;
 
+        // the YOUTUBE adder
+        ret += "<div id='youtube_add' class='file_item list-group-item' draggable='true'>" +
+            "<span class='glyphicon glyphicon-play' aria-hidden='true'></span>" +
+            "YouTube Video</div>";
+
         while (files.next() != null){
 
             files = (FileQuery) files.next();

@@ -197,10 +197,7 @@ function location_db_or_local(loc) {
 }
 
 // this will return the id of the new entry it adds in the course_package table
-function save_page (grid, file , tile) {
-
-    if (!file)
-        return;
+function save_page (pos, cp_media_type, cp_source, tile) {
 
     // get all the information for generating the post parameters
     var cp_cpid, cp_pagenumber, cp_media_type, cp_source, cp_location;
@@ -211,12 +208,8 @@ function save_page (grid, file , tile) {
     cp_cpid = packegeID.getAttribute("data_cpid");
     cp_pagenumber = packegeID.getAttribute("data_page");
 
-    // content info
-    cp_media_type = file.getAttribute("data_media_type");
-    cp_source = file.getAttribute("data_media_source");
-
     // layout info (converted to database format
-    cp_location = location_db_or_local(grid.getAttribute("id"));
+    cp_location = location_db_or_local(pos);
 
     $.post( "page_edit_save.xhtml",
         {
@@ -246,15 +239,80 @@ function initial_tile_add (grid_id, cp_table_id, media_type, source) {
     finalize_tile(tile, cp_table_id);
 }
 
+// very hard coded to only take very specific form of url
+function getvid(url, pos) {
+    var tmp = url.split("?")[1];
+    var id = tmp.slice(2, 13);
+    
+    var source = id;
+    var media_type = "YOUTUBE";
+    
+    var tile = add_tile(pos, media_type, source); // 1 is a test value
+
+    save_page(pos, media_type, source, tile);
+}
+
+function urlkeypress(e) {
+    if (e.keyCode == 13) { // enter {
+        var pos = e.target.getAttribute("data-pos");
+        getvid(e.target.value, pos);
+        document.body.removeChild(e.target.parentElement);
+    }
+}
+
+// long winded function to get youtube url to parse
+// don't do this kind of code normally kids, its fucking aids
+function add_youtubevid(pos) {
+    var messagebox = document.createElement("div");
+    messagebox.id = "yt_msgbox";
+    messagebox.style.opacity = 1;
+    messagebox.style.backgroundColor = "#f4f4f4";
+    messagebox.style.height = "70px";
+    messagebox.style.width= "450px";
+    messagebox.style.position = "absolute";
+    messagebox.style.top = "300px";
+    messagebox.style.left = "400px";
+    //messagebox.style.box-shadow = "5px 3px 20px 0 black"
+    
+    var sp = document.createElement("span");
+    sp.classList.add("center_span");
+    
+    messagebox.appendChild(sp);
+    
+    //<input id="password_enter" type="text" class="form-control" placeholder="Enter Password" />
+    var input = document.createElement("input");
+    input.id = "yt_txtbox";
+    input.type = "text";
+    input.class = "form-control";
+    input.placeholder = "Paste a YouTube Video URL";
+    input.style.display = "inline-block";
+    input.style.width = "95%";
+    input.style.margin = "0 auto 0 auto";
+    input.style.position = "relative";
+    input.style.left = "10px";
+    
+    input.onkeyup = urlkeypress;
+    input.setAttribute("data-pos", pos);
+    
+    messagebox.appendChild(input);
+    
+    document.body.appendChild(messagebox);
+}
+
 function add_file_to_grid (grid, file) {
     disable_grids(grid);
+
+    if (file.id == "youtube_add") {
+        add_youtubevid(grid.id);
+        return;
+    }
 
     var media_type = file.getAttribute("data_media_type");
     var source = file.getAttribute("data_media_source");
 
     var tile = add_tile(grid.id, media_type, source); // 1 is a test value
 
-    save_page(grid, file, tile);
+    save_page(grid.id, media_type, source, tile);
 }
 
 function grid_drag_enter (ev) {
@@ -271,7 +329,6 @@ function grid_allowDrop(ev) {
 
 function file_item_drag(ev) {
     ev.dataTransfer.setData("id", ev.target.id);
-    console.log("drag");
 }
 
 function grid_drop(ev) {
