@@ -41,14 +41,48 @@ $(document).ready(function() {
   });
 
   $('.course_edit_item_new').click(function(e){
-      //var cpid = $(this).attr("data-cpid");
-      var cpid = 6;
-
       var course_code = prompt("Please enter a Course Code for your new course", "APS100");
       if (course_code != null) {
-          $("#coursepackage_content").load("newcoursepackage.xhtml", {"coursecode":course_code, "cpid": cpid});
+          var resource = "new_cp.xhtml" +
+                      "?course_code=" + course_code;
+
+          console.log(resource);
+
+          get_request(resource, new_cp_callback);
       }
   });
+
+
+  function get_request(resource, func) {
+      var req = new XMLHttpRequest();
+      req.onload = func;
+      req.open("GET", resource, true);
+      req.send();
+  }
+
+  function new_cp_callback(data) {
+      var resp = data.currentTarget.responseText;
+      var parser = new DOMParser();
+      var htmlDoc = parser.parseFromString(resp, "text/html");
+      var result = htmlDoc.firstElementChild.innerText;
+
+      var result_split = result.split(":");
+
+      var cpid = result_split[0];
+      var course_code = result_split[1];
+
+      if (result != 0) {
+          var html = '<a href="#" class="list-group-item course_menu_item" data-course-code="' + course_code + '" data-cpid="' + cpid + '">' + course_code + '</a>';
+          $("#view_course_list").append(html);
+          var html2 = '<a href="#" class="list-group-item course_edit_item" data-course-code="' + course_code + '" data-cpid="' + cpid + '">' + course_code + '</a>';
+          $("#edit_course_list").append(html2);
+      }
+      else
+          console.log("no");
+  }
+
+
+
 
   $('.course_edit_item').click(function(e){
       var course_code = $(this).attr("data-course-code");

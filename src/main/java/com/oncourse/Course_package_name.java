@@ -35,7 +35,8 @@ public class Course_package_name implements DbTable {
     // build query for writing the database
     public String writeQuery() {
         // nothing yet, just testing
-        return "";
+        return "INSERT INTO course_package_name (name, course_code)" +
+                   "VALUES ('" + this.name + "','" + this.courseCode + "')";
     }
 
     // for simple linked list methods
