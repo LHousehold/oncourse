@@ -49,7 +49,6 @@ $(document).ready(function() {
             var secnum = $(this).find(".secnum");
             var section_id = secnum.attr("data-section-id");
             var page_number = secnum.attr("data-pagenumber");
-            console.log(page_number);
             var section_index = secnum.attr("data-section");
             var section_type = "";
             var section_name = "";
