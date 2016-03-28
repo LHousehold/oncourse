@@ -160,6 +160,10 @@ public class TableofContents {
                     if (old_section.getSectionIndex() != new_section.getSectionIndex()) {
                         db.genericQuery("UPDATE course_package_section SET section_index=\"" + new_section.getSectionIndex() + "\" WHERE id=" + key);
                     }
+
+                    if (old_section.getPageNumber() != new_section.getPageNumber()) {
+                        db.genericQuery("UPDATE course_package_section SET page_number=\"" + new_section.getPageNumber() + "\" WHERE id=" + key);
+                    }
                 }
             }
             else { // this section has been removed
@@ -172,7 +176,7 @@ public class TableofContents {
         // now add any new sections from new_sections array
         for (Section sect : new_sections) {
             System.out.println("Made it here");
-            db.genericQuery("INSERT INTO course_package_section (cpid,section_index,section_name,section_type,page_number) VALUES (" + cpid + "," + sect.getSectionIndex() + ",\"" + sect.getSectionName() + "\",\"" + sect.getSectionType() + "\",0);");
+            db.genericQuery("INSERT INTO course_package_section (cpid,section_index,section_name,section_type,page_number) VALUES (" + cpid + "," + sect.getSectionIndex() + ",\"" + sect.getSectionName() + "\",\"" + sect.getSectionType() + "\"," + sect.getPageNumber() + ");");
         }
 
     }

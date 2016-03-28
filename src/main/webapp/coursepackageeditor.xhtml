@@ -38,6 +38,7 @@
                             <h3 class="secnum sect" data-section-type="#{section.head.sectionType}" data-section-id="#{section.head.sectionID}" data-section="#{section.head.sectionIndex}" data-pagenumber="#{section.head.pageNumber}">#{section.head.sectionIndexInt}.</h3>
                             <h3 class="sectitle edit" contenteditable="true">#{section.head.sectionName}</h3>
                             <div class="section_btns">
+                                <input type="text" class="form-control section_pagenumber" value="#{section.head.pageNumber}" />
                                 <button class="btn btn-default remove_section" title="Remove Section"><span class="glyphicon glyphicon-remove"></span></button>
                                 <button class="btn btn-default edit_section" title="Edit Section"><span class="glyphicon glyphicon-list-alt"></span></button>
                                 <button class="btn btn-default add_subsection" title="Add Subsection"><span class="glyphicon glyphicon-plus"></span></button>
@@ -48,6 +49,7 @@
                             <h4 class="secnum subsect" data-section-type="#{subsection.sectionType}" data-section-id="#{subsection.sectionID}" data-section="#{subsection.sectionIndex}" data-pagenumber="#{subsection.pageNumber}">#{subsection.sectionIndex}</h4>
                             <h4 class="subsectitle edit" contenteditable="true">#{subsection.sectionName}</h4>
                             <div class="subsection_btns">
+                                <input type="text" class="form-control section_pagenumber" value="#{subsection.pageNumber}" />
                                 <button class="btn btn-default remove_subsection" title="Remove Subsection"><span class="glyphicon glyphicon-remove"></span></button>
                                 <button class="btn btn-default edit_section" title="Edit Subsection"><span class="glyphicon glyphicon-list-alt"></span></button>
                                 <button class="btn btn-default add_subsection" title="Add Subsection"><span class="glyphicon glyphicon-plus"></span></button>

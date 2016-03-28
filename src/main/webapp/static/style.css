@@ -218,6 +218,7 @@ h1,h2,h3,h4,h5,a,p {
 .content_top {
 	margin-left: 145px !important;
 	text-align: center;
+    padding-bottom: 30px;
 }
 
 .course_list {
@@ -328,12 +329,16 @@ h1,h2,h3,h4,h5,a,p {
     height: 30px;
 }
 
-.add_section {
-    margin-top: 5px;
+.section_pagenumber {
+    width: 51px !important;
+    height: 30px !important;
+    display: inline !important;
+    padding-bottom: 4px !important;
+    text-align: center;
 }
 
-#sections_content {
-    padding-bottom: 30px;
+.add_section {
+    margin-top: 5px;
 }
 
 .upload_form {

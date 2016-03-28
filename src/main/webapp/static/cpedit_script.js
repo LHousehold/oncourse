@@ -49,6 +49,7 @@ $(document).ready(function() {
             var secnum = $(this).find(".secnum");
             var section_id = secnum.attr("data-section-id");
             var page_number = secnum.attr("data-pagenumber");
+            console.log(page_number);
             var section_index = secnum.attr("data-section");
             var section_type = "";
             var section_name = "";
@@ -95,18 +96,19 @@ $(document).ready(function() {
     });
 
     $("#sections_content").on("click", ".edit_section", function(e){
-        var pagenumber = $(this).closest(".secnum").attr("data-pagenumber");
+        var pagenumber = $(this).closest(".secblock").find(".secnum").attr("data-pagenumber");
         var cpid = $("#sections_content").attr("data-cpid");
 
         $("#coursepackage_content").load("pageeditor.xhtml", {"pagenumber":pagenumber, "cpid": cpid});
-        // $("#coursepackage_content").load("pageeditor.xhtml");
     });
 
     $("#sections_content").on("click", ".add_subsection", function(e){
+        var pagenum = parseInt($(this).closest(".secblock").find(".secnum").attr("data-pagenumber"),10) + 1;
         var newsec = $('<div class="subsection_block secblock"> \
-                <h4 class="secnum subsect" data-section-type="subsection" data-section-id="-1" data-section="0" data-pagenumber="0">0</h4> \
+                <h4 class="secnum subsect" data-section-type="subsection" data-section-id="-1" data-section="0" data-pagenumber="' + pagenum + '">0</h4> \
                 <h4 class="subsectitle edit" contenteditable="true">New Subsection</h4> \
                 <div class="subsection_btns"> \
+                    <input type="text" class="form-control section_pagenumber" value="' + pagenum + '" /> \
                     <button class="btn btn-default remove_subsection" title="Remove Subsection"><span class="glyphicon glyphicon-remove"></span></button> \
                     <button class="btn btn-default edit_section" title="Edit Subsection"><span class="glyphicon glyphicon-list-alt"></span></button> \
                     <button class="btn btn-default add_subsection" title="Add Subsection"><span class="glyphicon glyphicon-plus"></span></button> \
@@ -117,11 +119,14 @@ $(document).ready(function() {
     });
 
     $("#sections_content").on("click", ".add_section", function(e){
+        // var pagenum = parseInt($(this).closest(".secblock").find(".secnum").attr("data-pagenumber"),10) + 1;
+        var pagenum = 1;
         var newsec = $('<div class="section_row"> \
             <div class="section_block secblock"> \
-                <h3 class="secnum sect" data-section-type="section" data-section-id="-1" data-section="0" data-pagenumber="0">0.</h3> \
+                <h3 class="secnum sect" data-section-type="section" data-section-id="-1" data-section="0" data-pagenumber="' + pagenum + '">0.</h3> \
                 <h3 class="sectitle edit" contenteditable="true">New Section</h3> \
                 <div class="section_btns"> \
+                    <input type="text" class="form-control section_pagenumber" value="' + pagenum + '" /> \
                     <button class="btn btn-default remove_section" title="Remove Section"><span class="glyphicon glyphicon-remove"></span></button> \
                     <button class="btn btn-default edit_section" title="Edit Section"><span class="glyphicon glyphicon-list-alt"></span></button> \
                     <button class="btn btn-default add_subsection" title="Add Subsection"><span class="glyphicon glyphicon-plus"></span></button> \
@@ -167,6 +172,12 @@ $(document).ready(function() {
                 $(this).attr("data-section",(i+1) + "." + (j+1))
             });
         });
+        // refresh_pagenumbers();
     }
+
+    $("#sections_content").on("change", ".section_pagenumber", function(e){
+        var new_value = $(this).val();
+        $(this).closest(".secblock").find(".secnum").attr("data-pagenumber",new_value);
+    });
 
 })
