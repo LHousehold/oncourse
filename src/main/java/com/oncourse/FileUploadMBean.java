@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.context.ExternalContext;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
 import javax.faces.bean.ManagedProperty;
@@ -52,17 +53,21 @@ public class FileUploadMBean implements Serializable {
         this.message = message;
     }
     public String uploadCourseFile() {
-        FacesContext context = FacesContext.getCurrentInstance();
+        // FacesContext context = FacesContext.getCurrentInstance();
+        //
+        // Map<String,String> params = context.getExternalContext().getRequestParameterMap();
+	    // String coursePackageids = params.get("coursePackageid");
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        String coursePackageids = ec.getRequestParameterMap().get("back_upload_form:cpid_holder");
 
-        Map<String,String> params = context.getExternalContext().getRequestParameterMap();
-	    String coursePackageids = params.get("coursePackageid");
+        System.out.println(coursePackageids);
 
         int coursePackageid = Integer.valueOf(coursePackageids);
 
         InputStream inputStream = null;
         OutputStream outputStream = null;
-        ServletContext servletContext = (ServletContext) context
-                .getExternalContext().getContext();
+        // ServletContext servletContext = (ServletContext) context
+        //         .getExternalContext().getContext();
         String path = "/var/www/oncourse";
 
         ///usr/share/tomcat/webapps/oncourse

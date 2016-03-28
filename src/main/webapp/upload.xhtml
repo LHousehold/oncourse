@@ -27,7 +27,8 @@
                     <h:inputFile value="#{fileUploadMBean.file1}" class="back_select_btn"></h:inputFile>
                     <!-- action which is responsible for uploading file(s) -->
                     <h:commandButton action="#{fileUploadMBean.uploadCourseFile()}" class="back_upload_btn" value="Upload">
-                        <f:param name="coursePackageid" value="#{cpid}" />
+                        <!-- <f:param name="coursePackageid" value="#{cpid}" /> -->
+                        <h:inputText id="cpid_holder" class="cpid_holder"/>
                     </h:commandButton>
                 </h:panelGrid>
             </h:form>
