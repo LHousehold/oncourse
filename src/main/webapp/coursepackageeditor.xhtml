@@ -9,7 +9,7 @@
     <ui:param name="cpid" value="#{request.getParameter('cpid')}" />
     <h:head></h:head>
     <h:body>
-        <div id="sections_content">
+        <div id="sections_content" data-cpid="#{cpid}">
             <div class="row-fluid edit_title_row">
                 <div class="col-md-12">
                     <h2 class="edit_course_code">#{coursecode}</h2>
@@ -18,9 +18,7 @@
                     <button class="btn btn-default" id="save_cp">Save Course Package</button>
                     <button class="btn btn-default" id="upload_button">Upload Content</button>
                     <div id="upload_top" data-visible="false">
-                        <!-- <iframe width="100%" height="150%" src="upload.xhtml?cpid=#{cpid}"> -->
                         <iframe src="upload.xhtml?cpid=#{cpid}">
-                            
                         </iframe>
                     </div>
                     <h:form id="save_cp_form" prependid="false">
@@ -37,9 +35,10 @@
                     <ui:repeat value="#{tableofContents.buildEditor(cpid)}" var="section">
                     <div class="section_row">
                         <div class="section_block secblock">
-                            <h3 class="secnum" data-section="#{section.head.sectionIndex}">#{section.head.sectionIndexInt}.</h3>
+                            <h3 class="secnum sect" data-section-type="#{section.head.sectionType}" data-section-id="#{section.head.sectionID}" data-section="#{section.head.sectionIndex}" data-pagenumber="#{section.head.pageNumber}">#{section.head.sectionIndexInt}.</h3>
                             <h3 class="sectitle edit" contenteditable="true">#{section.head.sectionName}</h3>
                             <div class="section_btns">
+                                <input type="text" class="form-control section_pagenumber" value="#{section.head.pageNumber}" />
                                 <button class="btn btn-default remove_section" title="Remove Section"><span class="glyphicon glyphicon-remove"></span></button>
                                 <button class="btn btn-default edit_section" title="Edit Section"><span class="glyphicon glyphicon-list-alt"></span></button>
                                 <button class="btn btn-default add_subsection" title="Add Subsection"><span class="glyphicon glyphicon-plus"></span></button>
@@ -47,11 +46,12 @@
                         </div>
                         <ui:repeat value="#{section.subsections}" var="subsection">
                         <div class="subsection_block secblock">
-                            <h4 class="subsecnum" data-section="#{subsection.sectionIndex}">#{subsection.sectionIndex}</h4>
+                            <h4 class="secnum subsect" data-section-type="#{subsection.sectionType}" data-section-id="#{subsection.sectionID}" data-section="#{subsection.sectionIndex}" data-pagenumber="#{subsection.pageNumber}">#{subsection.sectionIndex}</h4>
                             <h4 class="subsectitle edit" contenteditable="true">#{subsection.sectionName}</h4>
                             <div class="subsection_btns">
+                                <input type="text" class="form-control section_pagenumber" value="#{subsection.pageNumber}" />
                                 <button class="btn btn-default remove_subsection" title="Remove Subsection"><span class="glyphicon glyphicon-remove"></span></button>
-                                <button class="btn btn-default edit_subsection" title="Edit Subsection"><span class="glyphicon glyphicon-list-alt"></span></button>
+                                <button class="btn btn-default edit_section" title="Edit Subsection"><span class="glyphicon glyphicon-list-alt"></span></button>
                                 <button class="btn btn-default add_subsection" title="Add Subsection"><span class="glyphicon glyphicon-plus"></span></button>
                             </div>
                         </div>
@@ -62,5 +62,6 @@
                 </div>
             </div>
         </div>
+        <div id="id_values"></div>
     </h:body>
 </html>

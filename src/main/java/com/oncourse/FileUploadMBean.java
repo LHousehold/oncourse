@@ -13,6 +13,13 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
 import javax.faces.bean.ManagedProperty;
 import java.util.Map;
+import java.util.List;
+import java.util.Iterator;
+import org.apache.commons.io.FilenameUtils;
+
+import org.apache.pdfbox.util.Splitter;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.exceptions.COSVisitorException;
 
 @ManagedBean
 @RequestScoped
@@ -31,6 +38,7 @@ public class FileUploadMBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Part file1;
     private String message = null;
+
     public Part getFile1() {
         return file1;
     }
@@ -48,9 +56,8 @@ public class FileUploadMBean implements Serializable {
 
         Map<String,String> params = context.getExternalContext().getRequestParameterMap();
 	    String coursePackageids = params.get("coursePackageid");
-        int coursePackageid = Integer.valueOf(coursePackageids);
 
-        System.out.println("Howard is a piece of poo and is worth " + coursePackageid);
+        int coursePackageid = Integer.valueOf(coursePackageids);
 
         InputStream inputStream = null;
         OutputStream outputStream = null;
@@ -72,6 +79,8 @@ public class FileUploadMBean implements Serializable {
             FileQuery nFile = new FileQuery();
 
             nFile.cpid = coursePackageid;
+
+            String fileNameWithOutExt = FilenameUtils.removeExtension(fileName);
 
             File outputFile = new File(path + File.separator + "uploads" + File.separator + nFile.cpid
                     + File.separator + fileName);
@@ -119,6 +128,59 @@ public class FileUploadMBean implements Serializable {
                 }
 
                 db.writeTable(nFile);
+
+                if(extension.equals("pdf")){
+
+                    PDDocument document = new PDDocument();
+                    try{
+                        document = PDDocument.load(path + File.separator + "uploads" + File.separator + nFile.cpid
+                            + File.separator + fileName);
+                    }
+                    catch(Exception e){
+                        System.err.println("Error in Saving");
+                    }
+
+                        // Create a Splitter object
+                    Splitter splitter = new Splitter();
+
+                    // We need this as split method returns a list
+                    List<PDDocument> listOfSplitPages;
+
+                    // We are receiving the split pages as a list of PDFs
+                    try{
+                        listOfSplitPages = splitter.split(document);
+
+                        // We need an iterator to iterate through them
+                        Iterator<PDDocument> iterator = listOfSplitPages.listIterator();
+
+                        // I am using variable i to denote page numbers.
+                        int i = 1;
+                        while(iterator.hasNext()){
+                            PDDocument pd = iterator.next();
+                            try{
+                                // Saving each page with its assumed page no.
+                                pd.save(path + File.separator + "uploads" + File.separator + nFile.cpid
+                                        + File.separator + fileNameWithOutExt + "_Page_" + i + ".pdf");
+
+                                nFile.name = fileNameWithOutExt + "_Page_" + i + ".pdf";
+                                nFile.source = path + File.separator + "uploads" + File.separator + nFile.cpid
+                                        + File.separator + fileNameWithOutExt + "_Page_" + i++ + ".pdf";
+
+                                db.writeTable(nFile);
+
+                            } catch (COSVisitorException anException){
+                                // Something went wrong with a PDF object
+                                System.out.println("Something went wrong with page " + (i-1) + "\n Here is the error message" + anException);
+                            }
+                        }
+                    }
+                    catch(Exception e){
+                        System.err.println("Error in Splitting");
+                    }
+
+                }
+
+
                 file1Success = "true";
             }
         }
@@ -143,6 +205,9 @@ public class FileUploadMBean implements Serializable {
         /**
         * return to the same view
         */
-        return null;
+
+        String temp = "?faces-redirect=true&amp;cpid = " + coursePackageid;
+
+        return "cpid = " + coursePackageid;
     }
 }
