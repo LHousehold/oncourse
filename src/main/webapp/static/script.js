@@ -17,6 +17,17 @@ $(document).ready(function() {
     return false;
   });
 
+  $(".header_item").click(function(e) {
+      $('.header_navbar li.active').removeClass('active');
+      $(this).addClass('active');
+      e.preventDefault();
+      return false;
+  });
+
+  $("#header_log_out").click(function(e) {
+      window.location.replace("/oncourse");
+  });
+
   $('.navbar-brand').click(function(e){
     var navbar = $(this).parents(".navbar");
     var active = navbar.find(".active");

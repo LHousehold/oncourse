@@ -1,20 +1,9 @@
 $(document).ready(function() {
     // All the Javascript that coursepackageeditor.xhtml will need
 
-    $("#save_cp").click(function(e) {
-        var cp_data = get_data();
-
-        $(".save_cp_data")[0].value = cp_data;
-        $(".save_cp_command").click();
-        // clicking save_cp_command will send the original data and the new data to the database, to be compared and reflect changes
-        // assume this works: update original data to new data for future comparison
-
-        setTimeout(function(e) {
-            var cpid = $("#sections_content").attr("data-cpid");
-            $("#id_values").load("id_return.xhtml", {"cpid": cpid});
-        }, 100);
-
-    });
+    // $("#save_cp").click(function(e) {
+    //     save_course_package();
+    // });
 
     $("#upload_button").click(function(e) {
         var upload_top = $("#upload_top");
@@ -94,6 +83,10 @@ $(document).ready(function() {
         }
     });
 
+    $("#sections_content").on("click", "button", function(e){
+        save_course_package();
+    });
+
     $("#sections_content").on("click", ".edit_section", function(e){
         var pagenumber = $(this).closest(".secblock").find(".secnum").attr("data-pagenumber");
         var cpid = $("#sections_content").attr("data-cpid");
@@ -158,6 +151,20 @@ $(document).ready(function() {
 
         refresh_indices();
     });
+
+    var save_course_package = function() {
+        var cp_data = get_data();
+
+        $(".save_cp_data")[0].value = cp_data;
+        $(".save_cp_command").click();
+        // clicking save_cp_command will send the original data and the new data to the database, to be compared and reflect changes
+        // assume this works: update original data to new data for future comparison
+
+        setTimeout(function(e) {
+            var cpid = $("#sections_content").attr("data-cpid");
+            $("#id_values").load("id_return.xhtml", {"cpid": cpid});
+        }, 100);
+    }
 
     var refresh_indices = function() {
         $(".section_row").each(function(i) {
