@@ -22,14 +22,14 @@ function is_valid_login(data) {
     var parser = new DOMParser();
     var htmlDoc = parser.parseFromString(resp, "text/html");
     var result = htmlDoc.firstElementChild.innerText;
-    
+
     if (result != 0) {
         var indxpg = "index.xhtml?uid=" +
                         result;
         window.location.replace(indxpg);
     }
     else
-        console.log("no");
+        alert("Incorrect username or password. Please try again");
 }
 
 function login() {

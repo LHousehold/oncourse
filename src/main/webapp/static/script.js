@@ -1,7 +1,7 @@
 $(document).ready(function() {
     // All top level Javascript. Note that any page elements loaded through Ajax will not be able to access these functions
 
-  $('.navbar a').click(function(e){
+  $(".top").on("click", ".navbar a", function(e){
     $('.navbar li.active').removeClass('active');
     if (!$(this).hasClass('active')) {
       $(this).parent().addClass('active');
@@ -10,7 +10,7 @@ $(document).ready(function() {
     return false;
   });
 
-  $('.sidebar_top a').click(function(e){
+  $(".top").on("click", ".sidebar_top a", function(e){
     $('.sidebar_top a.active').removeClass('active');
     $(this).addClass('active');
     e.preventDefault();
@@ -33,7 +33,7 @@ $(document).ready(function() {
       $("#coursepackage_content").load("home.xhtml");
   });
 
-  $('.course_menu_item').click(function(e){
+  $(".top").on("click", ".course_menu_item", function(e){
       var course_code = $(this).attr("data-course-code");
       var cpid = $(this).attr("data-cpid");
 
@@ -45,8 +45,6 @@ $(document).ready(function() {
       if (course_code != null) {
           var resource = "new_cp.xhtml" +
                       "?course_code=" + course_code;
-
-          console.log(resource);
 
           get_request(resource, new_cp_callback);
       }
@@ -75,16 +73,16 @@ $(document).ready(function() {
           var html = '<a href="#" class="list-group-item course_menu_item" data-course-code="' + course_code + '" data-cpid="' + cpid + '">' + course_code + '</a>';
           $("#view_course_list").append(html);
           var html2 = '<a href="#" class="list-group-item course_edit_item" data-course-code="' + course_code + '" data-cpid="' + cpid + '">' + course_code + '</a>';
-          $("#edit_course_list").append(html2);
+          var new_cp_el = $(html2).appendTo($("#edit_course_list"));
+          new_cp_el.click();
       }
       else
-          console.log("no");
+          console.log("Failed to create course package");
   }
 
 
 
-
-  $('.course_edit_item').click(function(e){
+  $(".top").on("click", ".course_edit_item", function(e){
       var course_code = $(this).attr("data-course-code");
       var cpid = $(this).attr("data-cpid");
 
