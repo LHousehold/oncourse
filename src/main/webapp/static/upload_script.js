@@ -18,9 +18,6 @@ $(document).ready(function() {
     $("#upload_div").ready(function(e) {
         var cpid = window.parent.$("#sections_content").attr("data-cpid");
         $(".cpid_holder")[0].value = cpid;
-        console.log($(".cpid_holder"));
-
-        console.log(cpid);
     });
 
 })
