@@ -50,6 +50,13 @@ $(document).ready(function() {
       }
   });
 
+  $(".course_edit_item_new").ready(function(e) {
+      var edits = $(".course_edit_item");
+      if (edits.length == 0) {
+          $(".course_edit_item_new").remove();
+          $(".course_list_title").remove();
+      }
+  });
 
   function get_request(resource, func) {
       var req = new XMLHttpRequest();
