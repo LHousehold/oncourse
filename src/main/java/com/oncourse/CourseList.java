@@ -46,17 +46,17 @@ public class CourseList {
         }
 
         Course_package_name cpn = new Course_package_name();
-        cpn = (Course_package_name) db.readTable(cpn, query_condition, Course_package_name.class);
+        cpn = (Course_package_name) db.readTable(cpn, "TRUE", Course_package_name.class);
 
         while(cpn.next != null) {
             cpn = (Course_package_name) cpn.next();
-            this.packages.add(new CoursePackage(cpn.name,cpn.courseCode,cpn.cpid));
+            this.packages.add(new CoursePackage(cpn.name,cpn.courseCode,cpn.id));
         }
     }
 
     public String getName(int cpid) {
         Course_package_name cpn = new Course_package_name();
-        cpn = (Course_package_name) db.readTable(cpn, "cpid = " + cpid,Course_package_name.class);
+        cpn = (Course_package_name) db.readTable(cpn, "id = " + cpid,Course_package_name.class);
         cpn = (Course_package_name) cpn.next();
         return cpn.name;
     }
@@ -70,6 +70,19 @@ public class CourseList {
             else
                 return null;
         }
+    }
+
+    public String newCP(String course_code) {
+        Course_package_name cp = new Course_package_name();
+
+        cp.name = "New Course Package";
+        cp.courseCode = course_code;
+
+        int id = db.getIdWrite(cp);
+
+        db.genericQuery("INSERT INTO course_package_section (cpid,section_index,section_name,section_type,page_number) VALUES (" + id + ",1,\"New Section\",\"section\",1);");
+
+        return id + ":" + course_code;
     }
 
 }

@@ -1,7 +1,7 @@
 $(document).ready(function() {
     // All top level Javascript. Note that any page elements loaded through Ajax will not be able to access these functions
 
-  $('.navbar a').click(function(e){
+  $(".top").on("click", ".navbar a", function(e){
     $('.navbar li.active').removeClass('active');
     if (!$(this).hasClass('active')) {
       $(this).parent().addClass('active');
@@ -10,7 +10,7 @@ $(document).ready(function() {
     return false;
   });
 
-  $('.sidebar_top a').click(function(e){
+  $(".top").on("click", ".sidebar_top a", function(e){
     $('.sidebar_top a.active').removeClass('active');
     $(this).addClass('active');
     e.preventDefault();
@@ -33,7 +33,7 @@ $(document).ready(function() {
       $("#coursepackage_content").load("home.xhtml");
   });
 
-  $('.course_menu_item').click(function(e){
+  $(".top").on("click", ".course_menu_item", function(e){
       var course_code = $(this).attr("data-course-code");
       var cpid = $(this).attr("data-cpid");
 
@@ -41,16 +41,55 @@ $(document).ready(function() {
   });
 
   $('.course_edit_item_new').click(function(e){
-      //var cpid = $(this).attr("data-cpid");
-      var cpid = 6;
-
       var course_code = prompt("Please enter a Course Code for your new course", "APS100");
       if (course_code != null) {
-          $("#coursepackage_content").load("newcoursepackage.xhtml", {"coursecode":course_code, "cpid": cpid});
+          var resource = "new_cp.xhtml" +
+                      "?course_code=" + course_code;
+
+          get_request(resource, new_cp_callback);
       }
   });
 
-  $('.course_edit_item').click(function(e){
+  $(".course_edit_item_new").ready(function(e) {
+      var edits = $(".course_edit_item");
+      if (edits.length == 0) {
+          $(".course_edit_item_new").remove();
+          $(".course_list_title").remove();
+      }
+  });
+
+  function get_request(resource, func) {
+      var req = new XMLHttpRequest();
+      req.onload = func;
+      req.open("GET", resource, true);
+      req.send();
+  }
+
+  function new_cp_callback(data) {
+      var resp = data.currentTarget.responseText;
+      var parser = new DOMParser();
+      var htmlDoc = parser.parseFromString(resp, "text/html");
+      var result = htmlDoc.firstElementChild.innerText;
+
+      var result_split = result.split(":");
+
+      var cpid = result_split[0];
+      var course_code = result_split[1];
+
+      if (result != 0) {
+          var html = '<a href="#" class="list-group-item course_menu_item" data-course-code="' + course_code + '" data-cpid="' + cpid + '">' + course_code + '</a>';
+          $("#view_course_list").append(html);
+          var html2 = '<a href="#" class="list-group-item course_edit_item" data-course-code="' + course_code + '" data-cpid="' + cpid + '">' + course_code + '</a>';
+          var new_cp_el = $(html2).appendTo($("#edit_course_list"));
+          new_cp_el.click();
+      }
+      else
+          console.log("Failed to create course package");
+  }
+
+
+
+  $(".top").on("click", ".course_edit_item", function(e){
       var course_code = $(this).attr("data-course-code");
       var cpid = $(this).attr("data-cpid");
 

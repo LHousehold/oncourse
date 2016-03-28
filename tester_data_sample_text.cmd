@@ -100,10 +100,10 @@ VALUES (NULL,2,3.2,"Setting up Web Server: Tomcat","subsection",3);
 
 
 INSERT INTO course_package_name
-VALUES (NULL,"McDonald's Nutrition","MCD100",1);
+VALUES (NULL,"McDonald's Nutrition","MCD100");
 
 INSERT INTO course_package_name
-VALUES (NULL,"Introduction to JSP","JSP100",2);
+VALUES (NULL,"Introduction to JSP","JSP100");
 
 INSERT INTO users
 VALUES (NULL,"a","a","STUDENT", "1, 2");

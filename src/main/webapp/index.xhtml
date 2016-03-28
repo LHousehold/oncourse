@@ -34,7 +34,7 @@
 				</div>
 				<div class="course_list_title"><h5>Enrolled Courses</h5></div>
                 <f:event type="preRenderView" listener="#{courseList.init(uid)}" />
-				<div class="list-group course_list">
+				<div id="view_course_list" class="list-group course_list">
                     <ui:repeat value="#{courseList.getCoursePackages('VIEWER')}" var="cp">
                         <a href="#" class="list-group-item course_menu_item" data-course-code="#{cp.courseCode}" data-cpid="#{cp.cpid}">
                             #{cp.courseCode}
@@ -45,7 +45,7 @@
 				<div class="list-group course_list">
 				  	<a href="#" class="list-group-item course_edit_item_new">New Course Package</a>
 				</div>
-                <div class="list-group course_list">
+                <div id="edit_course_list" class="list-group course_list">
                     <ui:repeat value="#{courseList.getCoursePackages('EDITOR')}" var="cp">
                         <a href="#" class="list-group-item course_edit_item" data-course-code="#{cp.courseCode}" data-cpid="#{cp.cpid}">
                             #{cp.courseCode}
