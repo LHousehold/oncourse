@@ -12,14 +12,12 @@ public class Course_package_name implements DbTable {
     int id;
     String name;
     String courseCode;
-    int cpid;
 
     public void fill(ResultSet rs) {
         try {
             this.id = rs.getInt("id");
             this.name = rs.getString("name");
             this.courseCode = rs.getString("course_code");
-            this.cpid = rs.getInt("cpid");
         }
         catch (SQLException e) {
             System.out.println("error while filling entry");

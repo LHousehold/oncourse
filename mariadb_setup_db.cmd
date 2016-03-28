@@ -40,7 +40,6 @@ CREATE TABLE IF NOT EXISTS course_package_name
 id int AUTO_INCREMENT,
 name varchar(255) NOT NULL,
 course_code varchar(255) NOT NULL,
-cpid int NOT NULL,
 PRIMARY KEY (id)
 );
 

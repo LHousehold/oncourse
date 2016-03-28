@@ -50,13 +50,13 @@ public class CourseList {
 
         while(cpn.next != null) {
             cpn = (Course_package_name) cpn.next();
-            this.packages.add(new CoursePackage(cpn.name,cpn.courseCode,cpn.cpid));
+            this.packages.add(new CoursePackage(cpn.name,cpn.courseCode,cpn.id));
         }
     }
 
     public String getName(int cpid) {
         Course_package_name cpn = new Course_package_name();
-        cpn = (Course_package_name) db.readTable(cpn, "cpid = " + cpid,Course_package_name.class);
+        cpn = (Course_package_name) db.readTable(cpn, "id = " + cpid,Course_package_name.class);
         cpn = (Course_package_name) cpn.next();
         return cpn.name;
     }
