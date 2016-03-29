@@ -17,7 +17,8 @@
             <button class="btn btn-default" id="front_upload_btn">Upload File</button>
         </div>
 
-        <div id="upload_div">
+        <!-- <div id="upload_div" onload="var cpid = window.parent.document.getElementById('sections_content').getAttribute('data-cpid'); console.log(cpid);"> -->
+        <div id="upload_div" onload="alert('1');">
             <!-- Shows the error or success message -->
             <h:outputText value="#{fileUploadMBean.message}" rendered="#{!empty fileUploadMBean.message}"></h:outputText>
             <!-- notice the enctype for file upload -->

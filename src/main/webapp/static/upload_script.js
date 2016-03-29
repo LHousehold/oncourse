@@ -1,5 +1,7 @@
 $(document).ready(function() {
     // All the Javascript that upload.xhtml will need
+    var cpid = window.parent.$("#sections_content").attr("data-cpid");
+    $(".cpid_holder")[0].value = cpid;
 
     $("#front_select_btn").click(function(e) {
         $(".back_select_btn").click();
@@ -14,10 +16,4 @@ $(document).ready(function() {
         var filename = filepath[filepath.length-1];
         $("#front_filename").html(filename);
     });
-
-    $("#upload_div").ready(function(e) {
-        var cpid = window.parent.$("#sections_content").attr("data-cpid");
-        $(".cpid_holder")[0].value = cpid;
-    });
-
 })
