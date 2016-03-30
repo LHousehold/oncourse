@@ -44,15 +44,16 @@ $(document).ready(function() {
   });
 
   $('.navbar-brand').click(function(e){
-    var navbar = $(this).parents(".navbar");
-    var active = navbar.find(".active");
-    var default_active = navbar.find(".default_active");
-
-    active.removeClass('active');
-    default_active.addClass('active');
-
-    e.preventDefault();
-    return false;
+    // var navbar = $(this).parents(".navbar");
+    // var active = navbar.find(".active");
+    // var default_active = navbar.find(".default_active");
+    //
+    // active.removeClass('active');
+    // default_active.addClass('active');
+    //
+    // e.preventDefault();
+    // return false;
+    $("#header_my_home").click();
   });
 
   $('.option_menu_item').click(function(e){

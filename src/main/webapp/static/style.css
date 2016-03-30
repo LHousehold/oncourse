@@ -53,6 +53,17 @@ h1,h2,h3,h4,h5,a,p {
 	cursor: pointer;
 }
 
+#account_info {
+    display: inline-block;
+    padding-top: 5px;
+    color: ghostwhite;
+}
+
+#account_info > * {
+    border-left: ghostwhite solid 1px;
+    padding-left: 15px;
+}
+
 /* home page */
 .welcome_frame {
     padding: 70px;
@@ -486,10 +497,16 @@ iframe {
 /* contact and about pages */
 .contact_div {
     text-align: center;
-    margin-top: 25vh;
+    margin-top: 20vh;
+    padding: 70px;
+    border: 1px #337ab7 solid;
+    border-radius: 5px;
 }
 
 .about_div {
     text-align: center;
-    margin-top: 12vh;
+    margin-top: 8vh;
+    padding: 70px;
+    border: 1px #337ab7 solid;
+    border-radius: 5px;
 }

@@ -3,6 +3,7 @@
     <html xmlns="http://www.w3.org/1999/xhtml"
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:c="http://xmlns.jcp.org/jsf/jstl/core"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <ui:param name="uid" value="#{request.getParameter('uid')}" />
@@ -15,6 +16,9 @@
   			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand">On Course</a>
+                    <h4 id="account_info">
+                        <h:outputText value="#{courseList.getAccountInfo()}" />
+                    </h4>
 				</div>
 				<div class="collapse navbar-collapse">
           			<ul class="header_navbar nav navbar-nav navbar-right">
