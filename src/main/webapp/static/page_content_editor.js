@@ -243,10 +243,10 @@ function initial_tile_add (grid_id, cp_table_id, media_type, source) {
 function getvid(url, pos) {
     var tmp = url.split("?")[1];
     var id = tmp.slice(2, 13);
-    
+
     var source = id;
     var media_type = "YOUTUBE";
-    
+
     var tile = add_tile(pos, media_type, source); // 1 is a test value
 
     save_page(pos, media_type, source, tile);
@@ -256,7 +256,7 @@ function urlkeypress(e) {
     if (e.keyCode == 13) { // enter {
         var pos = e.target.getAttribute("data-pos");
         getvid(e.target.value, pos);
-        document.body.removeChild(e.target.parentElement);
+        e.target.parentElement.parentElement.removeChild(e.target.parentElement);
     }
 }
 
@@ -271,14 +271,14 @@ function add_youtubevid(pos) {
     messagebox.style.width= "450px";
     messagebox.style.position = "absolute";
     messagebox.style.top = "300px";
-    messagebox.style.left = "400px";
+    messagebox.style.left = "50px";
     //messagebox.style.box-shadow = "5px 3px 20px 0 black"
-    
+
     var sp = document.createElement("span");
     sp.classList.add("center_span");
-    
+
     messagebox.appendChild(sp);
-    
+
     //<input id="password_enter" type="text" class="form-control" placeholder="Enter Password" />
     var input = document.createElement("input");
     input.id = "yt_txtbox";
@@ -290,13 +290,14 @@ function add_youtubevid(pos) {
     input.style.margin = "0 auto 0 auto";
     input.style.position = "relative";
     input.style.left = "10px";
-    
+
     input.onkeyup = urlkeypress;
     input.setAttribute("data-pos", pos);
-    
+
     messagebox.appendChild(input);
-    
-    document.body.appendChild(messagebox);
+
+    var grid = document.getElementById("grid");
+    grid.appendChild(messagebox);
 }
 
 function add_file_to_grid (grid, file) {
