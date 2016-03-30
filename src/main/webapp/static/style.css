@@ -381,6 +381,7 @@ h1,h2,h3,h4,h5,a,p {
     text-align: center;
     border: 1px solid #ddd;
     border-radius: 3px;
+    height: auto;
 }
 
 iframe {

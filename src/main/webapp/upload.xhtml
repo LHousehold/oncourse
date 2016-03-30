@@ -12,15 +12,16 @@
     </h:head>
     <h:body>
         <div id="upload_button_div">
+            <h5 id="front_upload_message">Please select a file to upload</h5>
+            <hr/>
             <button class="btn btn-default" id="front_select_btn">Choose File</button>
             <h5 id="front_filename">No File Selected</h5>
             <button class="btn btn-default" id="front_upload_btn">Upload File</button>
         </div>
 
-        <!-- <div id="upload_div" onload="var cpid = window.parent.document.getElementById('sections_content').getAttribute('data-cpid'); console.log(cpid);"> -->
-        <div id="upload_div" onload="alert('1');">
+        <div id="upload_div">
             <!-- Shows the error or success message -->
-            <h:outputText value="#{fileUploadMBean.message}" rendered="#{!empty fileUploadMBean.message}"></h:outputText>
+            <p class="return_message"><h:outputText value="#{fileUploadMBean.message}" rendered="#{!empty fileUploadMBean.message}"></h:outputText></p>
             <!-- notice the enctype for file upload -->
             <h:form prependid="false" id="back_upload_form" enctype="multipart/form-data" onsubmit="">
                 <h:panelGrid>

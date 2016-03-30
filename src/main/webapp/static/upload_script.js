@@ -3,6 +3,11 @@ $(document).ready(function() {
     var cpid = window.parent.$("#sections_content").attr("data-cpid");
     $(".cpid_holder")[0].value = cpid;
 
+    var return_message = $(".return_message")[0].innerHTML;
+    if (return_message != "") {
+        $("#front_upload_message")[0].innerHTML = return_message;
+    }
+
     $("#front_select_btn").click(function(e) {
         $(".back_select_btn").click();
     });
@@ -16,4 +21,5 @@ $(document).ready(function() {
         var filename = filepath[filepath.length-1];
         $("#front_filename").html(filename);
     });
+
 })

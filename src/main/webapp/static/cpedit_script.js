@@ -12,7 +12,7 @@ $(document).ready(function() {
 
         if (visible == "false") {
             upload_top.css("visibility","visible");
-            upload_top.css("height","auto");
+            upload_top.css("height","230px");
             upload_top.attr("data-visible","true");
         }
         else {
