@@ -482,3 +482,14 @@ iframe {
     height: 100%;
     vertical-align: middle;
 }
+
+/* contact and about pages */
+.contact_div {
+    text-align: center;
+    margin-top: 25vh;
+}
+
+.about_div {
+    text-align: center;
+    margin-top: 12vh;
+}

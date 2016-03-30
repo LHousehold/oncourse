@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:param name="uid" value="#{request.getParameter('uid')}" />
+    <head>
+        <ui:include src="head.xhtml" />
+    </head>
+    <body>
+    	<nav class="navbar navbar-default navbar-fixed-top color4">
+  			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand">On Course</a>
+				</div>
+				<div class="collapse navbar-collapse">
+          			<ul class="header_navbar nav navbar-nav navbar-right">
+            			<li id="header_my_home" data-uid="#{uid}" class="header_item"><a href="#">My Home</a></li>
+            			<li id="header_about" class="active default_active header_item"><a href="#">About 'On Course'</a></li>
+            			<li id="header_contact" class="header_item"><a href="#">Contact Us</a></li>
+                        <li id="header_log_out" class="header_item"><a href="#">Log Out</a></li>
+          			</ul>
+        		</div>
+  			</div>
+		</nav>
+        <div class="top">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="col-md-10 col-md-offset-1 about_div">
+                        <h1>So what exactly is On Course?</h1>
+                        <br></br>
+                        <h3>On Course is a learning platform created for instructors and students alike</h3>
+                        <h3>As students ourselves, the developers of On Course are no strangers to the confusion that comes
+                            from the sheer volume of learning material thrown at us every day. Things like</h3>
+                        <br></br>
+                        <h4>Hard Copy Textbooks</h4>
+                        <h4>Course Handouts</h4>
+                        <h4>Digital Textbooks and Resources</h4>
+                        <h4>Too Many Learning Management Sites</h4>
+                        <h4>And so much more...</h4>
+                        <br></br>
+                        <h3>On Course is a place where instructors can place all of the learning material a class
+                            is going to need throughout the semester, in a sequential, easy to read manner</h3>
+                        <h3>We're just interested in helping instructors give students exactly what they need</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

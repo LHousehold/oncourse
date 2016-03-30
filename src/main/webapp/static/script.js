@@ -24,6 +24,21 @@ $(document).ready(function() {
       return false;
   });
 
+  $("#header_about").click(function(e) {
+      var uid = $("#header_my_home").attr("data-uid");
+      window.location.replace("/oncourse/about.xhtml?uid=" + uid);
+  });
+
+  $("#header_my_home").click(function(e) {
+      var uid = $("#header_my_home").attr("data-uid");
+      window.location.replace("/oncourse/index.xhtml?uid=" + uid);
+  });
+
+  $("#header_contact").click(function(e) {
+      var uid = $("#header_my_home").attr("data-uid");
+      window.location.replace("/oncourse/contact.xhtml?uid=" + uid);
+  });
+
   $("#header_log_out").click(function(e) {
       window.location.replace("/oncourse");
   });
