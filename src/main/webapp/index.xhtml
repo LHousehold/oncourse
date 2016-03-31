@@ -15,6 +15,7 @@
   			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand">On Course</a>
+                    <h4 id="account_info"><h:outputText value="#{courseList.getAccountInfo(uid)}" /></h4>
 				</div>
 				<div class="collapse navbar-collapse">
           			<ul class="header_navbar nav navbar-nav navbar-right">
@@ -30,7 +31,6 @@
 			<div class="sidebar_top">
 				<div class="list-group">
 				  	<a href="#" class="list-group-item active default_active option_menu_item" data-option="home">Home</a>
-				  	<a href="#" class="list-group-item option_menu_item" data-option="manage">Manage Courses</a>
 				</div>
 				<div class="course_list_title"><h5>Enrolled Courses</h5></div>
                 <f:event type="preRenderView" listener="#{courseList.init(uid)}" />

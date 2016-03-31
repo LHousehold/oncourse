@@ -85,4 +85,21 @@ public class CourseList {
         return id + ":" + course_code;
     }
 
+    public String getAccountInfo(int uid) {
+        Users users = new Users();
+        users = (Users) db.readTable(users, "id=" + uid, Users.class);
+        users = (Users)users.next();
+
+        String username = users.user_name;
+        String type = "";
+        if (users.type.equals("STUDENT")) {
+            type = "Student";
+        }
+        else {
+            type = "Instructor";
+        }
+
+        return username;
+    }
+
 }

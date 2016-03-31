@@ -1,9 +1,9 @@
 $(document).ready(function() {
     // All the Javascript that coursepackageeditor.xhtml will need
 
-    // $("#save_cp").click(function(e) {
-    //     save_course_package();
-    // });
+    $("#save_cp").click(function(e) {
+        save_course_package();
+    });
 
     $("#upload_button").click(function(e) {
         var upload_top = $("#upload_top");
@@ -83,11 +83,13 @@ $(document).ready(function() {
         }
     });
 
-    $("#sections_content").on("click", "button", function(e){
-        save_course_package();
-    });
+    // $("#sections_content").on("click", "button", function(e){
+    //     save_course_package();
+    // });
 
     $("#sections_content").on("click", ".edit_section", function(e){
+        save_course_package();
+
         var pagenumber = $(this).closest(".secblock").find(".secnum").attr("data-pagenumber");
         var cpid = $("#sections_content").attr("data-cpid");
 

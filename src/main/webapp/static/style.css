@@ -53,6 +53,15 @@ h1,h2,h3,h4,h5,a,p {
 	cursor: pointer;
 }
 
+#account_info {
+    padding-top: 5px;
+    border-left: 1px ghostwhite solid;
+    margin-left: 8px;
+    padding-left: 20px;
+    display: inline-block;
+    color: ghostwhite;
+}
+
 /* home page */
 .welcome_frame {
     padding: 70px;
@@ -163,6 +172,9 @@ h1,h2,h3,h4,h5,a,p {
     opacity: 0;
     transition: linear 0.2s;
     width: 300px;
+    max-height: 700px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .toc_button:hover > .toc_list {
@@ -486,10 +498,16 @@ iframe {
 /* contact and about pages */
 .contact_div {
     text-align: center;
-    margin-top: 25vh;
+    margin-top: 20vh;
+    padding: 70px;
+    border: 1px #337ab7 solid;
+    border-radius: 5px;
 }
 
 .about_div {
     text-align: center;
-    margin-top: 12vh;
+    margin-top: 8vh;
+    padding: 70px;
+    border: 1px #337ab7 solid;
+    border-radius: 5px;
 }
